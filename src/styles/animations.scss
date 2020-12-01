@@ -1,0 +1,43 @@
+@import "./settings.scss";
+
+.sw-animation {
+  transition: 1s;
+}
+
+.md-animation {
+  transition: .65s;
+}
+
+.ft-animation {
+  transition: .3s;
+}
+
+@keyframes fadeout {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideRight {
+  from {margin-left: 0;}
+  to {margin-left: 100%;}
+}
+
+@keyframes slideLeft {
+  from {margin-right: 0;}
+  to {margin-right: 100%;}
+}
+
+@keyframes fadeinRight {
+  from {margin-left: 100%;}
+  to {margin-left: 0%;}
+}
+
+@keyframes fadeinLeft {
+  from {margin-right: 100%;}
+  to {margin-right: 0%;}
+}

@@ -1,0 +1,22 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  align-items: center;
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  padding: 2.5vh 0 2.5vh 0;
+  width: 100%;
+  background-color: $navbar-bg;
+
+  a {
+    color: $navbar-link;
+    text-decoration: none;
+    font-family: $font-title;
+    font-size: $base-size * 2;
+    &:hover,
+    &:global(.active) {
+      color: $navbar-link-active;
+    }
+  }
+}

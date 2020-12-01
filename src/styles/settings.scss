@@ -1,0 +1,71 @@
+$base-padding: 24px;
+$radius: 5px;
+$base-size: 1rem;
+$transition: all 0.3s;
+
+$font-title: "Cookies", sans-serif;
+$font-subtitle: "DancingScript-Medium", sans-serif;
+$font-text: "Poppins", sans-serif;
+
+/* DO NOT USE THOSE VARIABLES IN THE OTHER SCSS FILES! */
+$black: #000000;
+$blue: #0000ff;
+$chocolate: #5c3f1a;
+$cookie: #e89e3b;
+$darkGray: #363636;
+$darkWhite: #e1e1e1;
+$gray: #434343;
+$green: #008000;
+$lightBlack: #2a2a2a;
+$lightGray: #b2b2b2;
+$lightGreen: #32cd32;
+$lightGreyBlue: #7aa3cc;
+$lightWhite: #f4f5f7;
+$lightWhiteBlue: #e0e3ed;
+$mint: #aaf0d1;
+$pink: #ffc0cb;
+$red: #ff0000;
+$transparent: transparent;
+$white: #ffffff;
+$yellow: #ffff00;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $chocolate;
+  font-family: $font-title;
+}
+
+/*Background*/
+
+// $background-bg: linear-gradient(90deg, #fdfbfb 0%, #ebedee 100%);
+
+/*Button*/
+
+// $button-main-bg-hover: $mint;
+// $button-main-bg: $lightBlack;
+// $button-main-text: $white;
+// $button-outline-bg-hover: $lightBlack;
+// $button-outline-bg: $white;
+// $button-outline-border: $lightBlack;
+// $button-outline-text-hover: $white;
+// $button-outline-text: $lightBlack;
+
+/*Header*/
+
+$header-pattern-bg: linear-gradient(to right, $cookie 50%, $white 0);
+
+/*Navbar*/
+
+$navbar-bg: $cookie;
+$navbar-link: $chocolate;
+$navbar-link-hover: $white;
+$navbar-link-active: $white;
+// $header-bg: $lightGray;
+// $header-link: $lightBlack;
+// $header-link-active-hover: $lightGreyBlue;
+// $header-link-active: $lightGreyBlue;
+// $header-link: $lightBlack;

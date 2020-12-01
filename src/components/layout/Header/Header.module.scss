@@ -1,0 +1,53 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  .topPattern {
+    background: $header-pattern-bg;
+    height: 10vh;
+    width: 100vw;
+  }
+}
+
+@media (min-width: 1025px) {
+  .root {
+    .topPattern {
+      background-size: 5vw 100%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+  .root {
+    .topPattern {
+      background-size: 5vw 100%;
+      height: 5vh;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    .topPattern {
+      background-size: 10vw 100%;
+      height: 5vh;
+    }
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .root {
+    .topPattern {
+      background-size: 20vw 100%;
+      height: 5vh;
+    }
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .root {
+    .topPattern {
+      background-size: 20vw 100%;
+      height: 5vh;
+    }
+  }
+}

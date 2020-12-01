@@ -1,0 +1,62 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  position: relative;
+  .logoImg {
+    background-size: cover;
+    display: inline-block;
+    margin: 15vh 0 15vh 0;
+    transition: $transition;
+  }
+  .pageTitle {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    font-size: $base-size * 1.5;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-width: 1025px) {
+  .root {
+    .logoImg {
+      height: 12.5vh;
+    }
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+  .root {
+    .logoImg {
+      height: 7.5vh;
+      margin: 10vh 0 10vh 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    .logoImg {
+      height: 5vh;
+      margin: 5vh 0 5vh 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .root {
+    .logoImg {
+      height: 5vh;
+      margin: 5vh 0 5vh 0;
+    }
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .root {
+    .logoImg {
+      height: 5vh;
+      margin: 5vh 0 5vh 0;
+    }
+  }
+}

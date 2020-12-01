@@ -1,0 +1,13 @@
+@import './styles/global.scss';
+
+.app {
+  text-align: center;
+  .switchWrapper {
+    position: relative;
+    > div {
+      position: absolute;
+      width: 100%;
+    }
+  }
+}
+

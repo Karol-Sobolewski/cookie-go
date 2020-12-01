@@ -1,0 +1,71 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": [
+    "react",
+    "css-modules"
+  ],
+  "extends": [
+    //"eslint:recommended",
+    //"plugin:react/recommended",
+    "wesbos",
+    "plugin:css-modules/recommended"
+  ],
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": [
+      "off"
+    ],
+    "quotes": [
+      "error",
+      "backtick",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "no-console": "off",
+    "css-modules/no-unused-class": [
+      2,
+      {
+        "camelCase": true
+      }
+    ],
+    "css-modules/no-undef-class": [
+      2,
+      {
+        "camelCase": true
+      }
+    ]
+  }
+}

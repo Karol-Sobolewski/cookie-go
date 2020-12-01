@@ -1,0 +1,15 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 5vh;
+}
