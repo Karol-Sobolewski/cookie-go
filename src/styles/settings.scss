@@ -4,7 +4,7 @@ $base-size: 1rem;
 $transition: all 0.3s;
 
 $font-title: "Cookies", sans-serif;
-$font-subtitle: "DancingScript-Medium", sans-serif;
+$font-subtitle: "Dearest", sans-serif;
 $font-text: "Poppins", sans-serif;
 
 /* DO NOT USE THOSE VARIABLES IN THE OTHER SCSS FILES! */
@@ -28,16 +28,6 @@ $red: #ff0000;
 $transparent: transparent;
 $white: #ffffff;
 $yellow: #ffff00;
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: $chocolate;
-  font-family: $font-title;
-}
 
 /*Background*/
 
@@ -69,3 +59,7 @@ $navbar-link-active: $white;
 // $header-link-active-hover: $lightGreyBlue;
 // $header-link-active: $lightGreyBlue;
 // $header-link: $lightBlack;
+
+/*About*/
+
+$about-text: $chocolate;

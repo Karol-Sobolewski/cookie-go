@@ -2,18 +2,22 @@
 
 .root {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .logoImg {
     background-size: cover;
     display: inline-block;
-    margin: 15vh 0 15vh 0;
     transition: $transition;
   }
   .pageTitle {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    font-size: $base-size * 1.5;
-    transform: translate(-50%, -50%);
+    font-family: $font-subtitle;
+    // margin: 5vh 0 5vh 0;
+    // left: 50%;
+    // position: absolute;
+    // transform: translate(-50%, -50%);
+    // width: 100%;
   }
 }
 
@@ -21,6 +25,11 @@
   .root {
     .logoImg {
       height: 12.5vh;
+      margin: 10vh 0 0 0;
+    }
+    .pageTitle {
+      margin: 5vh 0 5vh 0;
+      font-size: $base-size * 2.5;
     }
   }
 }
@@ -29,7 +38,11 @@
   .root {
     .logoImg {
       height: 7.5vh;
-      margin: 10vh 0 10vh 0;
+      margin: 10vh 0 0 0;
+    }
+    .pageTitle {
+      margin: 5vh 0 5vh 0;
+      font-size: $base-size * 3;
     }
   }
 }
@@ -38,7 +51,11 @@
   .root {
     .logoImg {
       height: 5vh;
-      margin: 5vh 0 5vh 0;
+      margin: 5vh 0 0 0;
+    }
+    .pageTitle {
+      margin: 2.5vh 0 2.5vh 0;
+      font-size: $base-size * 2;
     }
   }
 }
@@ -47,7 +64,11 @@
   .root {
     .logoImg {
       height: 5vh;
-      margin: 5vh 0 5vh 0;
+      margin: 10vh 0 0 0;
+    }
+    .pageTitle {
+      margin: 2.5vh 0 2.5vh 0;
+      font-size: $base-size * 1.5;
     }
   }
 }
@@ -56,7 +77,11 @@
   .root {
     .logoImg {
       height: 5vh;
-      margin: 5vh 0 5vh 0;
+      margin: 5vh 0 0 0;
+    }
+    .pageTitle {
+      margin: 2.5vh 0 2.5vh 0;
+      font-size: $base-size * 1.5;
     }
   }
 }

@@ -3,7 +3,7 @@
 .root {
   align-items: center;
   display: flex;
-  height: 10vh;
+  height: 8vh;
   justify-content: center;
   padding: 2.5vh 0 2.5vh 0;
   width: 100%;
@@ -13,10 +13,39 @@
     color: $navbar-link;
     text-decoration: none;
     font-family: $font-title;
-    font-size: $base-size * 2;
+    font-size: $base-size * 1.5;
     &:hover,
     &:global(.active) {
       color: $navbar-link-active;
     }
+  }
+}
+
+@media (min-width: 1025px) {
+  .root {
+  }
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+  .root {
+    // display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .root {
+    // display: none;
+  }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .root {
+    // display: none;
+  }
+}
+
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .root {
+    // display: none;
   }
 }

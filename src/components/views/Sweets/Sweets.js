@@ -1,36 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { Container, Row, Col } from 'react-bootstrap';
-import { useLocation } from 'react-router-dom';
-import { fetchMenu, changeLanguage } from '../../../redux/menuRedux';
-import styles from './HomePage.module.scss';
+import styles from './Sweets.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-import initialState from '../../../redux/initialState';
 
-const Component = ({ className, language, children }) => {
-  const dispatch = useDispatch();
-
-  const location = useLocation();
-  useEffect(() => {
-    console.log(language);
-    if (language) {
-      if (language === `en` || location.componentProps === `en`) {
-        dispatch(changeLanguage(`English`));
-      } else {
-        dispatch(changeLanguage(`Polish`));
-      }
-    }
-  }, []);
+const Component = ({ className, children, language }) => {
+  console.log(`Sweets`);
   return (
     <div className={clsx(className, styles.root)}>
       <Container>
         <Row>
           <Col>
-            <h2>HomePage</h2>
+            <h2>Sweets</h2>
           </Col>
         </Row>
         <main>{children}</main>
@@ -56,7 +40,7 @@ Component.propTypes = {
 };
 
 export {
-  Component as HomePage,
-  // Container as HomePage,
-  Component as HomePageComponent,
+  Component as Sweets,
+  // Container as Sweets,
+  Component as SweetsComponent,
 };

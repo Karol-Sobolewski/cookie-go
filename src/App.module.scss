@@ -1,13 +1,33 @@
-@import './styles/global.scss';
-
+@import "./styles/global.scss";
+@import "./styles/animations.scss";
 .app {
   text-align: center;
   .switchWrapper {
     position: relative;
-    > div {
+    /*> :first-child ~ * {
       position: absolute;
+      left: 0;
       width: 100%;
+      animation: fadeinRight 0.3s;
+    }*/
+    /*> div {
+      position: absolute;
+      opacity: 0;
+    }*/
+    > div:nth-child(1) {
+      position: relative;
+      // width: 100%;
+      // opacity: 1;
+      // transition: all 0.3s;
+    }
+    > div:nth-child(2) {
+      top: 0;
+      left: 0;
+      position: absolute;
+      // display: none;
+      // width: 100%;
+      // opacity: 0;
+      // transition: all 0.3s;
     }
   }
 }
-

@@ -10,25 +10,31 @@ import styles from './Navbar.module.scss';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, children }) => {
-  const menuEnglishItems = useSelector((state) => state.Menu);
-  const activeLanguage = useSelector((state) => state.activeLanguage);
-  console.log(activeLanguage);
+  const menuItems = useSelector((state) => state.menus.data);
+  // const stateU = useSelector((state) => state);
+  const activeLanguage = useSelector(
+    (state) => state.menus.data.activeLanguage
+  );
+  // console.log(`menu`, stateU);
+  console.log(`menulang`, menuItems);
+  console.log(`activeLanguage`, activeLanguage);
+
   return (
     <div className={clsx(className, styles.root)}>
       <Container>
         <Row className="d-flex justify-content-between align-items-center">
           {/* eslint-disable */}
           {activeLanguage === `English`
-            ? menuEnglishItems.English.map((item) => (
-                <Col>
-                  <NavLink key={item.id} to={item.src} activeClassName="active">
+            ? menuItems.english.map((item) => (
+                <Col key={item.id}>
+                  <NavLink to={{pathname: `/${item.src}`, componentProps: `en`}} activeClassName="active">
                     {item.title}
                   </NavLink>
                 </Col>
               ))
-            : menuEnglishItems.Polish.map((item) => (
-              <Col>
-                <NavLink key={item.id} to={item.src} activeClassName="active">
+            : menuItems.polish.map((item) => (
+              <Col key={item.id}>
+                <NavLink to={{pathname: `/${item.src}`, componentProps: `pl`}} activeClassName="active">
                   {item.title}
                 </NavLink>
               </Col>

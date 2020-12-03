@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -7,8 +7,8 @@ import styles from './{{pascalCase name}}.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-const Component = ({ className, children }) => {
-  console.log(`sth`);
+const Component = ({ className, children, language }) => {
+  console.log(`{{pascalCase name}}`);
   return (
     <div className={clsx(className, styles.root)}>
       <Container>
@@ -36,6 +36,7 @@ const Component = ({ className, children }) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  language: PropTypes.string,
 };
 
 export {
