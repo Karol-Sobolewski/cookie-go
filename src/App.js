@@ -19,6 +19,7 @@ import { Contact } from './components/views/Contact/Contact';
 import initialState from './redux/initialState';
 
 import { fetchMenu, changeLanguage } from './redux/menuRedux';
+import { fetchPages } from './redux/pageRedux';
 
 const App = () => {
   // const activeLanguage = useSelector((state) => state.activeLanguage);
@@ -28,6 +29,7 @@ const App = () => {
   const [loaded, setLoaded] = useState(false);
   // console.log(`state`, state);
   useEffect(() => {
+    dispatch(fetchPages());
     dispatch(fetchMenu());
     const loadData = () => {
       fetch(`https://geolocation-db.com/json/`)

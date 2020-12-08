@@ -13,13 +13,13 @@ export default {
       error: false,
     },
   },
-  about: {
+  /* about: {
     english: {
       heading: `About Us`,
       descriptions: [
         { text: `We started in 2019 baking cookies in home for our friends` },
         {
-          text: `In 2020 we were granted with Polish goverment found for startups.`,
+          text: `In 2020 we were granted with Polish government found for startups.`,
         },
         {
           text: `By the end of 2020 we have started on-line shop for our cookies.`,
@@ -50,12 +50,12 @@ export default {
       { src: `/images/photos/about/start.jpg`, title: `how-we-started` },
       {
         src: `/images/photos/about/funding.jpg`,
-        title: `funding-by-goverment`,
+        title: `funding-by-government`,
       },
       { src: `/images/photos/about/internet.jpg`, title: `on-line` },
       { src: `/images/photos/about/cookies.jpg`, title: `cookies` },
     ],
-  },
+  }, */
 };
 /*
 english: [

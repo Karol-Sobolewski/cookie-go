@@ -5,11 +5,10 @@ import clsx from 'clsx';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
-import { fetchMenu, changeLanguage } from '../../../redux/menuRedux';
+import { changeLanguage } from '../../../redux/menuRedux';
 import styles from './HomePage.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-import initialState from '../../../redux/initialState';
 
 const Component = ({ className, language, children }) => {
   const dispatch = useDispatch();

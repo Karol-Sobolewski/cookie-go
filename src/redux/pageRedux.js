@@ -1,6 +1,8 @@
 import Axios from 'axios';
 
-const reducerName = `menus`;
+// export const getAll = ({ menus }) => menus.data;
+
+const reducerName = `pages`;
 const createActionName = (name) => `app/${reducerName}/${name}`;
 
 const FETCH_START = createActionName(`FETCH_START`);
@@ -11,17 +13,16 @@ const CHANGE_LANG = createActionName(`CHANGE_LANG`);
 export const fetchStarted = (payload) => ({ payload, type: FETCH_START });
 export const fetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
-export const changeLanguage = (payload) => ({ payload, type: CHANGE_LANG });
 
-// export const getMenuItems = ({ menus }) => menus.data;
+export const getPageItems = ({ pages }) => pages.data;
 
-export const fetchMenu = () => (dispatch, getState) => {
+export const fetchPages = () => (dispatch, getState) => {
   dispatch(fetchStarted());
 
-  Axios.get(`http://localhost:8000/api/menus`)
+  Axios.get(`http://localhost:8000/api/pages`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
-      console.log(`res`, res.data);
+      console.log(`respages`, res.data);
     })
     .catch((err) => {
       dispatch(fetchError(err.message || true));
@@ -40,7 +41,7 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case FETCH_SUCCESS: {
-      console.log(`menu`, action.payload);
+      console.log(`payload`, action.payload);
       return {
         ...statePart,
         loading: {
@@ -56,15 +57,6 @@ export default function reducer(statePart = [], action = {}) {
         loading: {
           active: false,
           error: action.payload,
-        },
-      };
-    }
-    case CHANGE_LANG: {
-      return {
-        ...statePart,
-        data: {
-          ...statePart.data,
-          activeLanguage: action.payload,
         },
       };
     }

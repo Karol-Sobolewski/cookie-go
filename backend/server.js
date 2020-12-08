@@ -4,6 +4,7 @@ const path = require(`path`);
 const mongoose = require(`mongoose`);
 
 const menusRoutes = require(`./routes/menus.routes`);
+const pagesRoutes = require(`./routes/pages.routes`);
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 /* API ENDPOINTS */
 app.use(`/api`, menusRoutes);
+app.use(`/api`, pagesRoutes);
 
 /* API ERROR PAGES */
 app.use(`/api`, (req, res) => {

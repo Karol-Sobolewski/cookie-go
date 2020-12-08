@@ -15,7 +15,7 @@ const FetchData = () => {
       .catch((err) => console.log(`Error: ${err}`));
   };
   getMenuData();
-  console.log(menu);
+  console.log(`menu`, menu);
 };
 
 export { FetchData };

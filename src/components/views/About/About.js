@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { useSelector } from 'react-redux';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './About.module.scss';
@@ -24,6 +25,8 @@ function reducer(state, action) {
 }
 
 const Component = ({ className, language, children }) => {
+  const PageItems = useSelector((state4) => state4);
+  console.log(`PageItems`, PageItems);
   const [lang, setLanguage] = useState(initialState.activeLanguage);
   const [state, dispatch] = useReducer(reducer, state2);
 
@@ -42,11 +45,7 @@ const Component = ({ className, language, children }) => {
     <div className={clsx(className, styles.root)}>
       {language === `PL` || lang === `Polish` ? (
         <Container>
-          <Row>
-            {console.log(initialState)}
-            <h2>{initialState.about.polish.heading}</h2>
-            {console.log(initialState.about.polish.descriptions)}
-          </Row>
+          <Row>About</Row>
           <Row className={styles.aboutGrid}>
             {initialState.about.polish.descriptions.map((item) => (
               <Row key={item.id}>
@@ -62,10 +61,7 @@ const Component = ({ className, language, children }) => {
         </Container>
       ) : (
         <Container>
-          <Row>
-            {console.log(initialState)}
-            <h2>{initialState.about.english.heading}</h2>
-          </Row>
+          <Row>O nas</Row>
           <main>{children}</main>
         </Container>
       )}

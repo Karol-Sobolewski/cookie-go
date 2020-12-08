@@ -21,10 +21,24 @@
   }
 }
 
-@media (min-width: 1025px) {
+/* ExtraExtraLarge Devices, UltraWide Desktops  */
+@media (min-width: 1921px) {
   .root {
     .logoImg {
-      height: 12.5vh;
+      height: 10vh;
+      margin: 10vh 0 0 0;
+    }
+    .pageTitle {
+      margin: 5vh 0 5vh 0;
+      font-size: $base-size * 2.5;
+    }
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1920px) {
+  .root {
+    .logoImg {
+      height: 10vh;
       margin: 10vh 0 0 0;
     }
     .pageTitle {
