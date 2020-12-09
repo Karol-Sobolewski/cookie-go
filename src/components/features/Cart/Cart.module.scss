@@ -1,0 +1,86 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  position: relative;
+  .cartIcon {
+    color: $navbar-cart-icon;
+    cursor: pointer;
+    :hover {
+      color: $navbar-cart-icon-active;
+    }
+  }
+  .cartIconActive {
+    color: $navbar-cart-icon-active;
+    cursor: pointer;
+  }
+}
+
+.cart {
+  background-color: white;
+  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
+  // height: 0;
+  // min-height: 10vh;
+  height: auto;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 50%;
+  top: 6.5vh;
+  transform: translateY(-10%);
+  transition-timing-function: ease-in;
+  transition: 0.2s;
+  visibility: hidden;
+}
+.cartActive {
+  @extend .cart;
+  opacity: 1;
+  transform: translateY(0);
+  visibility: visible;
+  z-index: 10;
+}
+
+/* ExtraExtraLarge Devices, UltraWide Desktops  */
+@media (min-width: 1921px) {
+  .cart {
+    width: 20vw;
+    max-height: 50vh;
+  }
+}
+/* ExtraLarge Devices, Desktops  */
+@media (min-width: 1200px) and (max-width: 1920px) {
+  .cart {
+    width: 30vw;
+    max-height: 50vh;
+  }
+}
+/* Large Devices, Desktops */
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+  .cart {
+    width: 50vw;
+    max-height: 30vh;
+  }
+}
+
+/*Medium Devices, laptops*/
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .cart {
+    width: 50vw;
+    max-height: 30vh;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .cart {
+    width: 50vw;
+    max-height: 30vh;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .cart {
+    width: 50vw;
+    max-height: 30vh;
+  }
+}

@@ -65,3 +65,21 @@
     margin-right: 0%;
   }
 }
+
+@keyframes fadeinTop {
+  from {
+    margin-bottom: 100%;
+  }
+  to {
+    margin-bottom: 0%;
+  }
+}
+
+@keyframes fadeinBottom {
+  from {
+    margin-bottom: 0%;
+  }
+  to {
+    margin-bottom: 100%;
+  }
+}

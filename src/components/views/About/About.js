@@ -46,22 +46,25 @@ const Component = ({ className, language, children }) => {
       {language === `PL` || lang === `Polish` ? (
         <Container>
           <Row>About</Row>
-          <Row className={styles.aboutGrid}>
+          {/* <Row className={styles.aboutGrid}>
             {initialState.about.polish.descriptions.map((item) => (
               <Row key={item.id}>
                 <Col
+                  key={item.id}
                   className={`col-12 col-lg-6 d-flex justify-content-center align-items-center ${styles.aboutFeature}`}
                 >
-                  <p>{item.text}</p>
+                  <p key={item.id}>{item.text}</p>
                 </Col>
               </Row>
             ))}
-          </Row>
+          </Row> */}
           <main>{children}</main>
         </Container>
       ) : (
         <Container>
-          <Row>O nas</Row>
+          <Row className={styles.aboutGrid}>
+            <div className={styles.aboutFeature}>O nas</div>
+          </Row>
           <main>{children}</main>
         </Container>
       )}

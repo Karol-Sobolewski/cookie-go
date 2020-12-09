@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
-
-import axios from 'axios';
 import styles from './App.module.scss';
+
 import './styles/bootstrap.scss';
 
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
@@ -15,22 +14,19 @@ import { Pastries } from './components/views/Pastries/Pastries';
 import { Cakes } from './components/views/Cakes/Cakes';
 import { Sweets } from './components/views/Sweets/Sweets';
 import { Contact } from './components/views/Contact/Contact';
-
-import initialState from './redux/initialState';
-
+import { NotFound } from './components/views/NotFound/NotFound';
 import { fetchMenu, changeLanguage } from './redux/menuRedux';
 import { fetchPages } from './redux/pageRedux';
+import { fetchProducts } from './redux/productRedux';
 
 const App = () => {
-  // const activeLanguage = useSelector((state) => state.activeLanguage);
   const dispatch = useDispatch();
-
-  // const [state, setState] = useState(initialState);
   const [loaded, setLoaded] = useState(false);
-  // console.log(`state`, state);
+
   useEffect(() => {
     dispatch(fetchPages());
     dispatch(fetchMenu());
+    dispatch(fetchProducts());
     const loadData = () => {
       fetch(`https://geolocation-db.com/json/`)
         .then((res) => res.json())
@@ -38,9 +34,6 @@ const App = () => {
           console.log(`Country is : `, response.country_code);
           if (response.country_code !== `PL`) {
             dispatch(changeLanguage(`English`));
-            // console.log(`active`, state.activeLanguage);
-            // setState({ activeLanguage: `English` });
-            // console.log(`active2`, state.activeLanguage);
             setLoaded(true);
           } else {
             dispatch(changeLanguage(`Polish`));
@@ -86,18 +79,8 @@ const App = () => {
                 />
                 <Route
                   exact
-                  path="/onas"
-                  component={() => <About language="pl" />}
-                />
-                <Route
-                  exact
                   path="/cookies"
                   component={() => <Cookies language="en" />}
-                />
-                <Route
-                  exact
-                  path="/ciasteczka"
-                  component={() => <Cookies language="pl" />}
                 />
                 <Route
                   exact
@@ -106,18 +89,8 @@ const App = () => {
                 />
                 <Route
                   exact
-                  path="/ciasta"
-                  component={() => <Pastries language="pl" />}
-                />
-                <Route
-                  exact
                   path="/cakes"
                   component={() => <Cakes language="en" />}
-                />
-                <Route
-                  exact
-                  path="/torty"
-                  component={() => <Cakes language="pl" />}
                 />
                 <Route
                   exact
@@ -126,19 +99,10 @@ const App = () => {
                 />
                 <Route
                   exact
-                  path="/cukierki"
-                  component={() => <Sweets language="pl" />}
-                />
-                <Route
-                  exact
                   path="/contact"
                   component={() => <Contact language="en" />}
                 />
-                <Route
-                  exact
-                  path="/kontakt"
-                  component={() => <Contact language="pl" />}
-                />
+                <Route path="*" component={NotFound} />
               </AnimatedSwitch>
             </MainLayout>
           </BrowserRouter>

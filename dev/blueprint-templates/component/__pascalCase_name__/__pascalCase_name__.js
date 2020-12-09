@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -9,6 +10,9 @@ import styles from './{{pascalCase name}}.module.scss';
 
 const Component = ({ className, children, language }) => {
   console.log(`{{pascalCase name}}`);
+  const activeLanguage = useSelector(
+    (state) => state.menus.data.activeLanguage
+  );
   return (
     <div className={clsx(className, styles.root)}>
       <Container>

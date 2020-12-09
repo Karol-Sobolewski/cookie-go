@@ -54,6 +54,8 @@ $navbar-bg: $cookie;
 $navbar-link: $chocolate;
 $navbar-link-hover: $white;
 $navbar-link-active: $white;
+$navbar-cart-icon: $chocolate;
+$navbar-cart-icon-active: $white;
 // $header-bg: $lightGray;
 // $header-link: $lightBlack;
 // $header-link-active-hover: $lightGreyBlue;
@@ -63,3 +65,7 @@ $navbar-link-active: $white;
 /*About*/
 
 $about-text: $chocolate;
+
+/*Not Found*/
+$notFound-link: $cookie;
+$notFound-color: $chocolate;

@@ -3,11 +3,17 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import initialState from './initialState';
 import menuReducer from './menuRedux';
+import pagesReducer from './pageRedux';
+import productsReducer from './productRedux';
+import cartReducer from './cartRedux';
 // define initial state and shallow-merge initial data
 
 // define reducers
 const reducers = {
   menus: menuReducer,
+  pages: pagesReducer,
+  products: productsReducer,
+  cart: cartReducer,
 };
 
 // add blank reducers for initial state properties without reducers

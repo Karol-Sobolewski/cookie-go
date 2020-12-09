@@ -2,12 +2,14 @@ const express = require(`express`);
 
 const router = express.Router();
 
-const Menu = require(`../models/page.model`);
+const Page = require(`../models/page.model`);
 
 router.get(`/pages`, async (req, res) => {
   try {
-    const result = await Menu.find();
-    if (!result) res.status(404).json({ menu: `Not found` });
+    const result = await Page.find();
+    console.log(`pages`, result);
+
+    if (!result) res.status(404).json({ page: `Not found` });
     else res.json(result[0]);
   } catch (err) {
     res.status(500).json(err);

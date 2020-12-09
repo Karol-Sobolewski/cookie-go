@@ -2,12 +2,12 @@
 
 .root {
   align-items: center;
+  background-color: $navbar-bg;
   display: flex;
-  height: 8vh;
+  height: 10vh;
   justify-content: center;
   padding: 2.5vh 0 2.5vh 0;
   width: 100%;
-  background-color: $navbar-bg;
 
   a {
     color: $navbar-link;

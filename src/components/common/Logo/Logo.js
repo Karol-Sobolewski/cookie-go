@@ -11,7 +11,6 @@ const Component = ({ className }) => {
   const activeLanguage = useSelector(
     (state) => state.menus.data.activeLanguage
   );
-  console.log(activeLanguage);
   return (
     <div className={clsx(className, styles.root)}>
       <Link to={activeLanguage === `English` ? `/en` : `/`}>

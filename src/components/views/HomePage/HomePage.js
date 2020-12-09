@@ -17,9 +17,10 @@ const Component = ({ className, language, children }) => {
   useEffect(() => {
     console.log(language);
     if (language) {
-      if (language === `en` || location.componentProps === `en`) {
+      if (language === `en`) {
         dispatch(changeLanguage(`English`));
-      } else {
+        console.log(location.componentProps);
+      } else if (language === `pl`) {
         dispatch(changeLanguage(`Polish`));
       }
     }
