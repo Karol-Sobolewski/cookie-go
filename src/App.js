@@ -22,7 +22,6 @@ import { fetchProducts } from './redux/productRedux';
 const App = () => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
-
   useEffect(() => {
     dispatch(fetchPages());
     dispatch(fetchMenu());

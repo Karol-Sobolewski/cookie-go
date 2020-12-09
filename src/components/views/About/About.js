@@ -7,67 +7,51 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styles from './About.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-import initialState from '../../../redux/initialState';
 
-const state2 = {
-  count: ``,
-};
+const Component = ({ className, children }) => {
+  // const PageItems = useSelector((state4) => state4);
+  // console.log(`PageItems`, PageItems);
+  // const [lang, setLanguage] = useState(initialState.activeLanguage);
+  // const [state, dispatch] = useReducer(reducer, state2);
+  const aboutPageItems = useSelector((state) => state.pages.data.about);
 
-function reducer(state, action) {
-  switch (action.type) {
-    case `PL`:
-      return { count: state.count + 1 };
-    case `EN`:
-      return { count: state.count - 1 };
-    default:
-      throw new Error();
-  }
-}
+  const activeLanguage = useSelector(
+    (state) => state.menus.data.activeLanguage
+  );
+  // useEffect(() => {
+  // }, []);
+  console.log(aboutPageItems);
 
-const Component = ({ className, language, children }) => {
-  const PageItems = useSelector((state4) => state4);
-  console.log(`PageItems`, PageItems);
-  const [lang, setLanguage] = useState(initialState.activeLanguage);
-  const [state, dispatch] = useReducer(reducer, state2);
-
-  useEffect(() => {
-    console.log(language);
-    if (language === `PL`) {
-      dispatch({ type: `PL` });
-      console.log(state2);
-      setLanguage(`Polish`);
-    } else {
-      console.log(`stateabout`, initialState);
-      setLanguage(`English`);
-    }
-  }, []);
   return (
     <div className={clsx(className, styles.root)}>
-      {language === `PL` || lang === `Polish` ? (
-        <Container>
-          <Row>About</Row>
-          {/* <Row className={styles.aboutGrid}>
-            {initialState.about.polish.descriptions.map((item) => (
-              <Row key={item.id}>
-                <Col
-                  key={item.id}
-                  className={`col-12 col-lg-6 d-flex justify-content-center align-items-center ${styles.aboutFeature}`}
-                >
-                  <p key={item.id}>{item.text}</p>
-                </Col>
-              </Row>
+      <Container>
+        <Row className={styles.aboutGrid}>
+          {activeLanguage === `Polish`
+            ? aboutPageItems.polish.descriptions.map((item) => (
+              /* eslint-disable */
+                <Row key={item.id}>
+                  <Col
+                    key={item.id}
+                    className={`${styles.aboutFeature} col-12 col-lg-6 d-flex justify-content-center align-items-center`}
+                  >
+                    <p key={item.id}>{item.text}</p>
+                  </Col>
+                </Row>
+              ))
+            : aboutPageItems.english.descriptions.map((item) => (
+                <Row key={item.id}>
+                  <Col
+                    key={item.id}
+                    className={`${styles.aboutFeature} col-12 col-lg-6 d-flex justify-content-center align-items-center`}
+                  >
+                    <p key={item.id}>{item.text}</p>
+                  </Col>
+                </Row>
             ))}
-          </Row> */}
-          <main>{children}</main>
-        </Container>
-      ) : (
-        <Container>
-          <Row className={styles.aboutGrid}>
-            <div className={styles.aboutFeature}>O nas</div>
-          </Row>
-          <main>{children}</main>
-        </Container>
-      )}
+            {/* eslint-enable */}
+        </Row>
+        <main>{children}</main>
+      </Container>
     </div>
   );
 };
@@ -85,7 +69,6 @@ const Component = ({ className, language, children }) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  language: PropTypes.string,
 };
 
 export {
