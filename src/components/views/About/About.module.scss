@@ -2,11 +2,9 @@
 
 .root {
   padding-top: 5vh;
-
   .aboutFeature {
     color: $about-text;
-    // font-family: font-title-pl;
-    font-family: Cookie;
+    font-family: $font-title;
     text-transform: uppercase;
     width: 50%;
   }

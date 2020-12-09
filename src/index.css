@@ -21,7 +21,7 @@ code {
 
 @font-face {
   font-family: "CookiesPolish";
-  src: local("CookiesPolish"), url(./fonts/CookiesPolish.woff) format("woff");
+  src: local("CookiesPolish"), url(./fonts/CookiesPolish.ttf) format("truetype");
 }
 
 @font-face {
