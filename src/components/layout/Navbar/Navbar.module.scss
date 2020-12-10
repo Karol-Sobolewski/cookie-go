@@ -31,11 +31,14 @@
   }
 }
 
-@media only screen and (max-width: 1199px) {
+@media only screen and (max-width: 1200px) {
   .root {
     height: 5vh;
     .mainMenu {
       visibility: hidden;
+    }
+    .cartMenu {
+      visibility: visible;
     }
   }
 }

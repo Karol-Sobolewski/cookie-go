@@ -7,6 +7,7 @@ import { HamburgerSqueeze } from 'react-animated-burgers';
 import clsx from 'clsx';
 
 import { Container, Row, Col } from 'react-bootstrap';
+import { Cart } from '../../features/Cart/Cart';
 import styles from './ResponsiveMenu.module.scss';
 
 // import { connect } from 'react-redux';
@@ -34,7 +35,7 @@ const Component = ({ className, children }) => {
   };
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
-  console.log(active);
+  // console.log(active);
   return (
     <div className={clsx(className, styles.root)} ref={wrapperRef}>
       <HamburgerSqueeze
@@ -43,6 +44,7 @@ const Component = ({ className, children }) => {
         isActive={active}
         onClick={toggleTrueFalse}
       />
+
       <nav className={active ? styles.burgerMenu__active : styles.burgerMenu}>
         {menuItems.pages.map((item) => (
           <Col key={item.id}>
@@ -57,6 +59,20 @@ const Component = ({ className, children }) => {
             </NavLink>
           </Col>
         ))}
+        <Col>
+          {activeLanguage === `Polish` ? (
+            <NavLink to={{ pathname: `/en` }} activeClassName="active">
+              EN
+            </NavLink>
+          ) : (
+            <NavLink
+              to={{ pathname: `/pl`, componentProps: `pl` }}
+              activeClassName="active"
+            >
+              PL
+            </NavLink>
+          )}
+        </Col>
       </nav>
     </div>
   );

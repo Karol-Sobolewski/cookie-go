@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -13,6 +13,14 @@ import styles from './Navbar.module.scss';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, children }) => {
+  const [cartRWD, setcartRWD] = useState(false);
+  const size = window.innerWidth;
+  console.log(size);
+  useEffect(() => {
+    if (size <= 1200) {
+      setcartRWD(true);
+    }
+  }, [size]);
   const menuItems = useSelector((state) => state.menus.data);
   // const stateU = useSelector((state) => state);
   const activeLanguage = useSelector(
@@ -49,10 +57,9 @@ const Component = ({ className, children }) => {
               </NavLink>
             )}
           </Col>
-          <Col>
-            <Cart />
+          <Col className={styles.cartMenu}>
+            <Cart RWD={cartRWD} />
           </Col>
-          <Col />
         </Row>
         <main>{children}</main>
       </Container>

@@ -9,8 +9,9 @@ import styles from './Cart.module.scss'; //eslint-disable-line
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-const Component = ({ className, children, language, isActive }) => {
+const Component = ({ className, children, language, isActive, RWD }) => {
   const [active, setActive] = useState(false);
+
   const toggleTrueFalse = () => setActive(!active);
   const useClickOutsideOfCart = (ref) => {
     useEffect(() => {
@@ -30,7 +31,10 @@ const Component = ({ className, children, language, isActive }) => {
   useClickOutsideOfCart(wrapperRef);
 
   return (
-    <div className={styles.root} ref={wrapperRef}>
+    <div
+      className={`${styles.root} ${RWD ? styles.cartRWD : null}`}
+      ref={wrapperRef}
+    >
       <FontAwesomeIcon
         icon={faShoppingCart}
         className={active ? styles.cartIconActive : styles.cartIcon}
@@ -63,6 +67,7 @@ Component.propTypes = {
   className: PropTypes.string,
   language: PropTypes.string,
   isActive: PropTypes.bool,
+  RWD: PropTypes.bool,
 };
 
 export {
