@@ -1,37 +1,199 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  padding-top: 5vh;
-  .aboutFeature {
-    color: $about-text;
-    font-family: $font-title;
-    text-transform: uppercase;
-    width: 50%;
+  padding: 5vh 0 5vh 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .aboutGrid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .aboutTextColumn {
+      color: $about-text;
+      font-family: $font-title;
+      text-transform: uppercase;
+      .aboutTextBox {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50vh;
+      }
+      .aboutParagraph {
+        font-size: 1.5em;
+      }
+    }
   }
-  .aboutFeature:after {
-    content: "";
-    display: block;
-    padding-bottom: 100%;
-  }
-}
-
-@media (min-width: 1025px) {
-  .root {
-    /*.aboutRow {
-    }*/
-    .aboutGrid {
-      :nth-child(even) {
-        margin-left: 50%;
+  .aboutPhotoColumn {
+    .aboutPhotoBox {
+      overflow: hidden;
+      img {
+        object-fit: cover;
+        cursor: pointer;
+        transition: all 1s;
+        border-radius: 10%;
+        width: 100%;
+        height: 100%;
+      }
+      :hover {
+        transform: scale(1.1);
+        border-radius: 20%;
       }
     }
   }
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+/* ExtraLarge Devices, Desktops  */
+@media (min-width: 1200px) {
   .root {
     .aboutGrid {
+      .aboutTextColumn {
+        .aboutTextBox {
+          padding: 15px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 50vh;
+          width: 100%;
+        }
+        :nth-child(even) {
+          position: absolute;
+          left: 100%;
+          transform: translate(0%, -100%);
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+      }
+    }
+    .aboutPhotoColumn {
+      padding: 15px;
+      .aboutPhotoBox {
+        height: 50vh;
+        padding: 50px;
+      }
+      :nth-child(odd) {
+        margin-bottom: 50vh;
+      }
       :nth-child(even) {
-        margin-left: 50%;
+        position: absolute;
+        right: 100%;
+        transform: translate(0%, -100%);
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* Large Devices, Laptops, Large Tablets iPad Pro */
+@media only screen and (max-width: 1199px) {
+  .root {
+    .aboutGrid {
+      padding-bottom: 0;
+      margin: 0;
+      .aboutTextColumn {
+        padding-top: 0;
+        margin-top: 40vh;
+        margin-bottom: 0;
+        position: absolute;
+        padding: 0 10% 0 10%;
+      }
+      .aboutTextBox {
+        margin-top: 25vh;
+        margin-bottom: 0;
+        // width: 80%;
+      }
+    }
+    .aboutPhotoColumn {
+      margin-top: 0;
+      .aboutPhotoBox {
+        height: 50vh;
+        margin-bottom: 25vh;
+        img {
+          border-radius: 20%;
+          :hover {
+            border-radius: 30%;
+          }
+        }
+      }
+      :last-child {
+        margin-bottom: 10vh;
+        // padding-bottom: 25vh;
+      }
+    }
+  }
+}
+
+/* Small Devices, Large Phones + Medium Devices, Tablets iPad */
+@media only screen and (min-width: 480px) and (max-width: 1199px) {
+  .root {
+    .aboutGrid {
+      .aboutParagraph {
+        font-size: 1.5em;
+      }
+    }
+    .aboutPhotoColumn {
+      .aboutPhotoBox {
+        img {
+          width: 75%;
+        }
+      }
+    }
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .root {
+    .aboutGrid {
+      .aboutTextColumn {
+        .aboutParagraph {
+          font-size: 1em;
+        }
+      }
+    }
+    .aboutPhotoColumn {
+      .aboutPhotoBox {
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+/* Extra Small Devices, Small Phones Landscape*/
+@media only screen and (max-height: 499px) {
+  .root {
+    .aboutGrid {
+      margin: 5vh 0 0 0;
+      .aboutTextColumn {
+        padding-top: 25vh;
+        margin-bottom: 0;
+        position: absolute;
+        .aboutTextBox {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100vh;
+          margin-top: 50vh;
+        }
+        .aboutParagraph {
+          font-size: 1em;
+        }
+      }
+    }
+    .aboutPhotoColumn {
+      margin-top: 0;
+      .aboutPhotoBox {
+        height: 100vh;
+        margin-bottom: 50vh;
+        img {
+          border-radius: 20%;
+          width: 75%;
+          :hover {
+            border-radius: 30%;
+          }
+        }
       }
     }
   }

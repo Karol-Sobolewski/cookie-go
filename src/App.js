@@ -41,6 +41,8 @@ const App = () => {
         })
         .catch((data, status) => {
           console.log(`Request failed:`, data);
+          dispatch(changeLanguage(`Polish`));
+          setLoaded(true);
         });
     };
     setTimeout(() => {

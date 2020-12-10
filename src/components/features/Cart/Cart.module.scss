@@ -53,7 +53,7 @@
     max-height: 50vh;
   }
 }
-/* Large Devices, Desktops */
+/* Large Devices, Laptops, Large Tablets iPad Pro */
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
   .cart {
     width: 50vw;
@@ -61,7 +61,7 @@
   }
 }
 
-/*Medium Devices, laptops*/
+/* Medium Devices, Tablets iPad */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .cart {
     width: 50vw;
@@ -69,7 +69,7 @@
   }
 }
 
-/* Small Devices, Tablets */
+/* Small Devices, Large Phones */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .cart {
     width: 50vw;

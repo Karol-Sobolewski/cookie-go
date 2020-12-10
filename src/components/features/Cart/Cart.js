@@ -12,7 +12,7 @@ import styles from './Cart.module.scss'; //eslint-disable-line
 const Component = ({ className, children, language, isActive }) => {
   const [active, setActive] = useState(false);
   const toggleTrueFalse = () => setActive(!active);
-  const useOutsideAlerter = (ref) => {
+  const useClickOutsideOfCart = (ref) => {
     useEffect(() => {
       function handleClickOutside(e) {
         if (ref.current && !ref.current.contains(e.target)) {
@@ -27,7 +27,7 @@ const Component = ({ className, children, language, isActive }) => {
     }, [ref]);
   };
   const wrapperRef = useRef(null);
-  useOutsideAlerter(wrapperRef);
+  useClickOutsideOfCart(wrapperRef);
 
   return (
     <div className={styles.root} ref={wrapperRef}>

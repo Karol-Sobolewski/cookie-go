@@ -30,7 +30,7 @@ const Component = ({ className, language, children }) => {
       <Container>
         <Row>
           <Col>
-            <h2>HomePageŻĆĘĄ</h2>
+            <h2>HomePageąćęńółżźĄĆĘŃŁŻŹ</h2>
           </Col>
         </Row>
         <main>{children}</main>

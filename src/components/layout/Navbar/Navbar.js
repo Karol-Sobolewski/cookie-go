@@ -6,6 +6,7 @@ import clsx from 'clsx';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { Cart } from '../../features/Cart/Cart';
+import { ResponsiveMenu } from '../ResponsiveMenu/ResponsiveMenu';
 import styles from './Navbar.module.scss';
 
 // import { connect } from 'react-redux';
@@ -20,7 +21,7 @@ const Component = ({ className, children }) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <Container>
+      <Container className={styles.mainMenu}>
         <Row className="d-flex justify-content-center align-items-center">
           {menuItems.pages.map((item) => (
             <Col key={item.id}>
@@ -51,10 +52,11 @@ const Component = ({ className, children }) => {
           <Col>
             <Cart />
           </Col>
+          <Col />
         </Row>
-        <Row />
         <main>{children}</main>
       </Container>
+      <ResponsiveMenu />
     </div>
   );
 };

@@ -26,29 +26,28 @@ const Component = ({ className, children }) => {
     <div className={clsx(className, styles.root)}>
       <Container>
         <Row className={styles.aboutGrid}>
-          {activeLanguage === `Polish`
-            ? aboutPageItems.polish.descriptions.map((item) => (
-              /* eslint-disable */
-                <Row key={item.id}>
-                  <Col
-                    key={item.id}
-                    className={`${styles.aboutFeature} col-12 col-lg-6 d-flex justify-content-center align-items-center`}
-                  >
-                    <p key={item.id}>{item.text}</p>
-                  </Col>
-                </Row>
-              ))
-            : aboutPageItems.english.descriptions.map((item) => (
-                <Row key={item.id}>
-                  <Col
-                    key={item.id}
-                    className={`${styles.aboutFeature} col-12 col-lg-6 d-flex justify-content-center align-items-center`}
-                  >
-                    <p key={item.id}>{item.text}</p>
-                  </Col>
-                </Row>
+          <Col className={`col-12 col-xl-6 ${styles.aboutTextColumn}`}>
+            {/* eslint-disable */}
+            {activeLanguage === `Polish`
+              ? aboutPageItems.polish.descriptions.map((item) => (
+                  <div key={item.id} className={styles.aboutTextBox}>
+                    <p className={styles.aboutParagraph}>{item.text}</p>
+                  </div>
+                ))
+              : aboutPageItems.english.descriptions.map((item) => (
+                  <div key={item.id} className={styles.aboutTextBox}>
+                    <p className={styles.aboutParagraph}>{item.text}</p>
+                  </div>
+                ))}
+                {/* eslint-enable */}
+          </Col>
+          <Col className={`col-12 col-xl-6 ${styles.aboutPhotoColumn}`}>
+            {aboutPageItems.images.map((item) => (
+              <div key={item.id} className={styles.aboutPhotoBox}>
+                <img src={item.src} alt={item.title} />
+              </div>
             ))}
-            {/* eslint-enable */}
+          </Col>
         </Row>
         <main>{children}</main>
       </Container>

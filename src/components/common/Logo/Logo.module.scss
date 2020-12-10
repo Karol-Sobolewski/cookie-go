@@ -43,7 +43,7 @@
     }
     .pageTitle {
       margin: 5vh 0 5vh 0;
-      font-size: $base-size * 2.5;
+      font-size: $base-size * 5;
     }
   }
 }
@@ -51,11 +51,11 @@
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
   .root {
     .logoImg {
-      height: 7.5vh;
-      margin: 10vh 0 0 0;
+      height: 5vh;
+      margin: 5vh 0 0 0;
     }
     .pageTitle {
-      margin: 5vh 0 5vh 0;
+      margin: 2.5vh 0 2.5vh 0;
       font-size: $base-size * 3;
     }
   }
@@ -96,6 +96,16 @@
     .pageTitle {
       margin: 2.5vh 0 2.5vh 0;
       font-size: $base-size * 1.5;
+    }
+  }
+}
+
+/* Extra Small Devices, Small Phones Landscape*/
+@media only screen and (max-height: 499px) {
+  .root {
+    .logoImg {
+      height: 10vh;
+      margin: 10vh 0 0 0;
     }
   }
 }
