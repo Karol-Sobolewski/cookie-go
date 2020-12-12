@@ -38,7 +38,7 @@ app.use(`/api`, (req, res) => {
 
 // `
 
-const dbURI = (process.env.NODE_ENV === `production` || process.env.NODE_ENV === `development`) ?
+const dbURI = (process.env.NODE_ENV === `production`) ?
   `mongodb+srv://Karol-Sobolewski:5Ygs31nCSWIbGDHS@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/cookieGoDB`;
 
 mongoose.connect(dbURI, {
