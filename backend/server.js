@@ -33,16 +33,23 @@ app.use(`*`, (req, res) => {
 });
 
 /* MONGOOSE */
-mongoose.connect(`mongodb://localhost:27017/cookieGoDB`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const db = mongoose.connection;
-db.once(`open`, () => {
-  console.log(`Successfully connected to the database`);
-});
-db.on(`error`, (err) => console.log(`Error: ${err}`));
 
+
+// mongodb+srv://Karol-Sobolewski:<password>@cluster0.q4foz.mongodb.net/<dbname>?retryWrites=true&w=majority
+
+const dbURI = process.env.NODE_ENV === `production` ? `mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASS
+}@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/newWaveDB`;
+if (process.env.NODE_ENV != `test`) {
+  mongoose.connect(dbURI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
+  const db = mongoose.connection;
+  db.once(`open`, () => {
+    console.log(`Successfully connected to the database`);
+  });
+  db.on(`error`, (err) => console.log(`Error: ${err}`));
+}
 /* START SERVER */
 app.listen(process.env.PORT || 8000, () => {
   console.log(`Server is running on port: 8000`);
