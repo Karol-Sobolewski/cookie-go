@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { API_URL } from '../config';
 
 const reducerName = `products`;
 const createActionName = (name) => `app/${reducerName}/${name}`;
@@ -16,7 +17,7 @@ export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
 export const fetchProducts = () => (dispatch, getState) => {
   dispatch(fetchStarted());
 
-  Axios.get(`http://localhost:8000/api/products`)
+  Axios.get(`${API_URL}/products`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
       console.log(`res`, res.data);

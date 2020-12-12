@@ -1,3 +1,6 @@
+import Axios from 'axios';
+import { API_URL } from '../config';
+
 /* selectors */
 export const getAll = ({ cart }) => cart.products;
 export const getCount = ({ cart }) => cart.products.length;

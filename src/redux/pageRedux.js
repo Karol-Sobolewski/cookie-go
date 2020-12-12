@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { API_URL } from '../config';
 
 // export const getAll = ({ menus }) => menus.data;
 
@@ -19,7 +20,7 @@ export const getPageItems = ({ pages }) => pages.data;
 export const fetchPages = () => (dispatch, getState) => {
   dispatch(fetchStarted());
 
-  Axios.get(`http://localhost:8000/api/pages`)
+  Axios.get(`${API_URL}/pages`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
       console.log(`respages`, res.data);

@@ -1,4 +1,5 @@
 import Axios from 'axios';
+import { API_URL } from '../config';
 
 const reducerName = `menus`;
 const createActionName = (name) => `app/${reducerName}/${name}`;
@@ -18,7 +19,7 @@ export const changeLanguage = (payload) => ({ payload, type: CHANGE_LANG });
 export const fetchMenu = () => (dispatch, getState) => {
   dispatch(fetchStarted());
 
-  Axios.get(`http://localhost:8000/api/menus`)
+  Axios.get(`${API_URL}/menus`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
       console.log(`res`, res.data);
