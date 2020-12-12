@@ -23,6 +23,7 @@ const App = () => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
+    console.log(process.env.NODE_ENV);
     dispatch(fetchPages());
     dispatch(fetchMenu());
     dispatch(fetchProducts());
