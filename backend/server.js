@@ -37,7 +37,7 @@ app.use(`*`, (req, res) => {
 // `
 
 const dbURI = (process.env.NODE_ENV === `production` || process.env.NODE_ENV === `development`) ?
-  `mongodb+srv://Karol-Sobolewski:test1234@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/cookieGoDB`;
+  `mongodb+srv://Karol-Sobolewski:%m18OWNAJGl%@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/cookieGoDB`;
 
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
