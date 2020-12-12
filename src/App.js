@@ -39,14 +39,15 @@ const App = () => {
             setLoaded(true);
           }
         })
-        .catch((data) => {
-          console.log(`Request failed:`, data);
+        .catch((error) => {
+          console.log(`Request failed:`, error);
           dispatch(changeLanguage(`Polish`));
           setLoaded(true);
         });
     };
     setTimeout(() => {
       loadData();
+      setLoaded(true);
     }, 500);
   }, []);
 
