@@ -43,6 +43,8 @@ const Component = ({ className, children }) => {
               </NavLink>
             </Col>
           ))}
+          {/* //TODO Language -> button with dispatch instead of NavLink
+          */}
           <Col>
             {activeLanguage === `Polish` ? (
               <NavLink to={{ pathname: `/en` }} activeClassName="active">
