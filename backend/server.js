@@ -38,7 +38,7 @@ app.use(`*`, (req, res) => {
 // mongodb+srv://Karol-Sobolewski:<password>@cluster0.q4foz.mongodb.net/<dbname>?retryWrites=true&w=majority
 
 const dbURI = process.env.NODE_ENV === `production` ? `mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASS
-}@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/newWaveDB`;
+}@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/cookieGoDB`;
 if (process.env.NODE_ENV != `test`) {
   mongoose.connect(dbURI, {
     useNewUrlParser: true,
