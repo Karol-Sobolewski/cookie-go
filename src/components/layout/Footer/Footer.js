@@ -1,4 +1,4 @@
-import React, {useEffect, useSelector } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -7,17 +7,17 @@ import styles from './Footer.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-const activeLanguage = useSelector(
-  (state) => state.menus.data.activeLanguage
-);
+// const activeLanguage = useSelector(
+//   (state) => state.menus.data.activeLanguage
+// );
 
-useEffect(() => {
+// useEffect(() => {
 
-}, []);
+// }, []);
 
 const Component = ({ className, children }) => {
   console.log(`Footer`);
-  console.log(activeLanguage);
+  // console.log(activeLanguage);
   return (
     <div className={clsx(className, styles.root)}>
       <Container>
