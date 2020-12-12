@@ -10,13 +10,12 @@ const productsRoutes = require(`./routes/products.routes`);
 const app = express();
 
 /* MIDDLEWARE */
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, `../public/images`)));
 
 // app.use(express.static(path.join(__dirname, `../public`)));
-app.use(express.static(path.join(__dirname, `../public/images/photos`)));
-app.use(express.static(path.join(__dirname, `../public/images/logo`)));
 
 /* API ENDPOINTS */
 app.use(`/api`, menusRoutes);
