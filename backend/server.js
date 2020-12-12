@@ -51,6 +51,8 @@ if (process.env.NODE_ENV != `test`) {
   db.on(`error`, (err) => console.log(`Error: ${err}`));
 }
 /* START SERVER */
-app.listen(process.env.PORT || 8000, () => {
+const server = app.listen(process.env.PORT || `8000`, () => {
   console.log(`Server is running on port: 8000`);
 });
+
+module.exports = { server, dbURI};
