@@ -7,4 +7,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .footerIcons {
+    width: 20vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    .footerIcon {
+      color: $chocolate;
+      :hover {
+        color: white;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .footerIcons {
+    width: 50vw;
+    .footerIcon {
+      font-size: 1em;
+    }
+  }
 }

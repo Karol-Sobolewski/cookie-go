@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Container, Row, Col } from 'react-bootstrap';
+// import { Row, Col } from 'react-bootstrap';
 import styles from './Footer.module.scss';
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+// import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 // const activeLanguage = useSelector(
 //   (state) => state.menus.data.activeLanguage
@@ -20,14 +22,36 @@ const Component = ({ className, children }) => {
   // console.log(activeLanguage);
   return (
     <div className={clsx(className, styles.root)}>
-      <Container>
-        <Row>
-          <Col>
-            <h2>Footer</h2>
-          </Col>
-        </Row>
-        <main>{children}</main>
-      </Container>
+      <div className={styles.footerIcons}>
+        <div>
+          <a href="https://www.facebook.com/">
+            <FontAwesomeIcon
+              icon={faFacebook}
+              className={styles.footerIcon}
+              size={`2x`}
+            />
+          </a>
+        </div>
+        <div>
+          <a href="https://www.instagram.com/">
+            <FontAwesomeIcon
+              icon={faInstagram}
+              className={styles.footerIcon}
+              size={`2x`}
+            />
+          </a>
+        </div>
+        <div>
+          <a href="https://www.twitter.com/">
+            <FontAwesomeIcon
+              icon={faTwitter}
+              className={styles.footerIcon}
+              size={`2x`}
+            />
+          </a>
+        </div>
+      </div>
+      <main>{children}</main>
     </div>
   );
 };

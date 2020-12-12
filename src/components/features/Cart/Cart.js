@@ -33,11 +33,12 @@ const Component = ({children, RWD }) => {
     <div
       className={`${styles.root} ${RWD ? styles.cartRWD : null}`}
       ref={wrapperRef}
+      onClick={() => toggleTrueFalse()}
     >
       <FontAwesomeIcon
         icon={faShoppingCart}
         className={active ? styles.cartIconActive : styles.cartIcon}
-        onClick={() => toggleTrueFalse()}
+
       />
       <Container className={active ? styles.cartActive : styles.cart}>
         <Row>

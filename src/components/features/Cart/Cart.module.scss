@@ -2,9 +2,9 @@
 
 .root {
   position: relative;
+  cursor: pointer;
   .cartIcon {
     color: $navbar-cart-icon;
-    cursor: pointer;
     :hover {
       color: $navbar-cart-icon-active;
     }
