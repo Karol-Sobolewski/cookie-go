@@ -15,8 +15,7 @@ app.use(express.json());
 app.use(cors());
 
 // app.use(express.static(path.join(__dirname, `../public`)));
-app.use(express.static(path.join(__dirname, `../build`)));
-
+app.use(express.static(path.join(__dirname, `../public/images`)));
 /* API ENDPOINTS */
 app.use(`/api`, menusRoutes);
 app.use(`/api`, pagesRoutes);
