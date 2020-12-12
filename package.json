@@ -45,7 +45,8 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "run-p start:* ",
+    "start": "nodemon backend/server.js",
+    "start-app": "run-p start:* ",
     "start-server": "npx nodemon backend/server.js",
     "start-silent": "run-p start > /dev/null",
     "start:react": "react-scripts start",
