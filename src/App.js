@@ -24,6 +24,9 @@ const App = () => {
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
     console.log(process.env.NODE_ENV);
+    console.log(process.env.PORT);
+    // console.log(process.env.NODE_ENV);
+    console.log(process.env.DB_LOGIN);
     dispatch(fetchPages());
     dispatch(fetchMenu());
     dispatch(fetchProducts());

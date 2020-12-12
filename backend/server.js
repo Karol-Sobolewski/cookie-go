@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(express.static(path.join(__dirname, `/client/build`)));
+app.use(express.static(path.join(__dirname, `../public`)));
 
 /* API ENDPOINTS */
 app.use(`/api`, menusRoutes);
@@ -39,20 +39,21 @@ app.use(`*`, (req, res) => {
 
 const dbURI = (process.env.NODE_ENV === `production` || process.env.NODE_ENV === `development`) ? `mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASS
 }@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/cookieGoDB`;
-if (process.env.NODE_ENV != `test`) {
-  mongoose.connect(dbURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
-  const db = mongoose.connection;
-  db.once(`open`, () => {
-    console.log(`Successfully connected to the database`);
-  });
-  db.on(`error`, (err) => console.log(`Error: ${err}`));
-}
+
+mongoose.connect(dbURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+const db = mongoose.connection;
+db.once(`open`, () => {
+  console.log(`Successfully connected to the database`);
+});
+db.on(`error`, (err) => console.log(`Error: ${err}`));
+
 /* START SERVER */
-const server = app.listen(process.env.PORT || `8000`, () => {
-  console.log(`Server is running on port: 8000`);
+const port = process.env.PORT || 8000;
+app.listen(port, () => {
+  console.log(`Server is running on port: ` + port);
 });
 
 module.exports = { server, dbURI};
