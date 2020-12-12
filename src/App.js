@@ -39,7 +39,7 @@ const App = () => {
             setLoaded(true);
           }
         })
-        .catch((data, status) => {
+        .catch((data) => {
           console.log(`Request failed:`, data);
           dispatch(changeLanguage(`Polish`));
           setLoaded(true);

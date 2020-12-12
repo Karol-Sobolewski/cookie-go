@@ -16,7 +16,7 @@ export const changeLanguage = (payload) => ({ payload, type: CHANGE_LANG });
 
 // export const getMenuItems = ({ menus }) => menus.data;
 
-export const fetchMenu = () => (dispatch, getState) => {
+export const fetchMenu = () => (dispatch) => {
   dispatch(fetchStarted());
 
   Axios.get(`${API_URL}/menus`)

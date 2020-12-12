@@ -7,7 +7,7 @@ import styles from './ProductForm.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-const Component = ({ className, children, language }) => {
+const Component = ({ className, children }) => {
   const [qty, setQty] = useState(1);
   console.log(`Cookies`);
   const decrement = () => {
@@ -25,6 +25,9 @@ const Component = ({ className, children, language }) => {
     console.log(`add`);
     e.preventDefault();
   };
+  useEffect(() => {
+
+  }, []);
   return (
     <div className={clsx(className, styles.root)}>
       <Container>
@@ -73,7 +76,6 @@ const Component = ({ className, children, language }) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  language: PropTypes.string,
 };
 
 export {

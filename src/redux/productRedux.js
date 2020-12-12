@@ -14,7 +14,7 @@ export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
 
 // export const getMenuItems = ({ menus }) => menus.data;
 
-export const fetchProducts = () => (dispatch, getState) => {
+export const fetchProducts = () => (dispatch) => {
   dispatch(fetchStarted());
 
   Axios.get(`${API_URL}/products`)

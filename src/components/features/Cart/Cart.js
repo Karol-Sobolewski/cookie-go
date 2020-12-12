@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,7 +8,7 @@ import styles from './Cart.module.scss'; //eslint-disable-line
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-const Component = ({ className, children, language, isActive, RWD }) => {
+const Component = ({children, RWD }) => {
   const [active, setActive] = useState(false);
 
   const toggleTrueFalse = () => setActive(!active);
@@ -64,9 +63,6 @@ const Component = ({ className, children, language, isActive, RWD }) => {
 
 Component.propTypes = {
   children: PropTypes.node,
-  className: PropTypes.string,
-  language: PropTypes.string,
-  isActive: PropTypes.bool,
   RWD: PropTypes.bool,
 };
 

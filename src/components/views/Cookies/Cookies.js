@@ -9,8 +9,11 @@ import { ProductForm } from '../../common/ProductForm/ProductForm';
 import { fetchProducts } from '../../../redux/productRedux';
 import { addProduct } from '../../../redux/cartRedux';
 
-const Component = ({ className, children, language }) => {
+const Component = ({ className, children }) => {
   const dispatch = useDispatch();
+  const activeLanguage = useSelector(
+    (state) => state.menus.data.activeLanguage
+  );
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
@@ -50,7 +53,7 @@ const Component = ({ className, children, language }) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      <h2>Cookies</h2>
+      {activeLanguage === `PL` ? <h2>Ciastka</h2> : <h2>Cookies</h2>}
       <Container>
         <Row>
           <Col className="">

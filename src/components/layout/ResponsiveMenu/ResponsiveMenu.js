@@ -6,14 +6,13 @@ import { HamburgerSqueeze } from 'react-animated-burgers';
 
 import clsx from 'clsx';
 
-import { Container, Row, Col } from 'react-bootstrap';
-import { Cart } from '../../features/Cart/Cart';
+import { Col } from 'react-bootstrap';
 import styles from './ResponsiveMenu.module.scss';
 
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-const Component = ({ className, children }) => {
+const Component = ({ className }) => {
   const menuItems = useSelector((state) => state.menus.data);
   const activeLanguage = useSelector(
     (state) => state.menus.data.activeLanguage
@@ -89,7 +88,6 @@ const Component = ({ className, children }) => {
 // })
 
 Component.propTypes = {
-  children: PropTypes.node,
   className: PropTypes.string,
 };
 

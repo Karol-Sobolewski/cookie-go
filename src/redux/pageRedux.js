@@ -17,7 +17,7 @@ export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
 
 export const getPageItems = ({ pages }) => pages.data;
 
-export const fetchPages = () => (dispatch, getState) => {
+export const fetchPages = () => (dispatch) => {
   dispatch(fetchStarted());
 
   Axios.get(`${API_URL}/pages`)
