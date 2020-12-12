@@ -34,11 +34,10 @@ app.use(`*`, (req, res) => {
 
 /* MONGOOSE */
 
+// `
 
-// mongodb+srv://Karol-Sobolewski:<password>@cluster0.q4foz.mongodb.net/<dbname>?retryWrites=true&w=majority
-
-const dbURI = (process.env.NODE_ENV === `production` || process.env.NODE_ENV === `development`) ? `mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASS
-}@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/cookieGoDB`;
+const dbURI = (process.env.NODE_ENV === `production` || process.env.NODE_ENV === `development`) ?
+  `mongodb+srv://Karol-Sobolewski:test1234@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/cookieGoDB`;
 
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
@@ -56,4 +55,4 @@ app.listen(port, () => {
   console.log(`Server is running on port: ` + port);
 });
 
-module.exports = { server, dbURI};
+// module.exports = { server, dbURI};
