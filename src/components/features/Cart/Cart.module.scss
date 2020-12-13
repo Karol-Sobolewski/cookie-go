@@ -52,8 +52,12 @@
 
 /* Media non-touch  */
 @media (hover: hover) and (pointer: fine) {
-  .cartIcon :hover {
-    color: $navbar-cart-icon-active;
+  .root {
+    &:hover {
+      .cartIcon {
+        color: $navbar-cart-icon-active;
+      }
+    }
   }
 }
 
