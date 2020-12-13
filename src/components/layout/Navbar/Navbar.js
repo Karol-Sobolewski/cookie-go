@@ -45,18 +45,20 @@ const Component = ({ className, children }) => {
           ))}
           {/* //TODO Language -> button with dispatch instead of NavLink
           */}
-          <Col>
+          <Col className={styles.changeLanguage}>
             {activeLanguage === `Polish` ? (
-              <NavLink to={{ pathname: `/en` }} activeClassName="active">
+              <h3>
+                {/* <NavLink to={{ pathname: `/en` }} activeClassName="active"> */}
                 EN
-              </NavLink>
+                {/* </NavLink> */}
+              </h3>
             ) : (
-              <NavLink
-                to={{ pathname: `/pl`, componentProps: `pl` }}
+              <h3>
+                {/*   to={{ pathname: `/pl`, componentProps: `pl` }}
                 activeClassName="active"
-              >
+               > */}
                 PL
-              </NavLink>
+              </h3>
             )}
           </Col>
           <Col className={styles.cartMenu}>
