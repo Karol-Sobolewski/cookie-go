@@ -63,6 +63,9 @@
           padding-right: 15px;
           padding-left: 15px;
         }
+        :last-child {
+          margin-bottom: 0;
+        }
       }
     }
     .aboutPhotoColumn {
