@@ -1,20 +1,9 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  position: relative;
+  background: none;
+  border: none;
   cursor: pointer;
-  .cartIcon {
-    color: $navbar-cart-icon;
-    :hover {
-      color: $navbar-cart-icon-active;
-    }
-  }
-  .cartIconActive {
-    color: $navbar-cart-icon-active;
-    cursor: pointer;
-  }
-}
-.cartRWD {
   visibility: visible;
   position: fixed;
   display: flex;
@@ -28,18 +17,20 @@
   width: 5vh;
   border-radius: 50%;
   z-index: 10;
+  .cartIcon {
+    color: $navbar-cart-icon;
+  }
 
-  .cartIcon :hover,
   .cartIconActive {
-    color: $cookie;
-    // cursor: pointer;
+    @extend .cartIcon;
+    color: $navbar-cart-icon-active;
+    cursor: pointer;
   }
 }
+
 .cart {
   background-color: white;
   box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
-  // height: 0;
-  // min-height: 10vh;
   height: auto;
   opacity: 0;
   overflow: hidden;
@@ -48,7 +39,7 @@
   top: 6.5vh;
   transform: translateY(-10%);
   transition-timing-function: ease-in;
-  transition: 0.2s;
+  transition: 0.4s;
   visibility: hidden;
 }
 .cartActive {
@@ -59,18 +50,39 @@
   z-index: 10;
 }
 
+/* Media non-touch  */
+@media (hover: hover) and (pointer: fine) {
+  .cartIcon :hover {
+    color: $navbar-cart-icon-active;
+  }
+}
+
 /* ExtraExtraLarge Devices, UltraWide Desktops  */
 @media (min-width: 1921px) {
-  .cart {
-    width: 20vw;
-    max-height: 50vh;
+  .root {
+    height: 7.5vh;
+    width: 7.5vh;
+    .cartIcon {
+      font-size: 1.5em;
+    }
+    .cart {
+      width: 20vw;
+      max-height: 50vh;
+    }
   }
 }
 /* ExtraLarge Devices, Desktops  */
 @media (min-width: 1200px) and (max-width: 1920px) {
-  .cart {
-    width: 30vw;
-    max-height: 50vh;
+  .root {
+    height: 7.5vh;
+    width: 7.5vh;
+    .cartIcon {
+      font-size: 1.5em;
+    }
+    .cart {
+      width: 30vw;
+      max-height: 50vh;
+    }
   }
 }
 /* Large Devices, Laptops, Large Tablets iPad Pro */

@@ -8,7 +8,7 @@ import styles from './Cart.module.scss'; //eslint-disable-line
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-const Component = ({children, RWD }) => {
+const Component = ({ children }) => {
   const [active, setActive] = useState(false);
 
   const toggleTrueFalse = () => setActive(!active);
@@ -30,15 +30,15 @@ const Component = ({children, RWD }) => {
   useClickOutsideOfCart(wrapperRef);
 
   return (
-    <div
-      className={`${styles.root} ${RWD ? styles.cartRWD : null}`}
+    <button
+      className={styles.root}
       ref={wrapperRef}
+      type="button"
       onClick={() => toggleTrueFalse()}
     >
       <FontAwesomeIcon
         icon={faShoppingCart}
         className={active ? styles.cartIconActive : styles.cartIcon}
-
       />
       <Container className={active ? styles.cartActive : styles.cart}>
         <Row>
@@ -48,23 +48,12 @@ const Component = ({children, RWD }) => {
         </Row>
         <main>{children}</main>
       </Container>
-    </div>
+    </button>
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
-
 Component.propTypes = {
   children: PropTypes.node,
-  RWD: PropTypes.bool,
 };
 
 export {

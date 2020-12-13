@@ -1,41 +1,87 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
-
 import { Container, Row, Col } from 'react-bootstrap';
+import { HamburgerSqueeze } from 'react-animated-burgers';
+import { changeLanguage } from '../../../redux/menuRedux';
 import { Cart } from '../../features/Cart/Cart';
-import { ResponsiveMenu } from '../ResponsiveMenu/ResponsiveMenu';
 import styles from './Navbar.module.scss';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
 const Component = ({ className, children }) => {
-  const [cartRWD, setcartRWD] = useState(false);
-  const size = window.innerWidth;
-  console.log(size);
-  useEffect(() => {
-    if (size <= 1200) {
-      setcartRWD(true);
-    }
-  }, [size]);
   const menuItems = useSelector((state) => state.menus.data);
-  // const stateU = useSelector((state) => state);
   const activeLanguage = useSelector(
     (state) => state.menus.data.activeLanguage
   );
 
+  const [active, setActive] = useState(false);
+  const [activeRWD, setActiveRWD] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const toggleMenuButton = () => setActiveRWD(!activeRWD);
+
+  const handleToggleLanguageButton = () => {
+    if (activeLanguage === `Polish`) {
+      dispatch(changeLanguage(`English`));
+    } else if (activeLanguage === `English`) {
+      dispatch(changeLanguage(`Polish`));
+    }
+    // setActiveRWD(false);
+    setActive(!active);
+  };
+
+  const useOutsideMenu = (ref) => {
+    useEffect(() => {
+      function handleClickOutside(e) {
+        if (ref.current && !ref.current.contains(e.target)) {
+          setActiveRWD(false);
+          setActive(false);
+        }
+      }
+      document.addEventListener(`mousedown`, handleClickOutside);
+      return () => {
+        document.removeEventListener(`mousedown`, handleClickOutside);
+      };
+    }, [ref]);
+  };
+  const menuRef = useRef(null);
+  useOutsideMenu(menuRef);
+
+  const useOutsideLanguage = (ref) => {
+    useEffect(() => {
+      function handleClickOutside(e) {
+        if (ref.current && !ref.current.contains(e.target)) {
+          setActive(false);
+        }
+      }
+      document.addEventListener(`mousedown`, handleClickOutside);
+      return () => {
+        document.removeEventListener(`mousedown`, handleClickOutside);
+      };
+    }, [ref]);
+  };
+
+  const languageRef = useRef(null);
+  useOutsideLanguage(languageRef);
+
   return (
-    <div className={clsx(className, styles.root)}>
-      <Container className={styles.mainMenu}>
-        <Row className="d-flex justify-content-center align-items-center">
+    <div className={clsx(className, styles.root)} ref={menuRef}>
+      <HamburgerSqueeze
+        className={styles.burgerButton}
+        id="burgerButton"
+        isActive={activeRWD}
+        onClick={toggleMenuButton}
+      />
+      <Container className="">
+        <Row className={activeRWD ? styles.mainMenu__active : styles.mainMenu}>
           {menuItems.pages.map((item) => (
             <Col key={item.id}>
               <NavLink
                 to={{ pathname: `/${item.src}` }}
                 activeClassName="active"
+                onClick={() => setActiveRWD(false)}
               >
                 {activeLanguage === `Polish`
                   ? item.titlePolish
@@ -43,31 +89,43 @@ const Component = ({ className, children }) => {
               </NavLink>
             </Col>
           ))}
-          {/* //TODO Language -> button with dispatch instead of NavLink
-          */}
-          <Col className={styles.changeLanguage}>
-            {activeLanguage === `Polish` ? (
-              <h3>
-                {/* <NavLink to={{ pathname: `/en` }} activeClassName="active"> */}
-                EN
-                {/* </NavLink> */}
-              </h3>
-            ) : (
-              <h3>
-                {/*   to={{ pathname: `/pl`, componentProps: `pl` }}
-                activeClassName="active"
-               > */}
-                PL
-              </h3>
-            )}
+          <Col className={styles.changeLanguage} ref={languageRef}>
+            <button onClick={() => setActive(!active)} type="button">
+              <h3>{activeLanguage === `Polish` ? `Język` : `Language`}</h3>
+            </button>
+            <ul
+              className={
+                active ? styles.languagesBox__active : styles.languagesBox
+              }
+            >
+              {activeLanguage === `Polish` ? (
+                <li  //eslint-disable-line
+                  className={styles.languageBox}
+                  onClick={() => handleToggleLanguageButton()}
+                >
+                  <img
+                    src="/images/photos/language/muffinNB.png"
+                    alt="English"
+                  />
+                  <a href="#">ENGLISH</a>
+                </li>
+              ) : (
+                <li  //eslint-disable-line
+                  className={styles.languageBox}
+                  onClick={() => handleToggleLanguageButton()}
+                >
+                  <img src="/images/photos/language/paczek.png" alt="Polski" />
+                  <a href="#">POLSKI</a>
+                </li>
+              )}
+            </ul>
           </Col>
           <Col className={styles.cartMenu}>
-            <Cart RWD={cartRWD} />
+            <Cart />
           </Col>
         </Row>
         <main>{children}</main>
       </Container>
-      <ResponsiveMenu />
     </div>
   );
 };

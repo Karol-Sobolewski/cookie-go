@@ -25,6 +25,7 @@ const Component = ({ className, language, children }) => {
       }
     }
   }, []);
+
   return (
     <div className={clsx(className, styles.root)}>
       <Container>

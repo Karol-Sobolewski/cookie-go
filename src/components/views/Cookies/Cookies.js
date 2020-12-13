@@ -100,7 +100,6 @@ const Component = ({ className, children }) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  language: PropTypes.string,
 };
 
 export {
