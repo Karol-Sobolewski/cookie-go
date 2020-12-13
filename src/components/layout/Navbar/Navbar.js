@@ -91,7 +91,7 @@ const Component = ({ className, children }) => {
           ))}
           <Col className={styles.changeLanguage} ref={languageRef}>
             <button onClick={() => setActive(!active)} type="button">
-              <h3>{activeLanguage === `Polish` ? `Język` : `Language`}</h3>
+              <h3>{activeLanguage === `Polish` ? `Language` : `Język`}</h3>
             </button>
             <ul
               className={
