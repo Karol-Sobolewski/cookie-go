@@ -104,7 +104,7 @@ const Component = ({ className, children }) => {
                   onClick={() => handleToggleLanguageButton()}
                 >
                   <img
-                    src="/images/photos/language/muffinNB.png"
+                    src="/images/language/muffinNB.png"
                     alt="English"
                   />
                   <a href="#">ENGLISH</a>
@@ -114,7 +114,7 @@ const Component = ({ className, children }) => {
                   className={styles.languageBox}
                   onClick={() => handleToggleLanguageButton()}
                 >
-                  <img src="/images/photos/language/paczek.png" alt="Polski" />
+                  <img src="/images/language/paczek.png" alt="Polski" />
                   <a href="#">POLSKI</a>
                 </li>
               )}
