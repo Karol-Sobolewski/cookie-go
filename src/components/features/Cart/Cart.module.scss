@@ -28,8 +28,6 @@
     cursor: pointer;
   }
   .cartProductIndicator {
-    min-width: 3vh;
-    min-height: 3vh;
     width: auto;
     flex-grow: 1;
     height: auto;
@@ -41,10 +39,10 @@
     align-items: center;
     position: absolute;
     text-justify: inherit;
-    bottom: -35%;
+    // bottom: -35%;
     left: 20%;
     border-radius: 10px;
-    font-size: 1.5em;
+    // font-size: 1.5em;
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
     background-color: $cookie;
@@ -68,6 +66,7 @@
   transition-timing-function: ease-in;
   transition: 0.4s;
   visibility: hidden;
+  border-radius: 10px;
 }
 .cartActive {
   @extend .cart;
@@ -100,6 +99,10 @@
       width: 20vw;
       max-height: 50vh;
     }
+    .cartProductIndicator {
+      font-size: 1.5em;
+      bottom: -35%;
+    }
   }
 }
 /* ExtraLarge Devices, Desktops  */
@@ -114,6 +117,10 @@
       width: 30vw;
       max-height: 50vh;
     }
+    .cartProductIndicator {
+      font-size: 1.5em;
+      bottom: -35%;
+    }
   }
 }
 /* Large Devices, Laptops, Large Tablets iPad Pro */
@@ -121,6 +128,10 @@
   .cart {
     width: 50vw;
     max-height: 30vh;
+  }
+  .cartProductIndicator {
+    font-size: 1.5em;
+    bottom: -35%;
   }
 }
 
@@ -130,6 +141,10 @@
     width: 50vw;
     max-height: 30vh;
   }
+  .cartProductIndicator {
+    font-size: 1.5em;
+    bottom: -50%;
+  }
 }
 
 /* Small Devices, Large Phones */
@@ -138,6 +153,10 @@
     width: 50vw;
     max-height: 30vh;
   }
+  .cartProductIndicator {
+    font-size: 1em;
+    bottom: -50%;
+  }
 }
 
 /* Extra Small Devices, Phones */
@@ -145,5 +164,19 @@
   .cart {
     width: 50vw;
     max-height: 30vh;
+  }
+  .cartProductIndicator {
+    font-size: 1.2em;
+    bottom: -60%;
+    // color: blue;
+  }
+}
+
+/* Extra Small Devices, Small Phones Landscape*/
+@media only screen and (max-height: 499px) {
+  .cartProductIndicator {
+    font-size: 1em;
+    bottom: -100%;
+    // color: blue;
   }
 }
