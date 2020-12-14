@@ -19,14 +19,12 @@ import { fetchMenu, changeLanguage } from './redux/menuRedux';
 import { fetchPages } from './redux/pageRedux';
 import { fetchProducts } from './redux/productRedux';
 
+import ScrollToTop from './utils/ScrollToTop';
+
 const App = () => {
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
   useEffect(() => {
-    console.log(process.env.NODE_ENV);
-    console.log(process.env.PORT);
-    // console.log(process.env.NODE_ENV);
-    console.log(process.env.DB_LOGIN);
     dispatch(fetchPages());
     dispatch(fetchMenu());
     dispatch(fetchProducts());
@@ -51,7 +49,6 @@ const App = () => {
     };
     setTimeout(() => {
       loadData();
-      setLoaded(true);
     }, 500);
   }, []);
 
@@ -60,6 +57,7 @@ const App = () => {
       {loaded ? (
         <div className={styles.app}>
           <BrowserRouter>
+            <ScrollToTop />
             <MainLayout>
               <AnimatedSwitch
                 atEnter={{ opacity: 0 }}
