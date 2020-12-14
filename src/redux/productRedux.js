@@ -20,7 +20,7 @@ export const fetchProducts = () => (dispatch) => {
   Axios.get(`${API_URL}/products`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
-      console.log(`res`, res.data);
+      // console.log(`res`, res.data);
     })
     .catch((err) => {
       dispatch(fetchError(err.message || true));
@@ -39,7 +39,7 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case FETCH_SUCCESS: {
-      console.log(`menu`, action.payload);
+      // console.log(`menu`, action.payload);
       return {
         ...statePart,
         loading: {

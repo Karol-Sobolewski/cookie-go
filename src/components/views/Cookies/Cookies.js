@@ -1,31 +1,28 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { useSelector, useDispatch } from 'react-redux';
-import { Container, Row, Col } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
+import { Container } from 'react-bootstrap';
 import styles from './Cookies.module.scss';
-// import { ProductForm } from '../../common/ProductForm/ProductForm';
+import { ProductForm } from '../../common/ProductForm/ProductForm';
 // import { connect } from 'react-redux';
-import { fetchProducts } from '../../../redux/productRedux';
 // import { addProduct } from '../../../redux/cartRedux';
 
 const Component = ({ className, children }) => {
-  const dispatch = useDispatch();
   const activeLanguage = useSelector(
     (state) => state.menus.data.activeLanguage
   );
+  const cookies = useSelector((state) => state.products.data.cookies);
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
-
+    console.log(cookies);
+  });
   // const [qty, setQty] = useState(1);
-
   // const state = {
   //   title: `asd`,
   //   quantity: qty,
   //   price: qty * 5,
   // };
-  console.log(`Cookies`);
+  // console.log(`Cookies`);
   // const decrement = () => {
   //   if (qty > 1) {
   //     setQty(qty - 1);
@@ -53,34 +50,27 @@ const Component = ({ className, children }) => {
 
   return (
     <div className={clsx(className, styles.root)}>
-      {activeLanguage === `PL` ? <h2>Ciastka</h2> : <h2>Cookies</h2>}
+      {activeLanguage === `Polish` ? <h2>Ciastka</h2> : <h2>Cookies</h2>}
       <Container>
-        <Row>
-          <Col className="">
-            {/* <div className={styles.cookie}>
-              <p>Cookie 1</p>
-              <Row>
-                <button type="button" onClick={decrement}>
-                  -
-                </button>
-                <input
-                  className={styles.quantity}
-                  type="text"
-                  value={qty}
-                  onChange={handleChange}
-                />
-                <button type="button" onClick={increment}>
-                  +
-                </button>
-              </Row>
-              <textarea rows="6" cols="50" />
-              <button type="submit" onClick={(e) => addToCart(e)}>
-                Add to cart
-              </button>
-            </div> */}
-          </Col>
-        </Row>
-        {/* <ProductForm /> */}
+        <div className={styles.productGrid}>
+          {cookies.map((item) => (
+            <ProductForm
+              key={item.id}
+              title={
+                activeLanguage === `Polish`
+                  ? item.polish.title
+                  : item.english.title
+              }
+              description={
+                activeLanguage === `Polish`
+                  ? item.polish.description
+                  : item.english.description
+              }
+              price={item.price}
+              images={item.images}
+            />
+          ))}
+        </div>
         <main>{children}</main>
       </Container>
     </div>

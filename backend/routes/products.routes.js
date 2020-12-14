@@ -9,7 +9,7 @@ router.get(`/products`, async (req, res) => {
     const result = await Product.find();
     console.log(result);
     if (!result) res.status(404).json({ product: `Not found` });
-    else res.json(result);
+    else res.json(result[0]);
   } catch (err) {
     res.status(500).json(err);
   }

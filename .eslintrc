@@ -23,9 +23,9 @@
     "css-modules"
   ],
   "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    // "wesbos",
+    // "eslint:recommended",
+    // "plugin:react/recommended",
+    "wesbos",
     "plugin:css-modules/recommended"
   ],
   "rules": {

@@ -1,52 +1,86 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  .cookie {
+  position: relative;
+  box-shadow: $box-shadow;
+  border-radius: 20px;
+
+  .content {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    width: 50vh;
-    height: 50vh;
-    border: 2px solid black;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     .quantity {
       text-align: center;
-      width: 4vw;
+      width: 50px;
     }
   }
+  .addToCartButon {
+    position: absolute;
+    bottom: -5%;
+    background-color: $cookie;
+    border-radius: 50%;
+    width: 5vh;
+    height: 5vh;
+    border: none;
+    color: $chocolate;
+    font-size: 1.5em;
+    box-shadow: $box-shadow;
+    //TODO on hover pointer only color white active class on click
+  }
+}
+.root:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
 }
 
 /* ExtraExtraLarge Devices, UltraWide Desktops  */
 @media (min-width: 1921px) {
   .root {
+    width: 30%;
   }
 }
 
 /* ExtraLarge Devices, Desktops  */
 @media (min-width: 1200px) and (max-width: 1920px) {
   .root {
+    width: 30%;
   }
 }
 /* Large Devices, Desktops */
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
   .root {
+    width: 40%;
   }
 }
 
 /*Medium Devices, laptops*/
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .root {
+    width: 40%;
   }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .root {
+    width: 50%;
+    .addToCartButon {
+      font-size: 1em;
+    }
   }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 0px) and (max-width: 479px) {
   .root {
+    width: 100%;
+    .addToCartButon {
+      font-size: 1em;
+    }
   }
 }
