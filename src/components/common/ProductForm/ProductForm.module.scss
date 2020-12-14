@@ -13,24 +13,125 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    .quantity {
+    .qtyBox {
+      width: 50%;
+      // margin-bottom: 1vh;
+    }
+    .flipBox {
+      background-color: transparent;
+      height: 33%;
+      width: 50%;
+      // border: 1px solid black;
+      perspective: 1000px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .flipBoxInner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      width: 50px;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flipBox:hover .flipBoxInner {
+      transform: rotateY(180deg);
+    }
+
+    .flipBoxFront,
+    .flipBoxBack {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      visibility: visible;
+      backface-visibility: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .flipBoxFront {
+      // background-color: #bbb;
+      // color: black;
+      img {
+        // width: 300px;
+        // height: 200px;
+      }
+    }
+
+    .flipBoxBack {
+      // background-color: rgba(0, 0, 0, 0.2);
+
+      // background-color: rgba(232, 158, 59, 0.5);
+      box-shadow: $box-shadow;
+      // opacity: 0.5;
+      color: $cookie;
+      font-family: $font-title;
+
+      border-radius: 10px;
+      color: black;
+      transform: rotateY(180deg);
+      p {
+        color: $chocolate;
+      }
     }
   }
-  .addToCartButon {
-    position: absolute;
-    bottom: -5%;
-    background-color: $cookie;
+  .qtyInput {
+    text-align: center;
     border-radius: 50%;
     width: 5vh;
     height: 5vh;
+  }
+  .qtyButton {
+    border: none;
+    width: 3vh;
+    height: 3vh;
+    border-radius: 50%;
+    background-color: $cookie;
+    color: $chocolate;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .addToCartButton {
+    position: absolute;
+    bottom: -10%;
+    background-color: $cookie;
+    border-radius: 50%;
+    width: 7.5vh;
+    height: 7.5vh;
     border: none;
     color: $chocolate;
     font-size: 1.5em;
     box-shadow: $box-shadow;
     //TODO on hover pointer only color white active class on click
   }
+  // .productImageBox {
+  //   // transition: -webkit-transform 1s ease-in;
+  //   // transform-style: preserve-3d;
+  //   // position: relative;
+  //   // width: 100px;
+  //   // height: 100px;
+  //   // margin: 0 auto;
+  //   // border: 2px solid blue;
+  //   position: relative;
+  //   margin: 0 auto;
+  //   width: 100px;
+  //   height: 100px;
+  //   cursor: pointer;
+  // }
+  // .productImage {
+  // }
+  // .productDescription {
+  // }
 }
 .root:after {
   content: "";
@@ -54,23 +155,32 @@
 /* Large Devices, Desktops */
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
   .root {
-    width: 40%;
+    width: 100%;
+    .addToCartButton {
+      font-size: 2em;
+      bottom: -4%;
+    }
   }
 }
 
 /*Medium Devices, laptops*/
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .root {
-    width: 40%;
+    width: 100%;
+    .addToCartButton {
+      font-size: 1.5em;
+      bottom: -4%;
+    }
   }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .root {
-    width: 50%;
-    .addToCartButon {
-      font-size: 1em;
+    width: 100%;
+    .addToCartButton {
+      font-size: 1.5em;
+      bottom: -5%;
     }
   }
 }
@@ -79,8 +189,30 @@
 @media only screen and (min-width: 0px) and (max-width: 479px) {
   .root {
     width: 100%;
-    .addToCartButon {
+    .addToCartButton {
       font-size: 1em;
+      bottom: -5%;
+    }
+  }
+}
+
+/* Extra Small Devices, Small Phones Landscape*/
+@media only screen and (max-height: 499px) {
+  .root {
+    width: 100%;
+    .addToCartButton {
+      bottom: -2%;
+      font-size: 1em;
+      height: 10vh;
+      width: 10vh;
+    }
+    .qtyInput {
+      height: 10vh;
+      width: 10vh;
+    }
+    .qtyButton {
+      height: 10vh;
+      width: 10vh;
     }
   }
 }

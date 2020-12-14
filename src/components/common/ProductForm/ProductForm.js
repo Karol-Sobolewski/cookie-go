@@ -39,37 +39,63 @@ const Component = ({
   }, []);
 
   return (
-    <div className={`hey ${clsx(className, styles.root)}`}>
+    <div className={clsx(className, styles.root)}>
       <div className={styles.content}>
         <h3>{title}</h3>
-        <Row>
-          <button type="button" onClick={() => decrease()}>
+        {/* <textarea rows="6" cols="50" /> */}
+        {/* <div className={styles.productImageBox}>
+          <div>
+            <div className={styles.productImage} />
+            <div className={styles.productDescription} />
+            <img className={styles.productImage} src={images[0].src} alt={images[0].src} />
+            <img className={styles.productDescription} src={images[0].src} alt={images[0].src} />
+          </div>
+        </div> */}
+        <div className={styles.flipBox}>
+          <div className={styles.flipBoxInner}>
+            <div className={styles.flipBoxFront}>
+              <img
+                src={images[0].src}
+                alt={images[0].src}
+                // style="width:300px;height:200px"
+              />
+            </div>
+            <div className={styles.flipBoxBack}>
+              <p>{description}</p>
+            </div>
+          </div>
+        </div>
+        <Row
+          className={`${styles.qtyBox} d-flex justify-content-around align-items-center`}
+        >
+          <button
+            type="button"
+            className={styles.qtyButton}
+            onClick={() => decrease()}
+          >
             -
           </button>
           <input
-            className={styles.quantity}
+            className={styles.qtyInput}
             type="text"
             min="1"
             max="5"
             value={qty}
           />
-          <button type="button" onClick={() => increase()}>
+          <button
+            className={styles.qtyButton}
+            type="button"
+            onClick={() => increase()}
+          >
             +
           </button>
         </Row>
-        {/* <textarea rows="6" cols="50" /> */}
-        <img src={images[0].src} alt={images[0].src} />
         <button
           type="submit"
-          className={styles.addToCartButon}
+          className={styles.addToCartButton}
           onClick={(e) => addToCart(e)}
         >
-          <FontAwesomeIcon
-            icon={faCartArrowDown}
-            // size="1x"
-            // TODO size
-            // className={active ? styles.cartIconActive : styles.cartIcon}
-          />
+          <FontAwesomeIcon icon={faCartArrowDown} />
         </button>
         <main>{children}</main>
       </div>
