@@ -17,6 +17,7 @@
   width: 5vh;
   border-radius: 50%;
   z-index: 10;
+  flex-grow: 0;
   .cartIcon {
     color: $navbar-cart-icon;
   }
@@ -25,6 +26,32 @@
     @extend .cartIcon;
     color: $navbar-cart-icon-active;
     cursor: pointer;
+  }
+  .cartProductIndicator {
+    min-width: 3vh;
+    min-height: 3vh;
+    width: auto;
+    flex-grow: 1;
+    height: auto;
+    // background-color: #418deb;
+    display: flex;
+    color: $chocolate;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    text-justify: inherit;
+    bottom: -35%;
+    left: 20%;
+    border-radius: 10px;
+    font-size: 1.5em;
+    transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
+    background-color: $cookie;
+    p {
+      margin-bottom: 0;
+      text-align: center;
+    }
   }
 }
 

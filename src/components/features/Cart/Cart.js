@@ -40,6 +40,11 @@ const Component = ({ children }) => {
         icon={faShoppingCart}
         className={active ? styles.cartIconActive : styles.cartIcon}
       />
+      <div className={styles.cartProductIndicator}>
+        <div>
+          <p>0</p>
+        </div>
+      </div>
       <Container className={active ? styles.cartActive : styles.cart}>
         <Row>
           <Col>
