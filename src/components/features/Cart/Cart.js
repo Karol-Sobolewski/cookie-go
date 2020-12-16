@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,7 +12,10 @@ import styles from './Cart.module.scss'; //eslint-disable-line
 
 const Component = ({ children }) => {
   const [active, setActive] = useState(false);
-
+  const cartItems = useSelector((state) => state.cart.products);
+  const activeLanguage = useSelector(
+    (state) => state.menus.data.activeLanguage
+  );
   const toggleTrueFalse = () => setActive(!active);
   const useClickOutsideOfCart = (ref) => {
     useEffect(() => {
@@ -30,30 +35,35 @@ const Component = ({ children }) => {
   useClickOutsideOfCart(wrapperRef);
 
   return (
-    <button
-      className={styles.root}
-      ref={wrapperRef}
-      type="button"
-      onClick={() => toggleTrueFalse()}
-    >
-      <FontAwesomeIcon
-        icon={faShoppingCart}
-        className={active ? styles.cartIconActive : styles.cartIcon}
-      />
+    <Container ref={wrapperRef} className={styles.root}>
+      <button type="button" onClick={() => toggleTrueFalse()}>
+        <FontAwesomeIcon
+          icon={faShoppingCart}
+          className={active ? styles.cartIconActive : styles.cartIcon}
+        />
+      </button>
       <div className={styles.cartProductIndicator}>
         <div>
-          <p>0</p>
+          <p>{cartItems.length}</p>
         </div>
       </div>
       <Container className={active ? styles.cartActive : styles.cart}>
-        <Row>
-          <Col>
-            <h2>Cart</h2>
-          </Col>
-        </Row>
+        {/* eslint-disable */}
+        {cartItems.length
+          ? cartItems.map((item) => (
+              <Row key={item.id} className={styles.cartProductRow}>
+                <Col className={styles.cartImage}><img src={item.image[0].src} alt={item.image[0].title}/></Col>
+                <Col>{item.name}</Col>
+                <Col>{item.qty}</Col>
+                <Col>{item.price}</Col>
+                <Col>x</Col>
+              </Row>
+            ))
+          : <h3>{activeLanguage === `Polish` ? `Koszyk jest pusty` : `Cart is empty`}</h3>}
+          {/* eslint-enable */}
         <main>{children}</main>
       </Container>
-    </button>
+    </Container>
   );
 };
 

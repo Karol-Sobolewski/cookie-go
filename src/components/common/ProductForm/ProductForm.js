@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
@@ -9,11 +9,8 @@ import {
   faCartArrowDown,
   faArrowLeft,
 } from '@fortawesome/free-solid-svg-icons';
+import { addProductToCart } from '../../../redux/cartRedux';
 import styles from './ProductForm.module.scss';
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
-// TODO click outside -> setRotate(false) setShowNutrition(false)
 
 const Component = ({
   className,
@@ -24,42 +21,62 @@ const Component = ({
   images,
   nutrition,
 }) => {
-  const [qty, setQty] = useState(1);
-  // console.log(`Cookies`);
+  // const [qty, setQty] = useState(1);
+
+  const [cart, setCart] = useState({
+    name: title,
+    image: images,
+    qty: 1,
+    price,
+  });
+
   const [rotate, setRotate] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
-
   const activeLanguage = useSelector(
     (state) => state.menus.data.activeLanguage
   );
 
   const decrease = () => {
-    if (qty > 1) {
-      setQty(qty - 1);
+    if (cart.qty > 1) {
+      setCart({ ...cart, qty: cart.qty - 1, price: cart.qty * price });
     } else {
-      setQty(1);
+      setCart({ ...cart, qty: 1, price: cart.qty * price });
     }
   };
   const increase = () => {
-    setQty(qty + 1);
-  };
-
-  const addToCart = (e) => {
-    console.log(`add`);
-    setQty(1);
-    e.preventDefault();
-    setRotate(false);
-    setShowNutrition(false);
+    // setQty(qty + 1);
+    setCart({ ...cart, qty: cart.qty + 1, price: cart.qty * price });
+    // setCart({ ...cart, price: cart.qty * price });
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value);
-    const parseValue = parseInt(e.target.value);
-    if (!isNaN(parseValue)) { //eslint-disable-line
-      setQty(parseInt(e.target.value));
+    const parsedValue = parseInt(e.target.value);
+    if (!isNaN(parsedValue)) { //eslint-disable-line
+      setCart({
+        ...cart,
+        qty: parseInt(e.target.value),
+        price: cart.qty * price,
+      });
+      // setCart({ ...cart, price: cart.qty * price });
     }
   };
 
+  const dispatch = useDispatch();
+
+  const addToCart = (e) => {
+    console.log(cart.qty);
+    console.log(price);
+    // setCart({ ...cart, price: cart.qty - 1 });
+    // addProductToCart
+    dispatch(addProductToCart(cart));
+    console.log(cart);
+    console.log(cart.price);
+    // cart.qty
+    e.preventDefault();
+    setCart({ ...cart, qty: 1 });
+    setRotate(false);
+    setShowNutrition(false);
+  };
   const useClickOutsideOfProductBox = (ref) => {
     useEffect(() => {
       function handleClickOutside(e) {
@@ -113,19 +130,19 @@ const Component = ({
                   </button>
                   <Row className={styles.productNutritionRow}>
                     <Col>{activeLanguage === `Polish` ? `Waga` : `Weight`}</Col>
-                    <Col>60 g</Col>
+                    <Col>{nutrition.weight} g</Col>
                   </Row>
                   <Row className={styles.productNutritionRow}>
                     <Col>
                       {activeLanguage === `Polish` ? `Kalorie` : `Calories`}
                     </Col>
-                    <Col>{nutrition.calories}</Col>
+                    <Col>{nutrition.calories} kcal</Col>
                   </Row>
                   <Row className={styles.productNutritionRow}>
                     <Col>
                       {activeLanguage === `Polish` ? `Tłuszcze` : `Fats`}
                     </Col>
-                    <Col>{nutrition.fats}</Col>
+                    <Col>{nutrition.fats} g</Col>
                   </Row>
                   <Row className={styles.productNutritionRow}>
                     <Col>
@@ -133,7 +150,7 @@ const Component = ({
                         ? `Kwasy nasycone`
                         : `Saturated Fat`}
                     </Col>
-                    <Col>{nutrition.satFats}</Col>
+                    <Col>{nutrition.satFats} g</Col>
                   </Row>
                   <Row className={styles.productNutritionRow}>
                     <Col>
@@ -141,27 +158,27 @@ const Component = ({
                         ? `Węglowodany`
                         : `Carbohydrates`}
                     </Col>
-                    <Col>{nutrition.carbs}</Col>
+                    <Col>{nutrition.carbs} g</Col>
                   </Row>
                   <Row className={styles.productNutritionRow}>
                     <Col>{activeLanguage === `Polish` ? `Cukry` : `Sugar`}</Col>
-                    <Col>{nutrition.sugar}</Col>
+                    <Col>{nutrition.sugar} g</Col>
                   </Row>
                   <Row className={styles.productNutritionRow}>
                     <Col>
                       {activeLanguage === `Polish` ? `Błonnik` : `Fiber`}
                     </Col>
-                    <Col>{nutrition.fiber}</Col>
+                    <Col>{nutrition.fiber} g</Col>
                   </Row>
                   <Row className={styles.productNutritionRow}>
                     <Col>
                       {activeLanguage === `Polish` ? `Białko` : `Protein`}
                     </Col>
-                    <Col>{nutrition.protein}</Col>
+                    <Col>{nutrition.protein} g</Col>
                   </Row>
                   <Row className={styles.productNutritionRow}>
                     <Col>{activeLanguage === `Polish` ? `Sól` : `Salt`}</Col>
-                    <Col>{nutrition.salt}</Col>
+                    <Col>{nutrition.salt} g</Col>
                   </Row>
                 </Col>
                 <Col className={styles.productDescription}>
@@ -188,7 +205,7 @@ const Component = ({
           </div>
         </div>
         <h4 className={styles.productPrice}>
-          {price} {activeLanguage === `Polish` ? `Zł` : `Euro`}
+          {price * cart.qty} {activeLanguage === `Polish` ? `Zł` : `Euro`}
         </h4>
         <Row
           className={`${
@@ -205,7 +222,7 @@ const Component = ({
           <input
             className={styles.qtyInput}
             type="text"
-            value={qty}
+            value={cart.qty}
             onChange={handleChange}
           />
           <button
@@ -229,22 +246,12 @@ const Component = ({
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
-  price: PropTypes.string,
+  price: PropTypes.number,
   images: PropTypes.array,
   nutrition: PropTypes.object,
 };

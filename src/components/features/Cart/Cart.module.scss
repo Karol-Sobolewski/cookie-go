@@ -2,21 +2,28 @@
 
 .root {
   align-items: center;
-  background-color: white;
-  border-radius: 50%;
   border: none;
-  box-shadow: $box-shadow;
-  cursor: pointer;
   display: flex;
-  height: 5vh;
   justify-content: center;
   position: fixed;
-  right: 1px;
-  top: 1px;
+  right: 1vh;
+  top: 1vh;
   visibility: visible;
-  width: 5vh;
   z-index: 100;
   opacity: 1;
+
+  button {
+    align-items: center;
+    background-color: white;
+    border-radius: 50%;
+    border: none;
+    box-shadow: $box-shadow;
+    display: flex;
+    height: 8vh;
+    justify-content: center;
+    position: fixed;
+    width: 8vh;
+  }
   .cartIcon {
     color: $navbar-cart-icon;
   }
@@ -24,13 +31,11 @@
   .cartIconActive {
     @extend .cartIcon;
     color: $navbar-cart-icon-active;
-    cursor: pointer;
   }
   .cartProductIndicator {
     width: auto;
     flex-grow: 1;
     height: auto;
-    // background-color: #418deb;
     display: flex;
     color: $chocolate;
     font-weight: bold;
@@ -38,10 +43,8 @@
     align-items: center;
     position: absolute;
     text-justify: inherit;
-    // bottom: -35%;
     left: 20%;
     border-radius: 10px;
-    // font-size: 1.5em;
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
     background-color: $cookie;
@@ -57,7 +60,7 @@
   box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
   height: auto;
   opacity: 0;
-  overflow: hidden;
+  overflow-x: hidden;
   position: absolute;
   right: 50%;
   top: 6.5vh;
@@ -66,6 +69,27 @@
   transition: 0.4s;
   visibility: hidden;
   border-radius: 10px;
+  cursor: default;
+  .cartProductRow {
+    // cursor: wait;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh 0 1vh 0;
+    border-bottom: 1px solid #ccc;
+    > div {
+      // cursor: wait;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  .cartImage {
+    img {
+      width: 5vh;
+      height: 5vh;
+    }
+  }
 }
 .cartActive {
   @extend .cart;

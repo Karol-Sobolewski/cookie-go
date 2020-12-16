@@ -15,15 +15,17 @@
     padding: 5vh 0 5vh 0;
     .productTitle {
       position: absolute;
+      font-size: 1.3em;
       top: 5%;
       left: 50%;
       transform: translate(-50%, 0);
+      width: 100%;
     }
     .productPrice {
       position: absolute;
-      top: 17.5%;
-      // left: 0;
-      font-size: 1em;
+      bottom: 30%;
+      z-index: 10;
+      font-size: 0.75em;
       z-index: -1;
     }
     .qtyBox {
@@ -33,9 +35,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      // z-index: 1;
       opacity: 1;
-      // font-size: 2em;
       &__hidden {
         opacity: 0;
       }
@@ -47,8 +47,6 @@
       background-color: transparent;
       height: 100%;
       width: 100%;
-      // border: 1px solid black;
-      // z-index: 2;
       perspective: 1000px;
       display: flex;
       align-items: center;
@@ -86,11 +84,10 @@
 
     .productImage {
       cursor: pointer;
+      top: 25%;
       background: none;
       outline: none;
       border: none;
-      img {
-      }
     }
 
     .productDescriptionBox {
