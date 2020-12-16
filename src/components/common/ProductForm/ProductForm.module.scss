@@ -4,7 +4,6 @@
   position: relative;
   box-shadow: $box-shadow;
   border-radius: 20px;
-
   .content {
     display: flex;
     flex-direction: column;
@@ -13,23 +12,51 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    .qtyBox {
-      width: 50%;
-      // margin-bottom: 1vh;
+    padding: 5vh 0 5vh 0;
+    .productTitle {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translate(-50%, 0);
     }
-    .flipBox {
-      background-color: transparent;
-      height: 33%;
+    .productPrice {
+      position: absolute;
+      top: 17.5%;
+      // left: 0;
+      font-size: 1em;
+      z-index: -1;
+    }
+    .qtyBox {
+      position: absolute;
+      bottom: 15%;
       width: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // z-index: 1;
+      opacity: 1;
+      // font-size: 2em;
+      &__hidden {
+        opacity: 0;
+      }
+      p {
+        margin-bottom: 0.2em;
+      }
+    }
+    .productBox {
+      background-color: transparent;
+      height: 100%;
+      width: 100%;
       // border: 1px solid black;
+      // z-index: 2;
       perspective: 1000px;
-      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
+      position: absolute;
     }
 
-    .flipBoxInner {
+    .productBoxInner {
       position: relative;
       width: 100%;
       height: 100%;
@@ -41,15 +68,14 @@
       transform-style: preserve-3d;
     }
 
-    .flipBox:hover .flipBoxInner {
+    .productBoxInner__rotate {
+      @extend .productBoxInner;
       transform: rotateY(180deg);
     }
 
-    .flipBoxFront,
-    .flipBoxBack {
+    .productImage,
+    .productDescriptionBox {
       position: absolute;
-      width: 100%;
-      height: 100%;
       visibility: visible;
       backface-visibility: hidden;
       display: flex;
@@ -58,29 +84,108 @@
       text-align: center;
     }
 
-    .flipBoxFront {
-      // background-color: #bbb;
-      // color: black;
+    .productImage {
+      cursor: pointer;
+      background: none;
+      outline: none;
+      border: none;
       img {
-        // width: 300px;
-        // height: 200px;
       }
     }
 
-    .flipBoxBack {
-      // background-color: rgba(0, 0, 0, 0.2);
-
-      // background-color: rgba(232, 158, 59, 0.5);
+    .productDescriptionBox {
       box-shadow: $box-shadow;
-      // opacity: 0.5;
       color: $cookie;
       font-family: $font-title;
-
       border-radius: 10px;
       color: black;
       transform: rotateY(180deg);
+      background: white;
+      border: olive 2px solid;
+      width: 100%;
+      height: 100%;
+      // z-index: 100;
+      // z-index: -1;
+      // transition: font-size 1s;
+      .backArrow {
+        background: $cookie;
+        border-radius: 50%;
+        border: none;
+        position: absolute;
+        top: 1vh;
+        left: 1vh;
+        font-size: 1.5em;
+        width: 5vh;
+        height: 5vh;
+        color: $chocolate;
+      }
+      .productDescription {
+        // z-index: -1;
+      }
+      .showNutritionButton {
+        color: $chocolate;
+        background: none;
+        border-radius: 10px;
+        border: 1px solid $cookie;
+        padding: 1vh;
+        &:hover {
+          background-color: $cookie;
+          color: white;
+        }
+      }
       p {
         color: $chocolate;
+      }
+      .productNutrition {
+        font-size: 0.7em;
+        // cursor: pointer;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.5s;
+        color: $chocolate;
+        display: flex;
+        align-items: stretch;
+        justify-content: space-between;
+        flex-direction: column;
+        position: absolute;
+        width: 101%;
+        border-radius: 10px;
+        border: 1px solid black;
+        height: 101%;
+        top: 50%;
+        transform: translate(0, -50%);
+        z-index: -1;
+        padding: 10%;
+        left: 0;
+        background: white;
+        .productNutritionRow {
+          border-bottom: 1px solid #ccc;
+          :first-child {
+            text-align: left;
+          }
+          :last-child {
+            text-align: right;
+            width: 30%;
+          }
+        }
+        &__show {
+          @extend .productNutrition;
+          opacity: 1;
+          z-index: 50;
+          .backArrow {
+            transition: 0.3s;
+            font-size: 1em;
+
+            width: 2vh;
+            height: 2vh;
+            &:active {
+              font-size: 1.5em;
+
+              color: white;
+              transition: 0s;
+            }
+          }
+        }
       }
     }
   }
@@ -91,15 +196,16 @@
     height: 5vh;
   }
   .qtyButton {
-    border: none;
-    width: 3vh;
-    height: 3vh;
-    border-radius: 50%;
+    align-items: center;
     background-color: $cookie;
+    border-radius: 50%;
+    border: none;
     color: $chocolate;
     display: flex;
+    font-size: 1.5em;
+    height: 3vh;
     justify-content: center;
-    align-items: center;
+    width: 3vh;
   }
   .addToCartButton {
     position: absolute;
@@ -112,26 +218,7 @@
     color: $chocolate;
     font-size: 1.5em;
     box-shadow: $box-shadow;
-    //TODO on hover pointer only color white active class on click
   }
-  // .productImageBox {
-  //   // transition: -webkit-transform 1s ease-in;
-  //   // transform-style: preserve-3d;
-  //   // position: relative;
-  //   // width: 100px;
-  //   // height: 100px;
-  //   // margin: 0 auto;
-  //   // border: 2px solid blue;
-  //   position: relative;
-  //   margin: 0 auto;
-  //   width: 100px;
-  //   height: 100px;
-  //   cursor: pointer;
-  // }
-  // .productImage {
-  // }
-  // .productDescription {
-  // }
 }
 .root:after {
   content: "";
@@ -152,6 +239,34 @@
     width: 30%;
   }
 }
+
+/* Media non-touch  */
+@media (hover: hover) and (pointer: fine) {
+  .addToCartButton :hover {
+    color: white;
+  }
+  .qtyButton :hover {
+    color: white;
+  }
+  .backArrow :hover {
+    color: white;
+  }
+}
+
+/*Media under 1199*/
+
+@media (pointer: coarse) {
+  .addToCartButton,
+  .qtyButton,
+  .backArrow {
+    transition: 0.3s;
+    &:active {
+      color: white;
+      transition: 0s;
+    }
+  }
+}
+
 /* Large Devices, Desktops */
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
   .root {
@@ -173,7 +288,6 @@
     }
   }
 }
-
 /* Small Devices, Tablets */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .root {
@@ -181,6 +295,7 @@
     .addToCartButton {
       font-size: 1.5em;
       bottom: -5%;
+      transition: 1s;
     }
   }
 }

@@ -93,6 +93,15 @@
         }
       }
     }
+    .languagesBox {
+      .languageBox {
+        a {
+          &:hover {
+            color: $cookie;
+          }
+        }
+      }
+    }
     .burgerButton {
       display: none;
     }

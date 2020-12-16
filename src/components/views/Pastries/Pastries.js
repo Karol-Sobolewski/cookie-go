@@ -9,13 +9,10 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styles from './Pastries.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
-const Component = ({ className, children  }) => {
+const Component = ({ className, children }) => {
   console.log(`Pastries`);
   // const dispatch = useDispatch();
-
-  useEffect(() => {
-  }, []);
+  useEffect(() => {}, []);
   return (
     <div className={clsx(className, styles.root)}>
       <Container>

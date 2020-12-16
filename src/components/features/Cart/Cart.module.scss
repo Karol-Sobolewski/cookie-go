@@ -3,13 +3,11 @@
 .root {
   align-items: center;
   background-color: white;
-  background: none;
   border-radius: 50%;
   border: none;
-  box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: $box-shadow;
   cursor: pointer;
   display: flex;
-  flex-grow: 0;
   height: 5vh;
   justify-content: center;
   position: fixed;
@@ -17,7 +15,8 @@
   top: 1px;
   visibility: visible;
   width: 5vh;
-  z-index: 10;
+  z-index: 100;
+  opacity: 1;
   .cartIcon {
     color: $navbar-cart-icon;
   }

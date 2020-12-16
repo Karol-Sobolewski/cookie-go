@@ -13,40 +13,7 @@ const Component = ({ className, children }) => {
     (state) => state.menus.data.activeLanguage
   );
   const cookies = useSelector((state) => state.products.data.cookies);
-  useEffect(() => {
-    console.log(cookies);
-  });
-  // const [qty, setQty] = useState(1);
-  // const state = {
-  //   title: `asd`,
-  //   quantity: qty,
-  //   price: qty * 5,
-  // };
-  // console.log(`Cookies`);
-  // const decrement = () => {
-  //   if (qty > 1) {
-  //     setQty(qty - 1);
-  //   } else {
-  //     setQty(1);
-  //   }
-  // };
-  // const increment = () => {
-  //   setQty(qty + 1);
-  // };
-
-  // const addToCart = (e) => {
-  //   console.log(`add`);
-  //   dispatch(addProduct(state));
-  //   e.preventDefault();
-  // };
-
-  // const handleChange = (e) => {
-  //   console.log(e.target.value);
-  //   const parseValue = parseInt(e.target.value);
-  //   if (!isNaN(parseValue)) { //eslint-disable-line
-  //     setQty(parseInt(e.target.value));
-  //   }
-  // };
+  useEffect(() => {});
 
   return (
     <div className={clsx(className, styles.root)}>
@@ -55,7 +22,7 @@ const Component = ({ className, children }) => {
         <div className={styles.productGrid}>
           {cookies.map((item) => (
             <ProductForm
-              key={item.id}
+              key={item._id}
               title={
                 activeLanguage === `Polish`
                   ? item.polish.title
@@ -66,8 +33,13 @@ const Component = ({ className, children }) => {
                   ? item.polish.description
                   : item.english.description
               }
-              price={item.price}
+              price={
+                activeLanguage === `Polish`
+                  ? item.polish.price
+                  : item.english.price
+              }
               images={item.images}
+              nutrition={item.nutrition}
             />
           ))}
         </div>
