@@ -216,6 +216,11 @@
     font-size: 1.5em;
     box-shadow: $box-shadow;
   }
+  .addtoCartForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 .root:after {
   content: "";

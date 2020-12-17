@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -9,8 +9,11 @@ import { Container, Row, Col } from 'react-bootstrap';
 import styles from './Cart.module.scss'; //eslint-disable-line
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
+import { removeProductFromCart } from '../../../redux/cartRedux';
 
 const Component = ({ children }) => {
+  const dispatch = useDispatch();
+
   const [active, setActive] = useState(false);
   const cartItems = useSelector((state) => state.cart.products);
   const activeLanguage = useSelector(
@@ -49,16 +52,21 @@ const Component = ({ children }) => {
       </div>
       <Container className={active ? styles.cartActive : styles.cart}>
         {/* eslint-disable */}
+        {console.log(cartItems.reduce((a, b) => a + (b[`price`] || 0), 0))}
         {cartItems.length
-          ? cartItems.map((item) => (
-              <Row key={item.id} className={styles.cartProductRow}>
-                <Col className={styles.cartImage}><img src={item.image[0].src} alt={item.image[0].title}/></Col>
-                <Col>{item.name}</Col>
-                <Col>{item.qty}</Col>
-                <Col>{item.price}</Col>
-                <Col>x</Col>
-              </Row>
-            ))
+          ?
+          <Container>
+            {cartItems.map((item) => (
+                <Row key={item.id} className={styles.cartProductRow}>
+                  <Col className={styles.cartImage}><img src={item.image[0].src} alt={item.image[0].title}/></Col>
+                  <Col>{item.name}</Col>
+                  <Col>{item.qty}</Col>
+                  <Col>{item.price}</Col>
+                  <Col><button type="button" onClick={() => dispatch(removeProductFromCart(item))}>x</button></Col>
+                </Row>
+              ))}
+              <Row>{cartItems.reduce((a, b) => a + (b[`price`] || 0), 0)}</Row>
+            </Container>
           : <h3>{activeLanguage === `Polish` ? `Koszyk jest pusty` : `Cart is empty`}</h3>}
           {/* eslint-enable */}
         <main>{children}</main>

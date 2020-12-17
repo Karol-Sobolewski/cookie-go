@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import uuid from 'react-uuid';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,62 +22,59 @@ const Component = ({
   images,
   nutrition,
 }) => {
-  // const [qty, setQty] = useState(1);
-
-  const [cart, setCart] = useState({
-    name: title,
-    image: images,
-    qty: 1,
-    price,
-  });
-
   const [rotate, setRotate] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
   const activeLanguage = useSelector(
     (state) => state.menus.data.activeLanguage
   );
 
+  const [cart, setCart] = useState({
+    id: uuid(),
+    name: ``,
+    image: ``,
+    qty: 1,
+    price,
+  });
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = () => {
+    if (cart.name) {
+      dispatch(addProductToCart(cart));
+      setCart({ id: uuid(), qty: 1, name: `` });
+    }
+  };
+
+  useEffect(() => {
+    console.log(`use effect`, cart);
+    handleSubmit();
+  });
+
   const decrease = () => {
     if (cart.qty > 1) {
-      setCart({ ...cart, qty: cart.qty - 1, price: cart.qty * price });
+      setCart({ ...cart, qty: cart.qty - 1 });
     } else {
-      setCart({ ...cart, qty: 1, price: cart.qty * price });
+      setCart({ ...cart, qty: 1 });
     }
   };
   const increase = () => {
-    // setQty(qty + 1);
-    setCart({ ...cart, qty: cart.qty + 1, price: cart.qty * price });
-    // setCart({ ...cart, price: cart.qty * price });
+    setCart({ ...cart, qty: cart.qty + 1 });
   };
 
   const handleChange = (e) => {
     const parsedValue = parseInt(e.target.value);
     if (!isNaN(parsedValue)) { //eslint-disable-line
-      setCart({
-        ...cart,
-        qty: parseInt(e.target.value),
-        price: cart.qty * price,
-      });
-      // setCart({ ...cart, price: cart.qty * price });
+      setCart({ ...cart, qty: parseInt(e.target.value) });
+      console.log(cart.qty);
     }
   };
 
-  const dispatch = useDispatch();
-
-  const addToCart = (e) => {
-    console.log(cart.qty);
-    console.log(price);
-    // setCart({ ...cart, price: cart.qty - 1 });
-    // addProductToCart
-    dispatch(addProductToCart(cart));
-    console.log(cart);
-    console.log(cart.price);
-    // cart.qty
-    e.preventDefault();
-    setCart({ ...cart, qty: 1 });
+  const addToCart = () => {
+    setCart({ ...cart, price: price * cart.qty, name: title, image: images });
     setRotate(false);
     setShowNutrition(false);
   };
+
   const useClickOutsideOfProductBox = (ref) => {
     useEffect(() => {
       function handleClickOutside(e) {
@@ -207,39 +205,41 @@ const Component = ({
         <h4 className={styles.productPrice}>
           {price * cart.qty} {activeLanguage === `Polish` ? `Zł` : `Euro`}
         </h4>
-        <Row
-          className={`${
-            showNutrition ? styles.qtyBox__hidden : styles.qtyBox
-          } d-flex justify-content-around align-items-center`}
-        >
+        <form className={styles.addtoCartForm} id="addToCartForm">
+          <Row
+            className={`${
+              showNutrition ? styles.qtyBox__hidden : styles.qtyBox
+            } d-flex justify-content-around align-items-center`}
+          >
+            <button
+              type="button"
+              className={styles.qtyButton}
+              onClick={() => decrease()}
+            >
+              <p>-</p>
+            </button>
+            <input
+              className={styles.qtyInput}
+              type="text"
+              value={cart.qty}
+              onChange={handleChange}
+            />
+            <button
+              className={styles.qtyButton}
+              type="button"
+              onClick={() => increase()}
+            >
+              <p>+</p>
+            </button>
+          </Row>
           <button
             type="button"
-            className={styles.qtyButton}
-            onClick={() => decrease()}
+            className={styles.addToCartButton}
+            onClick={addToCart}
           >
-            <p>-</p>
+            <FontAwesomeIcon icon={faCartArrowDown} />
           </button>
-          <input
-            className={styles.qtyInput}
-            type="text"
-            value={cart.qty}
-            onChange={handleChange}
-          />
-          <button
-            className={styles.qtyButton}
-            type="button"
-            onClick={() => increase()}
-          >
-            <p>+</p>
-          </button>
-        </Row>
-        <button
-          type="submit"
-          className={styles.addToCartButton}
-          onClick={(e) => addToCart(e)}
-        >
-          <FontAwesomeIcon icon={faCartArrowDown} />
-        </button>
+        </form>
         <main>{children}</main>
       </div>
     </div>

@@ -11,9 +11,14 @@ const createActionName = (name) => `app/${reducerName}/${name}`;
 
 /* action types */
 const ADD_PRODUCT = createActionName(`ADD_PRODUCT`);
+const REMOVE_PRODUCT = createActionName(`REMOVE_PRODUCT`);
 
 /* action creators */
 export const addProductToCart = (payload) => ({ payload, type: ADD_PRODUCT });
+export const removeProductFromCart = (payload) => ({
+  payload,
+  type: REMOVE_PRODUCT,
+});
 
 /* reducer */
 export default function reducer(statePart = [], action = {}) {
@@ -22,6 +27,14 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         products: [...statePart.products, action.payload],
+      };
+    }
+    case REMOVE_PRODUCT: {
+      console.log(action.payload);
+      return {
+        ...statePart,
+        products: statePart.products.filter((i) => i.id !== action.payload.id),
+        // products: [...statePart.products.slice(0, action.payload)],
       };
     }
     default:
