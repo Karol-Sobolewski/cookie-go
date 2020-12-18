@@ -16,7 +16,7 @@ const Component = ({ className, children }) => {
   const aboutPageItems = useSelector((state) => state.pages.data.about);
 
   const activeLanguage = useSelector(
-    (state) => state.menus.data.activeLanguage
+    (state) => state.utils.data.activeLanguage
   );
   // useEffect(() => {
   // }, []);

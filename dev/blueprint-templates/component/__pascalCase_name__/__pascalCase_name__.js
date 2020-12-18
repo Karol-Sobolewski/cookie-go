@@ -15,7 +15,7 @@ const Component = ({ className, children }) => {
   // const dispatch = useDispatch();
 
   const activeLanguage = useSelector(
-    (state) => state.menus.data.activeLanguage
+    (state) => state.utils.data.activeLanguage
   );
   useEffect(() => {
     // dispatch(actionName(`whatToDispatch`));

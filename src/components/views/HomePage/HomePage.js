@@ -5,7 +5,7 @@ import clsx from 'clsx';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { useLocation } from 'react-router-dom';
-import { changeLanguage } from '../../../redux/menuRedux';
+import { changeActiveLanguage } from '../../../redux/utilsRedux';
 import styles from './HomePage.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
@@ -18,10 +18,10 @@ const Component = ({ className, language, children }) => {
     console.log(language);
     if (language) {
       if (language === `en`) {
-        dispatch(changeLanguage(`English`));
+        dispatch(changeActiveLanguage(`English`));
         console.log(location.componentProps);
       } else if (language === `pl`) {
-        dispatch(changeLanguage(`Polish`));
+        dispatch(changeActiveLanguage(`Polish`));
       }
     }
   }, []);

@@ -28,4 +28,11 @@ export default {
   cart: {
     products: [],
   },
+  utils: {
+    data: {},
+    loading: {
+      active: false,
+      error: false,
+    },
+  },
 };

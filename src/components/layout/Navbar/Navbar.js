@@ -5,14 +5,14 @@ import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 import { Container, Row, Col } from 'react-bootstrap';
 import { HamburgerSqueeze } from 'react-animated-burgers';
-import { changeLanguage } from '../../../redux/menuRedux';
+import { changeActiveLanguage } from '../../../redux/utilsRedux';
 import { Cart } from '../../features/Cart/Cart';
 import styles from './Navbar.module.scss';
 
 const Component = ({ className, children }) => {
   const menuItems = useSelector((state) => state.menus.data);
   const activeLanguage = useSelector(
-    (state) => state.menus.data.activeLanguage
+    (state) => state.utils.data.activeLanguage
   );
 
   const [active, setActive] = useState(false);
@@ -24,9 +24,9 @@ const Component = ({ className, children }) => {
 
   const handleToggleLanguageButton = () => {
     if (activeLanguage === `Polish`) {
-      dispatch(changeLanguage(`English`));
+      dispatch(changeActiveLanguage(`English`));
     } else if (activeLanguage === `English`) {
-      dispatch(changeLanguage(`Polish`));
+      dispatch(changeActiveLanguage(`Polish`));
     }
     // setActiveRWD(false);
     setActive(!active);

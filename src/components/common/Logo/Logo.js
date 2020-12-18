@@ -9,7 +9,7 @@ import styles from './Logo.module.scss';
 
 const Component = ({ className }) => {
   const activeLanguage = useSelector(
-    (state) => state.menus.data.activeLanguage
+    (state) => state.utils.data.activeLanguage
   );
   return (
     <div className={clsx(className, styles.root)}>

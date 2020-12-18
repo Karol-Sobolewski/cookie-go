@@ -15,7 +15,7 @@ import styles from './ResponsiveMenu.module.scss';
 const Component = ({ className }) => {
   const menuItems = useSelector((state) => state.menus.data);
   const activeLanguage = useSelector(
-    (state) => state.menus.data.activeLanguage
+    (state) => state.utils.data.activeLanguage
   );
   const [active, setActive] = useState(false);
   const toggleTrueFalse = () => setActive(!active);

@@ -10,7 +10,7 @@ import { ProductForm } from '../../common/ProductForm/ProductForm';
 
 const Component = ({ className, children }) => {
   const activeLanguage = useSelector(
-    (state) => state.menus.data.activeLanguage
+    (state) => state.utils.data.activeLanguage
   );
   const cookies = useSelector((state) => state.products.data.cookies);
   useEffect(() => {});
@@ -33,11 +33,7 @@ const Component = ({ className, children }) => {
                   ? item.polish.description
                   : item.english.description
               }
-              price={
-                activeLanguage === `Polish`
-                  ? item.polish.price
-                  : item.english.price
-              }
+              price={item.price}
               images={item.images}
               nutrition={item.nutrition}
             />

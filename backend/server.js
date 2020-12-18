@@ -6,7 +6,7 @@ const mongoose = require(`mongoose`);
 const menusRoutes = require(`./routes/menus.routes`);
 const pagesRoutes = require(`./routes/pages.routes`);
 const productsRoutes = require(`./routes/products.routes`);
-
+const utilsRoutes = require(`./routes/utils.routes`);
 const app = express();
 
 /* MIDDLEWARE */
@@ -20,8 +20,7 @@ app.use(express.static(path.join(__dirname, `../build`)));
 app.use(`/api`, menusRoutes);
 app.use(`/api`, pagesRoutes);
 app.use(`/api`, productsRoutes);
-
-
+app.use(`/api`, utilsRoutes);
 
 /* REACT WEBSITE */
 app.use(`*`, (req, res) => {
@@ -37,8 +36,10 @@ app.use(`/api`, (req, res) => {
 
 // `
 
-const dbURI = (process.env.NODE_ENV === `production`) ?
-  `mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASS}@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority` : `mongodb://localhost:27017/cookieGoDB`;
+const dbURI =
+  process.env.NODE_ENV === `production`
+    ? `mongodb+srv://${process.env.DB_LOGIN}:${process.env.DB_PASS}@cluster0.q4foz.mongodb.net/cookieGoDB?retryWrites=true&w=majority`
+    : `mongodb://localhost:27017/cookieGoDB`;
 
 mongoose.connect(dbURI, {
   useNewUrlParser: true,
@@ -53,7 +54,7 @@ db.on(`error`, (err) => console.log(`Error: ${err}`));
 /* START SERVER */
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
-  console.log(`Server is running on port: ` + port);
+  console.log(`Server is running on port: ${port}`);
 });
 
 // module.exports = { server, dbURI};

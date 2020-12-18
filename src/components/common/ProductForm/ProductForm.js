@@ -25,8 +25,9 @@ const Component = ({
   const [rotate, setRotate] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
   const activeLanguage = useSelector(
-    (state) => state.menus.data.activeLanguage
+    (state) => state.utils.data.activeLanguage
   );
+  const exchangeRate = useSelector((state) => state.utils.data.rate);
 
   const [cart, setCart] = useState({
     id: uuid(),
@@ -46,7 +47,6 @@ const Component = ({
   };
 
   useEffect(() => {
-    console.log(`use effect`, cart);
     handleSubmit();
   });
 
@@ -179,7 +179,7 @@ const Component = ({
                     <Col>{nutrition.salt} g</Col>
                   </Row>
                 </Col>
-                <Col className={styles.productDescription}>
+                <Col>
                   <p>{description}</p>
                   <button
                     type="button"
@@ -203,7 +203,15 @@ const Component = ({
           </div>
         </div>
         <h4 className={styles.productPrice}>
-          {price * cart.qty} {activeLanguage === `Polish` ? `Zł` : `Euro`}
+          {price * cart.qty} Zł
+          {activeLanguage !== `Polish`
+            /*eslint-disable*/
+            ? ` / ${(
+              Math.round(((price * cart.qty) / exchangeRate) * 100) / 100
+              ).toFixed(2)} E`
+            : null}
+            {/**eslint-enable */}
+
         </h4>
         <form className={styles.addtoCartForm} id="addToCartForm">
           <Row

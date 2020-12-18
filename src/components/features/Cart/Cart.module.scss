@@ -1,31 +1,30 @@
 @import "../../../styles/settings.scss";
-
 .root {
   align-items: center;
   border: none;
   display: flex;
   justify-content: center;
-  position: fixed;
-  right: 1vh;
-  top: 1vh;
-  visibility: visible;
-  z-index: 100;
   opacity: 1;
-
-  button {
+  position: fixed;
+  right: 2px;
+  top: 2px;
+  visibility: visible;
+  z-index: 1000;
+  font-family: $font-title;
+  color: $chocolate;
+  .cartButton {
     align-items: center;
     background-color: white;
     border-radius: 50%;
     border: none;
     box-shadow: $box-shadow;
     display: flex;
-    height: 8vh;
     justify-content: center;
     position: fixed;
-    width: 8vh;
   }
   .cartIcon {
     color: $navbar-cart-icon;
+    font-size: 3vh;
   }
 
   .cartIconActive {
@@ -44,17 +43,18 @@
     position: absolute;
     text-justify: inherit;
     left: 20%;
+    top: 90%;
     border-radius: 10px;
     transform: translate(-50%, -50%);
     box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
     background-color: $cookie;
     p {
+      padding: 0 5px 0 5px;
       margin-bottom: 0;
       text-align: center;
     }
   }
 }
-
 .cart {
   background-color: white;
   box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
@@ -71,25 +71,70 @@
   border-radius: 10px;
   cursor: default;
   .cartProductRow {
-    // cursor: wait;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1vh 0 1vh 0;
     border-bottom: 1px solid #ccc;
     > div {
-      // cursor: wait;
       display: flex;
       justify-content: center;
       align-items: center;
+      p {
+        margin-bottom: 0;
+      }
+    }
+    .removeButton {
+      align-items: center;
+      background-color: $cookie;
+      border-radius: 50%;
+      border: none;
+      box-shadow: $box-shadow;
+      color: $chocolate;
+      display: flex;
+      font-size: 2vh;
+      height: 4vh;
+      justify-content: center;
+      width: 4vh;
+      padding: 0;
+      &:hover {
+        color: white;
+      }
     }
   }
-  .cartImage {
-    img {
-      width: 5vh;
-      height: 5vh;
-    }
+}
+
+.cartName {
+  position: absolute;
+  width: 60%;
+  z-index: 10;
+  // overflow-x: auto;
+  box-shadow: $box-shadow;
+  height: 5vh;
+  background: white;
+  // border: black 2px0 solid;
+  border-radius: 10px;
+  opacity: 0;
+  display: none;
+  // top: 50%;
+  left: 25%;
+  font-size: 0.7em;
+  color: $chocolate;
+  font-family: $font-title;
+}
+
+.cartImage {
+  z-index: 10;
+  cursor: pointer;
+  img {
+    width: 5vh;
+    height: 5vh;
   }
+}
+
+.cartImage:hover ~ .cartName {
+  opacity: 1;
+  display: flex;
 }
 .cartActive {
   @extend .cart;
@@ -97,6 +142,13 @@
   transform: translateY(0);
   visibility: visible;
   z-index: 10;
+}
+
+.cartSummary {
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Media non-touch  */
@@ -113,8 +165,12 @@
 /* ExtraExtraLarge Devices, UltraWide Desktops  */
 @media (min-width: 1921px) {
   .root {
-    height: 7.5vh;
-    width: 7.5vh;
+    height: 8vh;
+    width: 8vh;
+    .cartButton {
+      height: 8vh;
+      width: 8vh;
+    }
     .cartIcon {
       font-size: 1.5em;
     }
@@ -130,28 +186,44 @@
 }
 /* ExtraLarge Devices, Desktops  */
 @media (min-width: 1200px) and (max-width: 1920px) {
+  .cartIcon {
+    font-size: 1.5em;
+  }
+  .cart {
+    width: 30vw;
+    max-height: 50vh;
+  }
+  .cartProductIndicator {
+    font-size: 1.5em;
+    bottom: -35%;
+  }
+}
+
+/*Devices under 1200 px*/
+@media only screen and (min-width: 1201px) {
   .root {
-    height: 7.5vh;
-    width: 7.5vh;
-    .cartIcon {
-      font-size: 1.5em;
+    height: 8vh;
+    width: 8vh;
+    .cartButton {
+      height: 8vh;
+      width: 8vh;
     }
-    .cart {
-      width: 30vw;
-      max-height: 50vh;
-    }
-    .cartProductIndicator {
-      font-size: 1.5em;
-      bottom: -35%;
+  }
+}
+
+/*Devices under 1200 px*/
+@media only screen and (max-width: 1200px) {
+  .root {
+    height: 5vh;
+    width: 5vh;
+    .cartButton {
+      height: 5vh;
+      width: 5vh;
     }
   }
 }
 /* Large Devices, Laptops, Large Tablets iPad Pro */
 @media only screen and (min-width: 1024px) and (max-width: 1199px) {
-  .root {
-    top: 0;
-    right: 0;
-  }
   .cart {
     width: 50vw;
     max-height: 30vh;
@@ -173,7 +245,6 @@
     bottom: -50%;
   }
 }
-
 /* Small Devices, Large Phones */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .cart {
@@ -201,6 +272,17 @@
 
 /* Extra Small Devices, Small Phones Landscape*/
 @media only screen and (max-height: 499px) {
+  .root {
+    height: 4vw;
+    width: 4vw;
+    top: 2vw;
+    right: 2vw;
+    .cartButton {
+      height: 5vw;
+      width: 5vw;
+    }
+  }
+
   .cart {
     width: 60vw;
     max-height: 30vh;

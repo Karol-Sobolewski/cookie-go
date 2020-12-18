@@ -15,7 +15,12 @@ import { Cakes } from './components/views/Cakes/Cakes';
 import { Sweets } from './components/views/Sweets/Sweets';
 import { Contact } from './components/views/Contact/Contact';
 import { NotFound } from './components/views/NotFound/NotFound';
-import { fetchMenu, changeLanguage } from './redux/menuRedux';
+import { fetchMenu } from './redux/menuRedux';
+import {
+  fetchUtils,
+  changeActiveLanguage,
+  changeExchangeRate,
+} from './redux/utilsRedux';
 import { fetchPages } from './redux/pageRedux';
 import { fetchProducts } from './redux/productRedux';
 
@@ -28,23 +33,35 @@ const App = () => {
     dispatch(fetchPages());
     dispatch(fetchMenu());
     dispatch(fetchProducts());
+    dispatch(fetchUtils());
+
     const loadData = () => {
       fetch(`https://geolocation-db.com/json/`)
         .then((res) => res.json())
         .then((response) => {
           console.log(`Country is : `, response.country_code);
           if (response.country_code !== `PL`) {
-            dispatch(changeLanguage(`English`));
+            // dispatch(changeLanguage(`English`));
+            dispatch(changeActiveLanguage(`English`));
             setLoaded(true);
           } else {
-            dispatch(changeLanguage(`Polish`));
+            dispatch(changeActiveLanguage(`Polish`));
             setLoaded(true);
           }
         })
         .catch((error) => {
           console.log(`Request failed:`, error);
-          dispatch(changeLanguage(`Polish`));
+          dispatch(changeActiveLanguage(`Polish`));
           setLoaded(true);
+        });
+      fetch(`http://api.nbp.pl/api/exchangerates/rates/A/EUR/?format=json`)
+        .then((res) => res.json())
+        .then((currency) => {
+          const euro = (Math.round(currency.rates[0].mid * 100) / 100).toFixed(
+            2
+          );
+          dispatch(changeExchangeRate(euro));
+          console.log(euro);
         });
     };
     setTimeout(() => {
