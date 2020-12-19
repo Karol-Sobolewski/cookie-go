@@ -43,7 +43,8 @@ const Component = ({ children }) => {
   const wrapperRef = useRef(null);
   useClickOutsideOfCart(wrapperRef);
 
-  const cartTotal = cartItems.reduce((a, b) => a + (b.price || 0), 0);
+  const cartTotalPrice = cartItems.reduce((a, b) => a + (b.price || 0), 0);
+  const cartTotalQty = cartItems.reduce((a, b) => a + (b.qty || 0), 0);
   const handleAddQty = (item) => {
     // console.log(item.qty);
     dispatch(addProductQty(item));
@@ -72,7 +73,7 @@ const Component = ({ children }) => {
       </button>
       <div className={styles.cartProductIndicator}>
         <div>
-          <p>{cartItems.length}</p>
+          <p>{cartTotalQty}</p>
         </div>
       </div>
       <Container className={active ? styles.cartActive : styles.cart}>
@@ -97,11 +98,11 @@ const Component = ({ children }) => {
                   <Col><button type="button" className={styles.removeButton} onClick={() => dispatch(removeProductFromCart(item))}>x</button></Col>
                 </Row>
               ))}
-              <Row className={styles.cartSummary}>{`${cartTotal} Zł`}
+              <Row className={styles.cartSummary}>{`${cartTotalPrice} Zł`}
                   {activeLanguage !== `Polish`
             /*eslint-disable*/
             ? ` / ${(
-              Math.round(((cartTotal) / exchangeRate) * 100) / 100
+              Math.round(((cartTotalPrice) / exchangeRate) * 100) / 100
               ).toFixed(2)} E`
             : null}</Row>
             </Container>
