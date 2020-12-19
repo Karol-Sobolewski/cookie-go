@@ -23,6 +23,7 @@ const Component = ({ className, children }) => {
           {cookies.map((item) => (
             <ProductForm
               key={item._id}
+              id={item._id}
               title={
                 activeLanguage === `Polish`
                   ? item.polish.title
@@ -34,6 +35,7 @@ const Component = ({ className, children }) => {
                   : item.english.description
               }
               price={item.price}
+              singlePrice={item.price}
               images={item.images}
               nutrition={item.nutrition}
             />

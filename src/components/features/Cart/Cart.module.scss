@@ -114,8 +114,8 @@
   background: white;
   // border: black 2px0 solid;
   border-radius: 10px;
-  opacity: 0;
-  display: none;
+  // opacity: 0;
+  display: none !important;
   // top: 50%;
   left: 25%;
   font-size: 0.7em;
@@ -133,8 +133,8 @@
 }
 
 .cartImage:hover ~ .cartName {
-  opacity: 1;
-  display: flex;
+  // opacity: 1;
+  display: none;
 }
 .cartActive {
   @extend .cart;

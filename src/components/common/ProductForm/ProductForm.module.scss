@@ -92,6 +92,13 @@
         width: 100%;
         height: 100%;
       }
+      .clickOnMe {
+        position: absolute;
+        color: $white;
+        margin-bottom: 0;
+        stroke: 5px white;
+        text-shadow: 2px 2px $chocolate;
+      }
     }
 
     .productDescriptionBox {
@@ -100,7 +107,6 @@
       border-radius: 10px;
       transform: rotateY(180deg);
       background: white;
-      border: olive 2px solid;
       width: 100%;
       height: 100%;
       .backArrow {

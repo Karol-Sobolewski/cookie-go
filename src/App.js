@@ -54,7 +54,7 @@ const App = () => {
           dispatch(changeActiveLanguage(`Polish`));
           setLoaded(true);
         });
-      fetch(`http://api.nbp.pl/api/exchangerates/rates/A/EUR/?format=json`)
+      fetch(`https://api.nbp.pl/api/exchangerates/rates/A/EUR/?format=json`)
         .then((res) => res.json())
         .then((currency) => {
           const euro = (Math.round(currency.rates[0].mid * 100) / 100).toFixed(

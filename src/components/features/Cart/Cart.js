@@ -7,12 +7,17 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './Cart.module.scss';
-import { removeProductFromCart } from '../../../redux/cartRedux';
+import {
+  removeProductFromCart,
+  addProductQty,
+  subtractProductQty,
+} from '../../../redux/cartRedux';
 
 const Component = ({ children }) => {
   const dispatch = useDispatch();
 
   const [active, setActive] = useState(false);
+  const [price, setPrice] = useState(1);
 
   const cartItems = useSelector((state) => state.cart.products);
 
@@ -39,7 +44,20 @@ const Component = ({ children }) => {
   useClickOutsideOfCart(wrapperRef);
 
   const cartTotal = cartItems.reduce((a, b) => a + (b.price || 0), 0);
-
+  const handleAddQty = (item) => {
+    // console.log(item.qty);
+    dispatch(addProductQty(item));
+    console.log(`add`, item);
+    const newPrice = item.qty * item.singlePrice;
+    setPrice(newPrice);
+  };
+  const handleSubtractQty = (item) => {
+    // console.log(item);
+    dispatch(subtractProductQty(item));
+  };
+  useEffect(() => {
+    console.log(price);
+  });
   return (
     <Container ref={wrapperRef} className={styles.root}>
       <button
@@ -65,8 +83,9 @@ const Component = ({ children }) => {
             {cartItems.map((item) => (
                 <Row key={item.id} className={styles.cartProductRow}>
                   <Col className={styles.cartImage}><img src={item.image[0].src} alt={item.image[0].title}/></Col>
+                  <Col><button type="button" onClick={() => handleSubtractQty(item)}>-</button>{item.qty}<button type="button" onClick={() => handleAddQty(item)}>+</button></Col>
+                  <Col>{item.singlePrice}</Col>
                   <div id="cartName" className={styles.cartName}>{item.name}</div>
-                  <Col>x {item.qty}</Col>
                   <Col><p>{item.price} Zł
                   {activeLanguage !== `Polish`
             /*eslint-disable*/

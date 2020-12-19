@@ -16,9 +16,11 @@ import styles from './ProductForm.module.scss';
 const Component = ({
   className,
   children,
+  id,
   title,
   description,
   price,
+  singlePrice,
   images,
   nutrition,
 }) => {
@@ -30,11 +32,12 @@ const Component = ({
   const exchangeRate = useSelector((state) => state.utils.data.rate);
 
   const [cart, setCart] = useState({
-    id: uuid(),
+    id,
     name: ``,
     image: ``,
     qty: 1,
     price,
+    singlePrice,
   });
 
   const dispatch = useDispatch();
@@ -42,7 +45,7 @@ const Component = ({
   const handleSubmit = () => {
     if (cart.name) {
       dispatch(addProductToCart(cart));
-      setCart({ id: uuid(), qty: 1, name: `` });
+      setCart({ id, qty: 1, name: `` });
     }
   };
 
@@ -109,6 +112,9 @@ const Component = ({
               onClick={() => setRotate(!rotate)}
             >
               <img src={images[0].src} alt={images[0].title} />
+              <p className={styles.clickOnMe}>
+                {activeLanguage === `Polish` ? `Kliknij` : `Click`}
+              </p>
             </button>
             <div className={styles.productDescriptionBox}>
               <Row>
@@ -257,11 +263,13 @@ const Component = ({
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  id: PropTypes.string,
   title: PropTypes.string,
   description: PropTypes.string,
   price: PropTypes.number,
   images: PropTypes.array,
   nutrition: PropTypes.object,
+  singlePrice: PropTypes.number,
 };
 
 export {
