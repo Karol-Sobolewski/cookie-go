@@ -9,13 +9,12 @@ import './styles/bootstrap.scss';
 import { MainLayout } from './components/layout/MainLayout/MainLayout';
 import { HomePage } from './components/views/HomePage/HomePage';
 import { About } from './components/views/About/About';
-import { Cookies } from './components/views/Cookies/Cookies';
-import { Pastries } from './components/views/Pastries/Pastries';
-import { Cakes } from './components/views/Cakes/Cakes';
-import { Sweets } from './components/views/Sweets/Sweets';
 import { Contact } from './components/views/Contact/Contact';
 import { NotFound } from './components/views/NotFound/NotFound';
+import { SingleProductPage } from './components/common/SingleProductPage/SingleProductPage';
+import { ProductsPage } from './components/common/ProductsPage/ProductsPage';
 import { fetchMenu } from './redux/menuRedux';
+
 import {
   fetchUtils,
   changeActiveLanguage,
@@ -39,7 +38,7 @@ const App = () => {
       fetch(`https://geolocation-db.com/json/`)
         .then((res) => res.json())
         .then((response) => {
-          console.log(`Country is : `, response.country_code);
+          // console.log(`Country is : `, response.country_code);
           if (response.country_code !== `PL`) {
             // dispatch(changeLanguage(`English`));
             dispatch(changeActiveLanguage(`English`));
@@ -61,7 +60,7 @@ const App = () => {
             2
           );
           dispatch(changeExchangeRate(euro));
-          console.log(euro);
+          // console.log(euro);
         });
     };
     setTimeout(() => {
@@ -93,35 +92,32 @@ const App = () => {
                   path="/pl"
                   component={() => <HomePage language="pl" />}
                 />
-                <Route
-                  exact
-                  path="/about"
-                  component={() => <About language="en" />}
-                />
+                <Route exact path="/about" component={() => <About />} />
                 <Route
                   exact
                   path="/cookies"
-                  component={() => <Cookies language="en" />}
+                  component={() => <ProductsPage productName="cookies" />}
                 />
                 <Route
                   exact
                   path="/pastries"
-                  component={() => <Pastries language="en" />}
+                  component={() => <ProductsPage productName="pastries" />}
                 />
                 <Route
                   exact
                   path="/cakes"
-                  component={() => <Cakes language="en" />}
+                  component={() => <ProductsPage productName="cakes" />}
                 />
                 <Route
                   exact
                   path="/sweets"
-                  component={() => <Sweets language="en" />}
+                  component={() => <ProductsPage productName="sweets" />}
                 />
+                <Route exact path="/contact" component={() => <Contact />} />
                 <Route
                   exact
-                  path="/contact"
-                  component={() => <Contact language="en" />}
+                  path="/products/:id"
+                  component={SingleProductPage}
                 />
                 <Route path="*" component={NotFound} />
               </AnimatedSwitch>

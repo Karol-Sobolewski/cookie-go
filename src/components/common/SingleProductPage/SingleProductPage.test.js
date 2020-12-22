@@ -2,13 +2,13 @@ import { React } from 'react';
 import { shallow, configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import { SweetsComponent } from './Sweets';
+import { SingleProductPageComponent } from './SingleProductPage';
 
 configure({ adapter: new Adapter() });
 
-describe(`Component Sweets`, () => {
+describe(`Component SingleProductPage`, () => {
   it(`should render without crashing`, () => {
-    const component = shallow(<SweetsComponent />);
+    const component = shallow(<SingleProductPageComponent />);
     expect(component).toBeTruthy();
   });
 });

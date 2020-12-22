@@ -25,7 +25,7 @@ const Component = ({ className, children }) => {
       <Container>
         <Row>
           <Col>
-            {activeLanguage === `PL` ? <h2>Edytuj polski tytuł</h2> : <h2>{{pascalCase name}}</h2>}
+            {activeLanguage === `Polish` ? <h2>Edytuj polski tytuł</h2> : <h2>{{pascalCase name}}</h2>}
           </Col>
         </Row>
         <main>{children}</main>

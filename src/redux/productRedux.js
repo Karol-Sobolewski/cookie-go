@@ -1,5 +1,14 @@
 import Axios from 'axios';
+import { useSelector } from 'react-redux';
 import { API_URL } from '../config';
+
+/* Selectors */
+
+// export const getProductById = ({ product }, productId) => {
+//   console.log(productId);
+//   console.log(product);
+//   return product.data;
+// };
 
 const reducerName = `products`;
 const createActionName = (name) => `app/${reducerName}/${name}`;
@@ -25,6 +34,20 @@ export const fetchProducts = () => (dispatch) => {
     .catch((err) => {
       dispatch(fetchError(err.message || true));
     });
+};
+
+export const fetchSelectedProduct = (id) => async (dispatch) => {
+  console.log(`id`, id);
+  dispatch(fetchStarted());
+
+  try {
+    const res = await Axios.get(`${API_URL}/products/${id}`);
+    await new Promise((resolve, reject) => resolve());
+    console.log(`res`, res);
+    dispatch(fetchSuccess(res.data));
+  } catch (err) {
+    dispatch(fetchError(err.message || true));
+  }
 };
 
 export default function reducer(statePart = [], action = {}) {

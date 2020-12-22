@@ -1,35 +1,5 @@
 @import "../../../styles/settings.scss";
 
-.root {
-  // scroll-snap-type: mandatory;
-  // position: relative;
-  h2 {
-    font-family: $font-title;
-  }
-  .shortDescription {
-    align-self: center;
-    display: flex;
-    height: 100vh;
-    justify-content: center;
-    p {
-      align-self: center;
-      display: flex;
-      // height: 100vh;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-    }
-  }
-  // .container {
-  //   // scroll-snap-type: y mandatory;
-  // }
-  // .page {
-  //   // height: 100vh;
-  //   // scroll-snap-align: start;
-  //   // width: 100vw;
-  // }
-}
-
 /* ExtraExtraLarge Devices, UltraWide Desktops  */
 @media (min-width: 1921px) {
   .root {
@@ -56,17 +26,11 @@
 /* Small Devices, Small tablets Large Phones */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
   .root {
-    // .page {
-    //   height: 50vh;
-    // }
   }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 0px) and (max-width: 479px) {
   .root {
-    // .page {
-    //   height: 50vh;
-    // }
   }
 }

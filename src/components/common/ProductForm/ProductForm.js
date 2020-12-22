@@ -68,7 +68,7 @@ const Component = ({
     const parsedValue = parseInt(e.target.value);
     if (!isNaN(parsedValue)) { //eslint-disable-line
       setCart({ ...cart, qty: parseInt(e.target.value) });
-      console.log(cart.qty);
+      // console.log(cart.qty);
     }
   };
 

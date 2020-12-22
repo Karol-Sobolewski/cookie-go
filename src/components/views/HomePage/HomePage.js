@@ -1,21 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-
 import { Container, Row, Col } from 'react-bootstrap';
+import ReactSnapScroll from 'react-snap-scroll';
+
 import { useLocation } from 'react-router-dom';
 import { changeActiveLanguage } from '../../../redux/utilsRedux';
 import styles from './HomePage.module.scss';
+
+import { NewProducts } from '../../features/NewProducts/NewProducts';
+import { Slider } from '../../features/Slider/Slider';
+
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, language, children }) => {
   const dispatch = useDispatch();
-
   const location = useLocation();
+  const container = React.createRef();
+
   useEffect(() => {
-    console.log(language);
+    // console.log(container.current);
     if (language) {
       if (language === `en`) {
         dispatch(changeActiveLanguage(`English`));
@@ -28,14 +34,14 @@ const Component = ({ className, language, children }) => {
 
   return (
     <div className={clsx(className, styles.root)}>
+      <Slider />
       <Container>
-        <Row>
-          <Col>
-            <h2>HomePage</h2>
-          </Col>
-        </Row>
-        <main>{children}</main>
+        <div className={styles.shortDescription}>
+          <p>short description</p>
+        </div>
+        <NewProducts />
       </Container>
+      <main>{children}</main>
     </div>
   );
 };

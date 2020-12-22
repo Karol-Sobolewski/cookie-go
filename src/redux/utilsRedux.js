@@ -30,7 +30,7 @@ export const fetchUtils = () => (dispatch) => {
   Axios.get(`${API_URL}/utils`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
-      console.log(`utils`, res.data);
+      // console.log(`utils`, res.data);
     })
     .catch((err) => {
       dispatch(fetchError(err.message || true));
@@ -49,7 +49,7 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case FETCH_SUCCESS: {
-      console.log(`utils`, action.payload);
+      // console.log(`utils`, action.payload);
       return {
         ...statePart,
         loading: {

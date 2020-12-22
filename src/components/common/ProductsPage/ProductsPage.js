@@ -3,21 +3,23 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
-import styles from './Sweets.module.scss';
-import { ProductForm } from '../../common/ProductForm/ProductForm';
+import styles from './ProductsPage.module.scss';
+import { ProductForm } from '../ProductForm/ProductForm';
 
-const Component = ({ className, children }) => {
+const Component = ({ className, children, productName }) => {
   const activeLanguage = useSelector(
     (state) => state.utils.data.activeLanguage
   );
-  const sweets = useSelector((state) => state.products.data.sweets);
-
+  const allProducts = useSelector((state) => state.products.data);
+  const products = allProducts.filter(
+    (product) => product.category === productName
+  );
+  // console.log(products);
   return (
     <div className={clsx(className, styles.root)}>
-      {activeLanguage === `Polish` ? <h2>Cukierki</h2> : <h2>Sweets</h2>}
       <Container>
         <div className={styles.productGrid}>
-          {sweets.map((item) => (
+          {products.map((item) => (
             <ProductForm
               key={item._id}
               id={item._id}
@@ -47,10 +49,11 @@ const Component = ({ className, children }) => {
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  productName: PropTypes.string,
 };
 
 export {
-  Component as Sweets,
+  Component as ProductsPage,
   // Container as Cookies,
-  Component as SweetsComponent,
+  Component as ProductsPageComponent,
 };

@@ -68,8 +68,8 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         products: statePart.products.map((product) => {
           if (product.id === action.payload.id) {
-            console.log(product);
-            console.log(action.payload);
+            // console.log(product);
+            // console.log(action.payload);
             return {
               ...product,
               qty: product.qty + 1,
@@ -85,8 +85,8 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         products: statePart.products.map((product) => {
           if (product.id === action.payload.id && product.qty > 1) {
-            console.log(product);
-            console.log(action.payload);
+            // console.log(product);
+            // console.log(action.payload);
             return {
               ...product,
               qty: product.qty - 1,
@@ -102,8 +102,8 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         products: statePart.products.map((product) => {
           if (product.id === action.payload.id && product.qty > 1) {
-            console.log(product);
-            console.log(action.payload);
+            // console.log(product);
+            // console.log(action.payload);
             return {
               ...product,
               price: action.payload,

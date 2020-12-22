@@ -207,7 +207,7 @@
   }
   .addToCartButton {
     position: absolute;
-    bottom: -10%;
+    bottom: -3.25vh;
     background-color: $cookie;
     border-radius: 50%;
     width: 7.5vh;
@@ -294,7 +294,7 @@
       font-size: 1.5em;
       width: 5vh;
       height: 5vh;
-      bottom: -10%;
+      bottom: -2.5vh;
     }
     .productImage {
       top: 20%;
@@ -320,7 +320,7 @@
       width: 5vh;
       height: 5vh;
       font-size: 1.5em;
-      bottom: -10%;
+      bottom: -2.5vh;
     }
     .productImage {
       top: 20%;
@@ -342,7 +342,7 @@
     width: 100%;
     .addToCartButton {
       font-size: 1.5em;
-      bottom: -5%;
+      bottom: -3.25vh;
       transition: 1s;
     }
   }
@@ -354,7 +354,7 @@
     width: 100%;
     .addToCartButton {
       font-size: 1em;
-      bottom: -5%;
+      bottom: -3.25vh;
     }
     .productImage {
       top: 20%;
@@ -373,7 +373,7 @@
   .root {
     width: 40%;
     .addToCartButton {
-      bottom: -7.5%;
+      bottom: -2.5vw;
       font-size: 1em;
       height: 5vw;
       width: 5vw;

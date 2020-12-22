@@ -13,14 +13,15 @@ const Component = ({ className, children }) => {
   // console.log(`PageItems`, PageItems);
   // const [lang, setLanguage] = useState(initialState.activeLanguage);
   // const [state, dispatch] = useReducer(reducer, state2);
-  const aboutPageItems = useSelector((state) => state.pages.data.about);
+  const allPages = useSelector((state) => state.pages.data);
+  const aboutPageItems = allPages.filter((page) => page.title === `about`)[0];
 
   const activeLanguage = useSelector(
     (state) => state.utils.data.activeLanguage
   );
   // useEffect(() => {
   // }, []);
-  console.log(aboutPageItems);
+  // console.log(aboutPageItems);
 
   return (
     <div className={clsx(className, styles.root)}>

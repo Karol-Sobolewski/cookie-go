@@ -7,12 +7,13 @@
   height: 10vh;
   justify-content: center;
   padding: 2.5vh 0 2.5vh 0;
-  width: 100vw;
+  width: 100%;
   max-width: 100vw;
   .mainMenu {
     display: flex;
     justify-content: center;
     align-items: center;
+    // width: 110vw;
   }
   .changeLanguage {
     position: relative;
@@ -28,7 +29,6 @@
     font-size: 1.5em;
     cursor: pointer;
   }
-  //TODO hover color
   .languagesBox {
     align-items: center;
     background-color: white;
@@ -194,6 +194,11 @@
 
 @media only screen and (min-width: 1024px) and (max-width: 1200px) {
   .root {
+    .mainMenu,
+    .mainMenu__active {
+      width: 102vw; //?
+      left: 0;
+    }
     .languagesBox {
       left: 90%;
       top: -500%;
@@ -203,6 +208,11 @@
 
 @media only screen and (orientation: landscape) and (min-width: 1024px) and (max-width: 1199px) {
   .root {
+    .mainMenu,
+    .mainMenu__active {
+      width: 102vw; //?
+      left: 0;
+    }
     .languagesBox {
       left: 90%;
       top: -300%;
@@ -213,6 +223,11 @@
 /* Medium Devices, Tablets iPad */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   .root {
+    .mainMenu,
+    .mainMenu__active {
+      width: 102vw; //?
+      left: 0;
+    }
     .languagesBox {
       left: 90%;
       top: -400%;
