@@ -1,26 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Container, Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Row, Col } from 'react-bootstrap';
 import styles from './NutritionTable.module.scss';
 // import { connect } from 'react-redux';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, nutrition, show }) => {
-  console.log(`NutritionTable`);
-  // const dispatch = useDispatch();
-
   const activeLanguage = useSelector(
     (state) => state.utils.data.activeLanguage
   );
-  const [showNutrition, setShowNutrition] = useState(false);
-  useEffect(() => {
-    // dispatch(actionName(`whatToDispatch`));
-  }, []);
   return (
     <Row className={clsx(className, styles.root)}>
       <Col
@@ -72,16 +64,6 @@ const Component = ({ className, nutrition, show }) => {
     </Row>
   );
 };
-
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
 
 Component.propTypes = {
   nutrition: PropTypes.object,

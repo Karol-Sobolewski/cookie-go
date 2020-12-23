@@ -1,33 +1,15 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  // scroll-snap-type: mandatory;
-  // position: relative;
-  h2 {
-    font-family: $font-title;
-  }
+  font-family: $font-title;
+  color: $chocolate;
   .shortDescription {
-    align-self: center;
+    align-items: center;
     display: flex;
     height: 100vh;
-    justify-content: center;
-    p {
-      align-self: center;
-      display: flex;
-      // height: 100vh;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
-    }
+    justify-content: space-around;
+    flex-direction: column;
   }
-  // .container {
-  //   // scroll-snap-type: y mandatory;
-  // }
-  // .page {
-  //   // height: 100vh;
-  //   // scroll-snap-align: start;
-  //   // width: 100vw;
-  // }
 }
 
 /* ExtraExtraLarge Devices, UltraWide Desktops  */

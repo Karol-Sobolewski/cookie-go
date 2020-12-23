@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -18,8 +18,9 @@ import { Slider } from '../../features/Slider/Slider';
 const Component = ({ className, language, children }) => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const container = React.createRef();
-
+  const pages = useSelector((state) => state.pages.data);
+  const whyUs = pages.filter((page) => page.title === `whyus`)[0];
+  console.log(whyUs);
   useEffect(() => {
     // console.log(container.current);
     if (language) {
@@ -31,14 +32,37 @@ const Component = ({ className, language, children }) => {
       }
     }
   }, []);
-
+  const activeLanguage = useSelector(
+    (state) => state.utils.data.activeLanguage
+  );
   return (
     <div className={clsx(className, styles.root)}>
       <Slider />
       <Container>
-        <div className={styles.shortDescription}>
-          <p>short description</p>
-        </div>
+        {activeLanguage === `Polish` ? (
+          <div className={styles.shortDescription}>
+            <h2>{whyUs.polish.header}</h2>
+            <Row>
+              {whyUs.polish.descriptions.map((description) => (
+                <Col className="col-6 mb-5 mt-5">
+                  <p>{description.text}</p>
+                </Col>
+              ))}
+            </Row>
+          </div>
+        ) : (
+          <div className={styles.shortDescription}>
+            <h2>{whyUs.english.header}</h2>
+            <Row>
+              {whyUs.english.descriptions.map((description) => (
+                <Col className="col-6 mb-5 mt-5">
+                  <p>{description.text}</p>
+                </Col>
+              ))}
+            </Row>
+          </div>
+        )}
+
         <NewProducts />
       </Container>
       <main>{children}</main>
