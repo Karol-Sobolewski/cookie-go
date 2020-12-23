@@ -46,18 +46,6 @@
     opacity: 1;
     transition: all 0.5s;
     z-index: 5;
-
-    .backArrow {
-      font-size: 1.5vh;
-      height: 2vh;
-      transition: 0.3s;
-      width: 2vh;
-      &:active {
-        color: white;
-        font-size: 1.5em;
-        transition: 0s;
-      }
-    }
   }
 }
 
