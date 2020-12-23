@@ -1,0 +1,167 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  color: $chocolate;
+  .addToCartButton {
+    background-color: $cookie;
+    border-radius: 50%;
+    border: none;
+    box-shadow: $box-shadow;
+    color: $chocolate;
+    position: absolute;
+  }
+  .qtyBox {
+    align-items: center;
+    bottom: 15%;
+    display: flex;
+    justify-content: center;
+    opacity: 1;
+    position: absolute;
+    visibility: visible;
+    width: 50%;
+    &__hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    p {
+      margin-bottom: 0.2em;
+    }
+    .qtyInput {
+      border-radius: 50%;
+      color: $chocolate;
+      height: 5vh;
+      text-align: center;
+      width: 5vh;
+    }
+    .qtyButton {
+      box-shadow: $box-shadow-small;
+      font-size: 1.5em;
+      p {
+        margin-bottom: 0;
+        margin-top: 0.2em;
+      }
+    }
+  }
+}
+
+/* ExtraExtraLarge Devices, UltraWide Desktops  */
+
+@media (min-width: 1921px) {
+  .addToCartButton {
+    bottom: -3.25vh;
+    font-size: 1.5em;
+    height: 7.5vh;
+    width: 7.5vh;
+  }
+  .qtyButton {
+    height: 3vh;
+    width: 3vh;
+  }
+}
+
+/* ExtraLarge Devices, Desktops  */
+@media (min-width: 1200px) and (max-width: 1920px) {
+  .addToCartButton {
+    bottom: -3.25vh;
+    font-size: 1.5em;
+    height: 7.5vh;
+    width: 7.5vh;
+  }
+  .qtyButton {
+    height: 3vh;
+    width: 3vh;
+  }
+}
+
+/* Large Devices, Desktops */
+@media only screen and (min-width: 1024px) and (max-width: 1199px) {
+  .addToCartButton {
+    bottom: -2.5vh;
+    font-size: 1.5em;
+    height: 5vh;
+    width: 5vh;
+  }
+  .qtyInput {
+    height: 5vh;
+    width: 5vh;
+  }
+  .qtyButton {
+    height: 3vh;
+    width: 3vh;
+  }
+}
+
+/*Medium Devices, laptops*/
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .addToCartButton {
+    bottom: -2.5vh;
+    font-size: 1.5em;
+    height: 5vh;
+    width: 5vh;
+  }
+  .qtyInput {
+    width: 5vh;
+    height: 5vh;
+  }
+  .qtyButton {
+    height: 3vh;
+    width: 3vh;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+  .addToCartButton {
+    bottom: -3.25vh;
+    font-size: 1.5em;
+    height: 7.5vh;
+    width: 7.5vh;
+  }
+  .qtyInput {
+    width: 5vh;
+    height: 5vh;
+  }
+  .qtyButton {
+    height: 3vh;
+    width: 3vh;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width: 0px) and (max-width: 479px) {
+  .addToCartButton {
+    bottom: -3.25vh;
+    font-size: 1em;
+    height: 7.5vh;
+    width: 7.5vh;
+  }
+  .qtyInput {
+    height: 5vh;
+    width: 5vh;
+  }
+  .qtyButton {
+    height: 5vh;
+    width: 5vh;
+  }
+}
+
+/* Extra Small Devices, Small Phones Landscape*/
+@media only screen and (max-height: 499px) {
+  .addToCartButton {
+    bottom: -2.5vw;
+    font-size: 1em;
+    height: 5vw;
+    width: 5vw;
+  }
+  .qtyInput {
+    height: 3vw;
+    width: 3vw;
+  }
+  .qtyButton {
+    height: 3vw;
+    width: 3vw;
+  }
+}

@@ -43,6 +43,15 @@
         height: 100%;
         object-fit: contain;
       }
+      .clickOnMe {
+        color: $white;
+        left: 50%;
+        position: absolute;
+        stroke: 5px white;
+        text-shadow: 2px 2px $chocolate;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
     .productBoxText {
       position: absolute;

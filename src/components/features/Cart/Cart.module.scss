@@ -20,6 +20,7 @@
     box-shadow: $box-shadow;
     display: flex;
     justify-content: center;
+    outline: none;
     position: fixed;
   }
   .cartIcon {
@@ -71,11 +72,11 @@
   border-radius: 10px;
   cursor: default;
   .cartProductRow {
+    align-items: center;
+    border-bottom: 1px solid #ccc;
     display: flex;
     justify-content: center;
-    align-items: center;
     padding: 1vh 0 1vh 0;
-    border-bottom: 1px solid #ccc;
     > div {
       display: flex;
       justify-content: center;
@@ -84,19 +85,22 @@
         margin-bottom: 0;
       }
     }
-    .removeButton {
+    .qtyButton {
       align-items: center;
-      background-color: $cookie;
-      border-radius: 50%;
-      border: none;
-      box-shadow: $box-shadow;
-      color: $chocolate;
+      box-shadow: $box-shadow-small;
+      box-shadow: $box-shadow-small;
       display: flex;
+      font-size: 1.5em;
+      height: 3vh;
+      justify-content: center;
+      width: 3vh;
+    }
+
+    .removeButton {
+      box-shadow: $box-shadow-small;
       font-size: 2vh;
       height: 4vh;
-      justify-content: center;
       width: 4vh;
-      padding: 0;
       &:hover {
         color: white;
       }
@@ -105,22 +109,18 @@
 }
 
 .cartName {
+  background: white;
+  border-radius: 10px;
+  box-shadow: $box-shadow;
+  color: $chocolate;
+  display: none !important;
+  font-family: $font-title;
+  font-size: 0.7em;
+  height: 5vh;
+  left: 25%;
   position: absolute;
   width: 60%;
   z-index: 10;
-  // overflow-x: auto;
-  box-shadow: $box-shadow;
-  height: 5vh;
-  background: white;
-  // border: black 2px0 solid;
-  border-radius: 10px;
-  // opacity: 0;
-  display: none !important;
-  // top: 50%;
-  left: 25%;
-  font-size: 0.7em;
-  color: $chocolate;
-  font-family: $font-title;
 }
 
 .cartImage {
@@ -133,7 +133,6 @@
 }
 
 .cartImage:hover ~ .cartName {
-  // opacity: 1;
   display: none;
 }
 .cartActive {
@@ -158,6 +157,19 @@
       .cartIcon {
         color: $navbar-cart-icon-active;
       }
+    }
+  }
+  .qtyButton :hover {
+    color: white;
+  }
+}
+
+@media (pointer: coarse) {
+  .qtyButton {
+    transition: 0.3s;
+    &:active {
+      color: white;
+      transition: 0s;
     }
   }
 }
@@ -277,6 +289,10 @@
     width: 4vw;
     top: 2vw;
     right: 2vw;
+    .qtyButton {
+      height: 3vw;
+      width: 3vw;
+    }
     .cartButton {
       height: 5vw;
       width: 5vw;
@@ -290,6 +306,5 @@
   .cartProductIndicator {
     font-size: 1em;
     bottom: -100%;
-    // color: blue;
   }
 }

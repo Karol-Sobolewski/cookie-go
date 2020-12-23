@@ -6,77 +6,19 @@ import uuid from 'react-uuid';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCartArrowDown,
-  faArrowLeft,
-} from '@fortawesome/free-solid-svg-icons';
-import { addProductToCart } from '../../../redux/cartRedux';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import styles from './ProductForm.module.scss';
+import { Button } from '../Button/Button';
+import { NutritionTable } from '../NutritionTable/NutritionTable';
+import { CartForm } from '../CartForm/CartForm';
 
-const Component = ({
-  className,
-  children,
-  id,
-  title,
-  description,
-  price,
-  singlePrice,
-  images,
-  nutrition,
-}) => {
+const Component = ({ className, children, product }) => {
   const [rotate, setRotate] = useState(false);
   const [showNutrition, setShowNutrition] = useState(false);
   const activeLanguage = useSelector(
     (state) => state.utils.data.activeLanguage
   );
   const exchangeRate = useSelector((state) => state.utils.data.rate);
-
-  const [cart, setCart] = useState({
-    id,
-    name: ``,
-    image: ``,
-    qty: 1,
-    price,
-    singlePrice,
-  });
-
-  const dispatch = useDispatch();
-
-  const handleSubmit = () => {
-    if (cart.name) {
-      dispatch(addProductToCart(cart));
-      setCart({ id, qty: 1, name: `` });
-    }
-  };
-
-  useEffect(() => {
-    handleSubmit();
-  });
-
-  const decrease = () => {
-    if (cart.qty > 1) {
-      setCart({ ...cart, qty: cart.qty - 1 });
-    } else {
-      setCart({ ...cart, qty: 1 });
-    }
-  };
-  const increase = () => {
-    setCart({ ...cart, qty: cart.qty + 1 });
-  };
-
-  const handleChange = (e) => {
-    const parsedValue = parseInt(e.target.value);
-    if (!isNaN(parsedValue)) { //eslint-disable-line
-      setCart({ ...cart, qty: parseInt(e.target.value) });
-      // console.log(cart.qty);
-    }
-  };
-
-  const addToCart = () => {
-    setCart({ ...cart, price: price * cart.qty, name: title, image: images });
-    setRotate(false);
-    setShowNutrition(false);
-  };
 
   const useClickOutsideOfProductBox = (ref) => {
     useEffect(() => {
@@ -99,7 +41,7 @@ const Component = ({
   return (
     <div className={clsx(className, styles.root)} ref={wrapperRef}>
       <div className={styles.content}>
-        <h3 className={styles.productTitle}>{title}</h3>
+        <h3 className={styles.productTitle}>{product.title}</h3>
         <div className={styles.productBox}>
           <div
             className={
@@ -111,82 +53,34 @@ const Component = ({
               className={styles.productImage}
               onClick={() => setRotate(!rotate)}
             >
-              <img src={images[0].src} alt={images[0].title} />
+              <img src={product.images[0].src} alt={product.images[0].title} />
               <p className={styles.clickOnMe}>
                 {activeLanguage === `Polish` ? `Kliknij` : `Click`}
               </p>
             </button>
             <div className={styles.productDescriptionBox}>
-              <Row>
-                <Col
+              <Row className="w-100">
+                <Button
+                  type="button"
                   className={
                     showNutrition
-                      ? styles.productNutrition__show
-                      : styles.productNutrition
+                      ? styles.nutritionArrow__active
+                      : styles.nutritionArrow
                   }
+                  onClick={() => setShowNutrition(!showNutrition)}
                 >
-                  <button
-                    type="button"
-                    className={styles.backArrow}
-                    onClick={() => setShowNutrition(!showNutrition)}
-                  >
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                  </button>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>{activeLanguage === `Polish` ? `Waga` : `Weight`}</Col>
-                    <Col>{nutrition.weight} g</Col>
-                  </Row>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>
-                      {activeLanguage === `Polish` ? `Kalorie` : `Calories`}
-                    </Col>
-                    <Col>{nutrition.calories} kcal</Col>
-                  </Row>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>
-                      {activeLanguage === `Polish` ? `Tłuszcze` : `Fats`}
-                    </Col>
-                    <Col>{nutrition.fats} g</Col>
-                  </Row>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>
-                      {activeLanguage === `Polish`
-                        ? `Kwasy nasycone`
-                        : `Saturated Fat`}
-                    </Col>
-                    <Col>{nutrition.satFats} g</Col>
-                  </Row>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>
-                      {activeLanguage === `Polish`
-                        ? `Węglowodany`
-                        : `Carbohydrates`}
-                    </Col>
-                    <Col>{nutrition.carbs} g</Col>
-                  </Row>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>{activeLanguage === `Polish` ? `Cukry` : `Sugar`}</Col>
-                    <Col>{nutrition.sugar} g</Col>
-                  </Row>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>
-                      {activeLanguage === `Polish` ? `Błonnik` : `Fiber`}
-                    </Col>
-                    <Col>{nutrition.fiber} g</Col>
-                  </Row>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>
-                      {activeLanguage === `Polish` ? `Białko` : `Protein`}
-                    </Col>
-                    <Col>{nutrition.protein} g</Col>
-                  </Row>
-                  <Row className={styles.productNutritionRow}>
-                    <Col>{activeLanguage === `Polish` ? `Sól` : `Salt`}</Col>
-                    <Col>{nutrition.salt} g</Col>
-                  </Row>
-                </Col>
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </Button>
+                <NutritionTable
+                  nutrition={product.nutrition}
+                  show={showNutrition}
+                />
                 <Col>
-                  <p>{description}</p>
+                  <p>
+                    {activeLanguage === `Polish`
+                      ? product.polish.description
+                      : product.english.description}
+                  </p>
                   <button
                     type="button"
                     onClick={() => setShowNutrition(!showNutrition)}
@@ -198,62 +92,33 @@ const Component = ({
                   </button>
                 </Col>
               </Row>
-              <button
+              <Button
                 type="button"
-                className={styles.backArrow}
+                className={
+                  showNutrition ? styles.backArrow__hidden : styles.backArrow
+                }
                 onClick={() => setRotate(!rotate)}
               >
                 <FontAwesomeIcon icon={faArrowLeft} />
-              </button>
+              </Button>
             </div>
           </div>
         </div>
         <h4 className={styles.productPrice}>
-          {price * cart.qty} Zł
+          {/* eslint-disable */}
+          {product.price} Zł
           {activeLanguage !== `Polish`
-            /*eslint-disable*/
             ? ` / ${(
-              Math.round(((price * cart.qty) / exchangeRate) * 100) / 100
-              ).toFixed(2)} E`
+              Math.round((product.price / exchangeRate) * 100) / 100
+            ).toFixed(2)} E`
             : null}
-            {/**eslint-enable */}
-
+          {/* eslint-enable */}
         </h4>
-        <form className={styles.addtoCartForm} id="addToCartForm">
-          <Row
-            className={`${
-              showNutrition ? styles.qtyBox__hidden : styles.qtyBox
-            } d-flex justify-content-around align-items-center`}
-          >
-            <button
-              type="button"
-              className={styles.qtyButton}
-              onClick={() => decrease()}
-            >
-              <p>-</p>
-            </button>
-            <input
-              className={styles.qtyInput}
-              type="text"
-              value={cart.qty}
-              onChange={handleChange}
-            />
-            <button
-              className={styles.qtyButton}
-              type="button"
-              onClick={() => increase()}
-            >
-              <p>+</p>
-            </button>
-          </Row>
-          <button
-            type="button"
-            className={styles.addToCartButton}
-            onClick={addToCart}
-          >
-            <FontAwesomeIcon icon={faCartArrowDown} />
-          </button>
-        </form>
+        <CartForm
+          product={product}
+          singlePrice={product.price}
+          showQty={!showNutrition}
+        />
         <main>{children}</main>
       </div>
     </div>
@@ -263,13 +128,7 @@ const Component = ({
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  id: PropTypes.string,
-  title: PropTypes.string,
-  description: PropTypes.string,
-  price: PropTypes.number,
-  images: PropTypes.array,
-  nutrition: PropTypes.object,
-  singlePrice: PropTypes.number,
+  product: PropTypes.object,
 };
 
 export {

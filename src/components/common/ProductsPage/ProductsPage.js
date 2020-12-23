@@ -14,30 +14,12 @@ const Component = ({ className, children, productName }) => {
   const products = allProducts.filter(
     (product) => product.category === productName
   );
-  // console.log(products);
   return (
     <div className={clsx(className, styles.root)}>
       <Container>
         <div className={styles.productGrid}>
           {products.map((item) => (
-            <ProductForm
-              key={item._id}
-              id={item._id}
-              title={
-                activeLanguage === `Polish`
-                  ? item.polish.title
-                  : item.english.title
-              }
-              description={
-                activeLanguage === `Polish`
-                  ? item.polish.description
-                  : item.english.description
-              }
-              price={item.price}
-              singlePrice={item.price}
-              images={item.images}
-              nutrition={item.nutrition}
-            />
+            <ProductForm key={item._id} product={item} />
           ))}
         </div>
         <main>{children}</main>

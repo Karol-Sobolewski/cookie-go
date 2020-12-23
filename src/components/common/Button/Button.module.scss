@@ -1,0 +1,33 @@
+@import "../../../styles/settings.scss";
+
+.root {
+  align-items: center;
+  background: $cookie;
+  border-radius: 50%;
+  border: none;
+  box-shadow: $box-shadow;
+  color: $button-color;
+  display: flex;
+  justify-content: center;
+  outline: none !important;
+  transition: $transition;
+}
+
+/* Media non-touch  */
+@media (hover: hover) and (pointer: fine) {
+  .root :hover {
+    color: white;
+  }
+}
+
+/*Media touchable*/
+
+@media (pointer: coarse) {
+  .root {
+    transition: 0.3s;
+    &:active {
+      color: white;
+      transition: 0s;
+    }
+  }
+}

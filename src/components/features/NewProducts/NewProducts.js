@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 // import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -12,18 +12,13 @@ import styles from './NewProducts.module.scss';
 // import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, children }) => {
-  console.log(`NewProducts`);
-  // const dispatch = useDispatch();
-
   const activeLanguage = useSelector(
     (state) => state.utils.data.activeLanguage
   );
   const exchangeRate = useSelector((state) => state.utils.data.rate);
 
   const products = useSelector((state) => state.products.data);
-  useEffect(() => {
-    // console.log(lastFour);
-  }, []);
+
   const sort = products.sort(function (a, b) {
     const c = new Date(a.added);
     const d = new Date(b.added);
@@ -43,30 +38,37 @@ const Component = ({ className, children }) => {
           </Col>
         </Row>
         <Row className="d-flex justify-content-around align-items-center">
-          {lastFour.map((item) => (
-            <div key={item._id} className={styles.productBox}>
+          {lastFour.map((product) => (
+            <div key={product._id} className={styles.productBox}>
               <Link
-                key={item._id}
-                to={`/products/${item._id}`}
+                key={product._id}
+                to={`/products/${product._id}`}
                 className={styles.productBoxPhoto}
               >
-                <img src={item.images[0].src} alt={item.images[0].title} />
+                <img
+                  src={product.images[0].src}
+                  alt={product.images[0].title}
+                />
+                <p className={styles.clickOnMe}>
+                  {activeLanguage === `Polish` ? `Kliknij` : `Click`}
+                </p>
               </Link>
               <div className={styles.productBoxText}>
                 <p>
                   {activeLanguage === `Polish`
-                    ? item.polish.title
-                    : item.english.title}
+                    ? product.polish.title
+                    : product.english.title}
                 </p>
                 <p>
-                  {item.price} Zł
+                  {/* eslint-disable */}
+                  {product.price} Zł
                   {activeLanguage !== `Polish`
-                    ? /*eslint-disable*/
-             ` / ${(
-              Math.round(((item.price) / exchangeRate) * 100) / 100
-              ).toFixed(2)} E`
-            : null}
-            {/**eslint-enable */}</p>
+                    ? ` / ${(
+                      Math.round((product.price / exchangeRate) * 100) / 100
+                    ).toFixed(2)} E`
+                    : null}
+                  {/* eslint-enable */}
+                </p>
               </div>
             </div>
           ))}
@@ -76,16 +78,6 @@ const Component = ({ className, children }) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
 
 Component.propTypes = {
   children: PropTypes.node,

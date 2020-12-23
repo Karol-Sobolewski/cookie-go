@@ -1,36 +1,81 @@
 @import "../../../styles/settings.scss";
 
-/* ExtraExtraLarge Devices, UltraWide Desktops  */
-@media (min-width: 1921px) {
-  .root {
+.root {
+  font-family: $font-title;
+  color: $chocolate;
+  .productRow > :first-child {
+    border-right: solid 4px #ccc;
   }
-}
+  .productBox {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    &:after {
+      content: "";
+      display: block;
+      padding-bottom: 100%;
+    }
+    .image {
+      align-items: center;
+      display: flex;
+      height: 50%;
+      justify-content: center;
+      opacity: 0;
+      position: absolute;
+      transition: all 0.5s;
+      visibility: hidden;
+      width: 50%;
+      z-index: 10;
+      button {
+        background: none;
+        border: none;
+        outline: none;
+      }
+      img {
+        height: 100%;
+        object-fit: contain;
+        width: 100%;
+      }
+      .clickOnMe {
+        color: $white;
+        margin-bottom: 0;
+        position: absolute;
+        stroke: 5px white;
+        text-shadow: 2px 2px $chocolate;
+      }
+    }
+    .image__active {
+      @extend .image;
+      opacity: 1;
+      transition: all 0.5s;
+      visibility: visible;
+    }
+    .backArrow {
+      bottom: 1%;
+      font-size: 3vh;
+      height: 5vh;
+      left: 50%;
+      opacity: 1;
+      position: absolute;
+      visibility: visible;
+      width: 5vh;
+      z-index: 10;
+    }
 
-/* ExtraLarge Devices, Desktops  */
-@media (min-width: 1200px) and (max-width: 1920px) {
-  .root {
-  }
-}
-/* Large Devices, Laptops, Large Tablets iPad Pro */
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
-  .root {
-  }
-}
-
-/* Medium Devices, Tablets iPad */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .root {
-  }
-}
-
-/* Small Devices, Small tablets Large Phones */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  .root {
-  }
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 0px) and (max-width: 479px) {
-  .root {
+    .backArrow__hidden {
+      @extend .backArrow;
+      opacity: 0;
+      position: absolute;
+      visibility: hidden;
+    }
+    .description {
+      // position: absolute;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      justify-content: space-around;
+      width: 100%;
+    }
   }
 }

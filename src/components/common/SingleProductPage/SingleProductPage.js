@@ -1,60 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import PropTypes from 'prop-types';
-import clsx from 'clsx';
-
 import { Container, Row, Col } from 'react-bootstrap';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
+import React, { useState } from 'react';
+import { Button } from '../Button/Button';
+import { CartForm } from '../CartForm/CartForm';
 import { NotFound } from '../../views/NotFound/NotFound';
-import { ProductForm } from '../ProductForm/ProductForm';
+import { NutritionTable } from '../NutritionTable/NutritionTable';
+
 import styles from './SingleProductPage.module.scss';
 
-// import { connect } from 'react-redux';
-import { fetchSelectedProduct } from '../../../redux/productRedux';
-
 const Component = ({ className, children }) => {
-  // console.log(`SingleProductPage`);
-  const dispatch = useDispatch();
-
   const activeLanguage = useSelector(
     (state) => state.utils.data.activeLanguage
   );
+  const exchangeRate = useSelector((state) => state.utils.data.rate);
+  const [showNutrition, setShowNutrition] = useState(false);
+
   const params = useParams();
   const products = useSelector((state) => state.products.data);
-  const getProductById = products.filter(
+  const productById = products.filter(
     (product) => product._id === params.id
   )[0];
-  console.log(getProductById);
-  useEffect(() => {
-    // dispatch(fetchSelectedProduct(id.id));
-    // dispatch(getProductById(id.id));
-    // console.log(products);
-    // dispatch(getProductById(products, id.id));
-    // console.log(getProductById);
-  }, []);
   return (
     <div className={clsx(className, styles.root)}>
-      {getProductById ? (
+      {productById ? (
         <Container>
-          <Row>
-            <ProductForm
-              key={params.id}
-              id={params.id}
-              title={
-                activeLanguage === `Polish`
-                  ? getProductById.polish.title
-                  : getProductById.english.title
-              }
-              description={
-                activeLanguage === `Polish`
-                  ? getProductById.polish.description
-                  : getProductById.english.description
-              }
-              price={getProductById.price}
-              singlePrice={getProductById.price}
-              images={getProductById.images}
-              nutrition={getProductById.nutrition}
-            />
+          <Row className={styles.productRow}>
+            <Col className={`${styles.productBox} col-12 col-md-6`}>
+              <div
+                className={showNutrition ? styles.image : styles.image__active}
+              >
+                <button
+                  type="button"
+                  onClick={() => setShowNutrition(!showNutrition)}
+                >
+                  <img
+                    src={productById.images[0].src}
+                    alt={productById.images[0].title}
+                  />
+                </button>
+                <p className={styles.clickOnMe}>
+                  {activeLanguage === `Polish` ? `Kliknij` : `Click`}
+                </p>
+              </div>
+              <NutritionTable
+                nutrition={productById.nutrition}
+                show={showNutrition}
+              />
+              <Button
+                type="button"
+                className={`${
+                  showNutrition ? styles.backArrow : styles.backArrow__hidden
+                } ${styles.backArrow}
+                `}
+                onClick={() => setShowNutrition(!showNutrition)}
+              >
+                <FontAwesomeIcon icon={faArrowLeft} />
+              </Button>
+            </Col>
+            <Col className={`${styles.productBox} col-12 col-md-6`}>
+              <div className={styles.description}>
+                <Row>
+                  <h2>
+                    {activeLanguage === `Polish`
+                      ? productById.polish.title
+                      : productById.english.title}
+                  </h2>
+                </Row>
+                <Row>
+                  <p>
+                    {activeLanguage === `Polish`
+                      ? productById.polish.description
+                      : productById.english.description}
+                  </p>
+                </Row>
+                <Row>
+                  <p>
+                    {/* eslint-disable */}
+                  {productById.price} Zł
+                  {activeLanguage !== `Polish`
+                    ? ` / ${(
+                      Math.round((productById.price / exchangeRate) * 100) / 100
+                    ).toFixed(2)} E`
+                    : null}
+                  {/* eslint-enable */}
+                  </p>
+                </Row>
+                <Row>
+                  <CartForm
+                    product={productById}
+                    singlePrice={productById.price}
+                    showQty
+                  />
+                </Row>
+              </div>
+            </Col>
           </Row>
           <main>{children}</main>
         </Container>
@@ -64,21 +108,9 @@ const Component = ({ className, children }) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  // product: getProductById(state, props.match.params.id),
 };
 
 export {

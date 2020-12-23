@@ -13,6 +13,8 @@ import {
   subtractProductQty,
 } from '../../../redux/cartRedux';
 
+import { Button } from '../../common/Button/Button';
+
 const Component = ({ children }) => {
   const dispatch = useDispatch();
 
@@ -77,37 +79,75 @@ const Component = ({ children }) => {
         </div>
       </div>
       <Container className={active ? styles.cartActive : styles.cart}>
-        {/* eslint-disable */}
-        {cartItems.length
-          ?
+        {cartItems.length ? (
           <Container>
             {cartItems.map((item) => (
-                <Row key={item.id} className={styles.cartProductRow}>
-                  <Col className={styles.cartImage}><img src={item.image[0].src} alt={item.image[0].title}/></Col>
-                  <Col><button type="button" onClick={() => handleSubtractQty(item)}>-</button>{item.qty}<button type="button" onClick={() => handleAddQty(item)}>+</button></Col>
-                  <Col>{item.singlePrice}</Col>
-                  <div id="cartName" className={styles.cartName}>{item.name}</div>
-                  <Col><p>{item.price} Zł
-                  {activeLanguage !== `Polish`
-            /*eslint-disable*/
-            ? ` / ${(
-              Math.round(((item.price) / exchangeRate) * 100) / 100
-              ).toFixed(2)} E`
-            : null}</p>
-                  </Col>
-                  <Col><button type="button" className={styles.removeButton} onClick={() => dispatch(removeProductFromCart(item))}>x</button></Col>
-                </Row>
-              ))}
-              <Row className={styles.cartSummary}>{`${cartTotalPrice} Zł`}
-                  {activeLanguage !== `Polish`
-            /*eslint-disable*/
-            ? ` / ${(
-              Math.round(((cartTotalPrice) / exchangeRate) * 100) / 100
-              ).toFixed(2)} E`
-            : null}</Row>
-            </Container>
-          : <h3>{activeLanguage === `Polish` ? `Koszyk jest pusty` : `Cart is empty`}</h3>}
-          {/* eslint-enable */}
+              <Row key={item.id} className={styles.cartProductRow}>
+                <Col className={styles.cartImage}>
+                  <img src={item.image[0].src} alt={item.image[0].title} />
+                </Col>
+                <Col>
+                  <Button
+                    type="button"
+                    className={styles.qtyButton}
+                    onClick={() => handleSubtractQty(item)}
+                  >
+                    -
+                  </Button>
+                  {item.qty}
+                  <Button
+                    type="button"
+                    className={styles.qtyButton}
+                    onClick={() => handleAddQty(item)}
+                  >
+                    +
+                  </Button>
+                </Col>
+                <Col>{item.singlePrice}</Col>
+                <div id="cartName" className={styles.cartName}>
+                  {item.name}
+                </div>
+                <Col>
+                  <p>
+                    {/* eslint-disable */}
+                    {item.price} Zł
+                    {activeLanguage !== `Polish`
+                      ? ` / ${(
+                          Math.round((item.price / exchangeRate) * 100) / 100
+                        ).toFixed(2)} E`
+                      : null}
+                      {/* eslint-enable */}
+                  </p>
+                </Col>
+                <Col>
+                  <Button
+                    type="button"
+                    className={styles.removeButton}
+                    onClick={() => dispatch(removeProductFromCart(item))}
+                  >
+                    x
+                  </Button>
+                </Col>
+              </Row>
+            ))}
+            <Row className={styles.cartSummary}>
+              {/* eslint-disable */}
+              {`${cartTotalPrice} Zł`}
+              {activeLanguage !== `Polish`
+                ? ` / ${(
+                    Math.round((cartTotalPrice / exchangeRate) * 100) / 100
+                ).toFixed(2)} E`
+                : null}
+                {/* eslint-enable */}
+            </Row>
+          </Container>
+        ) : (
+          <h3>
+            {activeLanguage === `Polish`
+              ? `Koszyk jest pusty`
+              : `Cart is empty`}
+          </h3>
+        )}
         <main>{children}</main>
       </Container>
     </Container>

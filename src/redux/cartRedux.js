@@ -45,7 +45,7 @@ export default function reducer(statePart = [], action = {}) {
               return {
                 ...product,
                 qty: product.qty + action.payload.qty,
-                // price: product.price + action.payload.price,
+                price: product.price + action.payload.price,
               };
             }
             return product;
