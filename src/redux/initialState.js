@@ -35,4 +35,11 @@ export default {
       error: false,
     },
   },
+  orders: {
+    data: {},
+    loading: {
+      active: false,
+      error: false,
+    },
+  },
 };

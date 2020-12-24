@@ -2,15 +2,75 @@
 
 .root {
   height: 80%;
-  width: 80%;
-  border: 2px solid blue;
+  width: 100%;
+  // border: 2px solid blue;
   align-self: center;
   justify-self: center;
   .modalInner {
     align-items: center;
     display: flex;
+    flex-direction: column;
+    height: 100%;
     justify-content: center;
     position: relative;
+    width: 100%;
+  }
+  .orderBox {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    // overflow-x: hidden;
+    height: 100%;
+    // border: 1px solid red;
+  }
+  .orderedProducts {
+    overflow-x: hidden;
+    height: auto;
+    height: 40%;
+    .orderedProductRow {
+      width: 100%;
+      // margin: 1vh;
+      padding: 1vh;
+      border-bottom: 1px solid #ccc;
+      height: auto;
+      img {
+        height: 5vh;
+      }
+    }
+  }
+  .orderFormBox {
+    // overflow-x: hidden;
+    // height: auto;
+    flex-direction: column;
+    overflow-x: hidden;
+    height: auto;
+    height: 60%;
+    .orderForm {
+      width: 80%;
+      height: 100%;
+      .formRow {
+        p {
+          margin-bottom: 0;
+        }
+        .formColumn {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+  }
+  input {
+    width: 100%;
+    margin: 2vh 0 2vh 0;
+    // background-color: blue;
+    // max-width: 100%;
+    // margin: 1vh 0 1vh 0;
+    // max-width:;
+    // min-width: 100%;
   }
 }
 

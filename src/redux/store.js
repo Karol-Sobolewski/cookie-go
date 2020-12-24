@@ -7,6 +7,8 @@ import pagesReducer from './pageRedux';
 import productsReducer from './productRedux';
 import cartReducer from './cartRedux';
 import utilsReducer from './utilsRedux';
+import orderReducer from './orderRedux';
+
 // define initial state and shallow-merge initial data
 
 // define reducers
@@ -16,6 +18,7 @@ const reducers = {
   products: productsReducer,
   cart: cartReducer,
   utils: utilsReducer,
+  orders: orderReducer,
 };
 
 // add blank reducers for initial state properties without reducers

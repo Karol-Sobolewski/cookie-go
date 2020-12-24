@@ -7,6 +7,7 @@ const menusRoutes = require(`./routes/menus.routes`);
 const pagesRoutes = require(`./routes/pages.routes`);
 const productsRoutes = require(`./routes/products.routes`);
 const utilsRoutes = require(`./routes/utils.routes`);
+const ordersRoutes = require(`./routes/orders.routes`);
 const app = express();
 
 /* MIDDLEWARE */
@@ -21,6 +22,7 @@ app.use(`/api`, menusRoutes);
 app.use(`/api`, pagesRoutes);
 app.use(`/api`, productsRoutes);
 app.use(`/api`, utilsRoutes);
+app.use(`/api`, ordersRoutes);
 
 /* REACT WEBSITE */
 app.use(`*`, (req, res) => {
