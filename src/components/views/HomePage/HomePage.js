@@ -62,7 +62,6 @@ const Component = ({ className, language, children }) => {
             </Row>
           </div>
         )}
-
         <NewProducts />
       </Container>
       <main>{children}</main>

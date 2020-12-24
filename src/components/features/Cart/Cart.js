@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+import { useModal } from 'react-modal-hook';
+import ReactModal from 'react-modal';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -14,12 +16,14 @@ import {
 } from '../../../redux/cartRedux';
 
 import { Button } from '../../common/Button/Button';
+import { OrderModal } from '../OrderModal/OrderModal';
 
 const Component = ({ children }) => {
   const dispatch = useDispatch();
 
   const [active, setActive] = useState(false);
   const [price, setPrice] = useState(1);
+  // const [showModal, setModal] = useState(false);
 
   const cartItems = useSelector((state) => state.cart.products);
 
@@ -47,6 +51,27 @@ const Component = ({ children }) => {
 
   const cartTotalPrice = cartItems.reduce((a, b) => a + (b.price || 0), 0);
   const cartTotalQty = cartItems.reduce((a, b) => a + (b.qty || 0), 0);
+  const customStyles = {
+    overlay: { zIndex: 1000, backgroundColor: `rgba(0, 0, 0, 0.2)` },
+    content: {
+      borderRadius: `20px`,
+      display: `flex`,
+      justifyContent: `center`,
+      alignItems: `center`,
+    },
+  };
+  const [showModal, hideModal] = useModal(() => (
+    <ReactModal isOpen style={customStyles}>
+      <Button
+        type="button"
+        onClick={hideModal}
+        className={styles.hideModalButton}
+      >
+        <p>x</p>
+      </Button>
+      <OrderModal />
+    </ReactModal>
+  ));
   const handleAddQty = (item) => {
     // console.log(item.qty);
     dispatch(addProductQty(item));
@@ -58,9 +83,17 @@ const Component = ({ children }) => {
     // console.log(item);
     dispatch(subtractProductQty(item));
   };
+
+  const handleSubmitOrder = () => {
+    console.log(`submit`);
+    showModal(true);
+    setActive(false);
+  };
+
   useEffect(() => {
     console.log(price);
   });
+
   return (
     <Container ref={wrapperRef} className={styles.root}>
       <button
@@ -80,19 +113,19 @@ const Component = ({ children }) => {
       </div>
       <Container className={active ? styles.cartActive : styles.cart}>
         {cartItems.length ? (
-          <Container>
+          <Container className={styles.products}>
             {cartItems.map((item) => (
               <Row key={item.id} className={styles.cartProductRow}>
-                <Col className={styles.cartImage}>
+                <Col className={`${styles.cartImage} col-3`}>
                   <img src={item.image[0].src} alt={item.image[0].title} />
                 </Col>
-                <Col>
+                <Col className="col-3">
                   <Button
                     type="button"
                     className={styles.qtyButton}
                     onClick={() => handleSubtractQty(item)}
                   >
-                    -
+                    <p>-</p>
                   </Button>
                   {item.qty}
                   <Button
@@ -100,46 +133,36 @@ const Component = ({ children }) => {
                     className={styles.qtyButton}
                     onClick={() => handleAddQty(item)}
                   >
-                    +
+                    <p>+</p>
                   </Button>
                 </Col>
-                <Col>{item.singlePrice}</Col>
+                {/* <Col>{item.singlePrice}</Col> */}
                 <div id="cartName" className={styles.cartName}>
                   {item.name}
                 </div>
-                <Col>
+                <Col className="col-3">
                   <p>
                     {/* eslint-disable */}
-                    {item.price} Zł
+                    {item.price}Zł
                     {activeLanguage !== `Polish`
                       ? ` / ${(
                           Math.round((item.price / exchangeRate) * 100) / 100
-                        ).toFixed(2)} E`
+                        ).toFixed(2)}E`
                       : null}
                       {/* eslint-enable */}
                   </p>
                 </Col>
-                <Col>
+                <Col className="col-3">
                   <Button
                     type="button"
                     className={styles.removeButton}
                     onClick={() => dispatch(removeProductFromCart(item))}
                   >
-                    x
+                    <p>x</p>
                   </Button>
                 </Col>
               </Row>
             ))}
-            <Row className={styles.cartSummary}>
-              {/* eslint-disable */}
-              {`${cartTotalPrice} Zł`}
-              {activeLanguage !== `Polish`
-                ? ` / ${(
-                    Math.round((cartTotalPrice / exchangeRate) * 100) / 100
-                ).toFixed(2)} E`
-                : null}
-                {/* eslint-enable */}
-            </Row>
           </Container>
         ) : (
           <h3>
@@ -149,6 +172,25 @@ const Component = ({ children }) => {
           </h3>
         )}
         <main>{children}</main>
+        {cartItems.length ? (
+          <div className={styles.orderSummary}>
+            <Row className={styles.cartSummary}>
+              {/* eslint-disable */}
+              {activeLanguage === `Polish`
+                ? `Do zapłaty: ${cartTotalPrice} Zł`
+                : `Total price: ${cartTotalPrice} Zł / ${(
+                  Math.round((cartTotalPrice / exchangeRate) * 100) / 100
+                  ).toFixed(2)} E`}
+              {/* eslint-enable */}
+            </Row>
+            <Button
+              className={styles.orderButton}
+              onClick={() => handleSubmitOrder()}
+            >
+              {activeLanguage === `Polish` ? `Zamów` : `Order`}
+            </Button>
+          </div>
+        ) : null}
       </Container>
     </Container>
   );

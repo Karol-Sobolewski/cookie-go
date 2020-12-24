@@ -104,7 +104,7 @@ const Component = ({ className, children, product, showQty, singlePrice }) => {
       <Button
         type="button"
         className={styles.addToCartButton}
-        onClick={addToCart}
+        onClick={() => addToCart()}
       >
         <FontAwesomeIcon icon={faCartArrowDown} />
       </Button>

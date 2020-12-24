@@ -15,8 +15,10 @@
 
 /* Media non-touch  */
 @media (hover: hover) and (pointer: fine) {
-  .root :hover {
-    color: white;
+  .root {
+    &:hover {
+      color: white;
+    }
   }
 }
 
