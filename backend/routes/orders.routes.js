@@ -31,7 +31,8 @@ router.post(`/orders`, async (req, res) => {
       zip: req.body.zip,
       country: req.body.country,
       products: req.body.products,
-      // price:
+      comment: req.body.comment,
+      totalPrice: req.body.totalPrice,
     });
     await newOrder.save();
     res.json(newOrder);

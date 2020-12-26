@@ -21,15 +21,15 @@ const Component = ({ className }) => {
 
   const orderedProducts = useSelector((state) => state.cart.products);
 
-  const [order, setOrder] = useState({
-    products: orderedProducts,
-    added: new Date(),
-  });
-
   const cartTotalPrice = orderedProducts.reduce(
     (a, b) => a + (b.price || 0),
     0
   );
+  const [order, setOrder] = useState({
+    products: orderedProducts,
+    added: new Date(),
+    totalPrice: cartTotalPrice,
+  });
 
   const cleanUp = (e) => {
     console.log(e);
@@ -74,8 +74,28 @@ const Component = ({ className }) => {
       order.street.length < 2 ||
       order.house.length < 1 ||
       order.city.length < 2 ||
+      order.phone.length < 5 ||
       order.zip.length < 2 ||
-      order.country.length < 2
+      order.country.length < 2 ||
+      order.comment.length < 2
+    ) {
+      alert(
+        activeLanguage === `Polish`
+          ? `Wypełnij wszystkie pola`
+          : `Fill all inputs correctly`
+      );
+      e.preventDefault();
+    } else if (
+      order.firstName.length > 100 ||
+      order.lastName.length > 100 ||
+      order.email.length > 100 ||
+      order.street.length > 100 ||
+      order.house.length > 100 ||
+      order.city.length > 100 ||
+      order.phone.length > 15 ||
+      order.zip.length > 15 ||
+      order.country.length > 100 ||
+      order.comment.length > 1000
     ) {
       alert(
         activeLanguage === `Polish`
@@ -173,23 +193,25 @@ const Component = ({ className }) => {
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
                     <input
                       name="firstName"
+                      type="text"
                       placeholder={
                         activeLanguage === `Polish` ? `Imię*` : `Name*`
                       }
                       required
-                      min="2"
-                      max="100"
+                      minLength="2"
+                      maxLength="100"
                     />
                   </Col>
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
                     <input
                       name="lastName"
+                      type="text"
                       placeholder={
                         activeLanguage === `Polish` ? `Nazwisko*` : `Last Name*`
                       }
                       required
-                      min="2"
-                      max="100"
+                      minLength="2"
+                      maxLength="100"
                     />
                   </Col>
                 </Row>
@@ -228,7 +250,7 @@ const Component = ({ className }) => {
                   type="email"
                   placeholder="E-mail*"
                   required
-                  min="3"
+                  min="5"
                   max="100"
                 />
               </Col>
@@ -253,32 +275,34 @@ const Component = ({ className }) => {
                       activeLanguage === `Polish` ? `Ulica*` : `Street address*`
                     }
                     required
-                    min="2"
-                    max="100"
+                    minLength="2"
+                    maxLength="100"
                   />
                 </Row>
                 <Row className="d-flex justify-content-between align-items-center">
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
                     <input
                       name="house"
+                      type="text"
                       placeholder={
                         activeLanguage === `Polish` ? `Nr domu*` : `House nr.*`
                       }
                       required
-                      min="1"
-                      max="100"
+                      minLength="2"
+                      maxLength="100"
                     />
                   </Col>
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
                     <input
                       name="appartment"
+                      type="text"
                       placeholder={
                         activeLanguage === `Polish`
                           ? `Nr lokalu`
                           : `Appartment number`
                       }
-                      min="2"
-                      max="100"
+                      minLength="2"
+                      maxLength="100"
                     />
                   </Col>
                 </Row>
@@ -291,8 +315,8 @@ const Component = ({ className }) => {
                         activeLanguage === `Polish` ? `Miasto*` : `City*`
                       }
                       required
-                      min="2"
-                      max="100"
+                      minLength="2"
+                      maxLength="100"
                     />
                   </Col>
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
@@ -304,8 +328,8 @@ const Component = ({ className }) => {
                           ? `Województwo`
                           : `State / Province`
                       }
-                      min="2"
-                      max="100"
+                      minLength="2"
+                      maxLength="100"
                     />
                   </Col>
                 </Row>
@@ -321,8 +345,8 @@ const Component = ({ className }) => {
                           : `Postal / Zip code*`
                       }
                       required
-                      min="5"
-                      max="200"
+                      minLength="4"
+                      maxLength="100"
                     />
                   </Col>
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
@@ -333,11 +357,33 @@ const Component = ({ className }) => {
                         activeLanguage === `Polish` ? `Państwo*` : `Country*`
                       }
                       required
-                      min="2"
-                      max="100"
+                      minLength="2"
+                      maxLength="100"
                     />
                   </Col>
                 </Row>
+              </Col>
+            </Row>
+            <Row className={styles.formRow}>
+              <Col className={`col-12 col-md-6 ${styles.formColumn}`}>
+                <p>
+                  {activeLanguage === `Polish`
+                    ? `Komentarz do zamówienia`
+                    : `Order comment`}
+                  :
+                </p>
+              </Col>
+              <Col className={`col-12 col-md-6 ${styles.formColumn}`}>
+                <textarea
+                  name="comment"
+                  placeholder={
+                    activeLanguage === `Polish`
+                      ? `Komentarz do zamówienia max 1000 znaków`
+                      : `Order comment max 1000 characters`
+                  }
+                  minLength="2"
+                  maxLength="1000"
+                />
               </Col>
             </Row>
             <Row className="d-flex justify-content-center align-items-center">

@@ -14,7 +14,8 @@ const orderSchema = new mongoose.Schema({
   zip: { type: String, required: true },
   country: { type: String, required: true },
   products: { type: Array, required: true },
-  price: Number,
+  comment: { type: String },
+  totalPrice: Number,
 });
 
 module.exports = mongoose.model(`Order`, orderSchema);

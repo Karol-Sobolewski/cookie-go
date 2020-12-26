@@ -70,7 +70,8 @@
           padding: 0;
         }
       }
-      input {
+      input,
+      textarea {
         font-family: $font-text;
         margin: 2vh 0 2vh 0;
         width: 100%;
