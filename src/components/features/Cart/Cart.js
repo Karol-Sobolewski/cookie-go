@@ -60,18 +60,28 @@ const Component = ({ children }) => {
       alignItems: `center`,
     },
   };
-  const [showModal, hideModal] = useModal(() => (
-    <ReactModal isOpen style={customStyles}>
-      <Button
-        type="button"
-        onClick={hideModal}
-        className={styles.hideModalButton}
-      >
-        <p>x</p>
-      </Button>
-      <OrderModal />
-    </ReactModal>
-  ));
+  const [showModal, hideModal] = useModal(() => {
+    const hide = () => {
+      hideModal();
+      const scrollY = document.body.style.top;
+      document.body.style.position = ``;
+      document.body.style.top = ``;
+      window.scrollTo(0, parseInt(scrollY || `0`) * -1);
+    };
+    return (
+      <ReactModal isOpen style={customStyles}>
+        <Button
+          type="button"
+          onClick={() => hide()}
+          className={styles.hideModalButton}
+        >
+          <p>x</p>
+        </Button>
+        <OrderModal />
+      </ReactModal>
+    );
+  });
+
   const handleAddQty = (item) => {
     // console.log(item.qty);
     dispatch(addProductQty(item));
@@ -88,6 +98,8 @@ const Component = ({ children }) => {
     console.log(`submit`);
     showModal(true);
     setActive(false);
+    document.body.style.position = `fixed`;
+    document.body.style.top = `-${window.scrollY}px`;
   };
 
   useEffect(() => {

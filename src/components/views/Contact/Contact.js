@@ -47,7 +47,7 @@ const Component = ({ className, children }) => {
             <a href="mailto:contact@cookiego.pl">
               <div className={styles.contactLink}>
                 <FontAwesomeIcon icon={faEnvelope} />
-                <p>contact@cookie.go</p>
+                <p>contact@cookiego.pl</p>
               </div>
             </a>
             <a href="tel:+48123456789">
