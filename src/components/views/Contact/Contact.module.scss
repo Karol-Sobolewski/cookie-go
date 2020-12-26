@@ -1,5 +1,52 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  color: blue;
+  font-family: $font-title;
+  color: $chocolate;
+  .contactBox {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    min-height: 50vh;
+    width: 100%;
+    a {
+      color: $chocolate;
+      text-decoration: none;
+    }
+    .contactLink {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1em;
+      p {
+        margin-bottom: 0;
+      }
+    }
+  }
+  .mapBox {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .contactLink {
+    &:hover {
+      color: $cookie;
+    }
+  }
+}
+
+/*Media touchable*/
+
+@media (pointer: coarse) {
+  .contactLink {
+    transition: 0.3s;
+    &:active {
+      color: $cookie;
+      transition: 0s;
+    }
+  }
 }

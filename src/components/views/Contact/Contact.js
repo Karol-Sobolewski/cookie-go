@@ -3,20 +3,77 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { Container, Row, Col } from 'react-bootstrap';
+import { compose, withProps } from 'recompose';
+import {
+  withScriptjs,
+  withGoogleMap,
+  GoogleMap,
+  Marker,
+} from 'react-google-maps';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faTwitter,
+  faFacebook,
+  faInstagram,
+} from '@fortawesome/free-brands-svg-icons';
+import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
 import styles from './Contact.module.scss';
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, children }) => {
-  console.log(`sth`);
+  const MyMapComponent = compose(
+    withProps({
+      /**
+       * Note: create and replace your own key in the Google console.
+       * https://console.developers.google.com/apis/dashboard
+       * The key "AIzaSyBkNaAGLEVq0YLQMi-PYEMabFeREadYe1Q" can be ONLY used in this sandbox (no forked).
+       */
+      googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API}&map_ids=${process.env.ID}&v=3.exp`,
+      loadingElement: <div style={{ height: `100%` }} />,
+      containerElement: <div style={{ height: `400px` }} />,
+      mapElement: <div style={{ height: `100%` }} />,
+    }),
+    withScriptjs,
+    withGoogleMap
+  )((props) => (
+    <GoogleMap
+      defaultZoom={17}
+      defaultCenter={{ lat: 50.0625465503487, lng: 19.93636624388273 }}
+      mapID="398c318013e2ad8c"
+    >
+      <Marker position={{ lat: 50.0625465503487, lng: 19.93636624388273 }} />
+    </GoogleMap>
+  ));
+  //  50.06254655034874, 19.93636624388273
   return (
     <div className={clsx(className, styles.root)}>
       <Container>
         <Row>
-          <Col>
-            <h2>Contact</h2>
-          </Col>
+          <div className={styles.contactBox}>
+            <h2>Cookie Go</h2>
+            <p>Rynek Główny 33</p>
+            <p>30-010 Kraków</p>
+            <p>Polska</p>
+            <a href="mailto:contact@cookiego.pl">
+              <div className={styles.contactLink}>
+                <FontAwesomeIcon icon={faPhoneAlt} />
+                <p>contact@cookie.go</p>
+              </div>
+            </a>
+            <a href="tel:+48123456789">
+              <div className={styles.contactLink}>
+                <FontAwesomeIcon icon={faPhoneAlt} />
+                <p>+48123456789</p>
+              </div>
+            </a>
+          </div>
         </Row>
+        <Row>
+          <div className={styles.mapBox}>
+            <MyMapComponent />
+          </div>
+        </Row>
+
         <main>{children}</main>
       </Container>
     </div>
@@ -40,6 +97,6 @@ Component.propTypes = {
 
 export {
   Component as Contact,
-  // Container as Contact,
+  // Container as OrderModal,
   Component as ContactComponent,
 };
