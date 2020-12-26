@@ -1,9 +1,11 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  height: 80%;
+  height: 100%;
   width: 100%;
   // border: 2px solid blue;
+  font-family: $font-title;
+  color: $chocolate;
   align-self: center;
   justify-self: center;
   .modalInner {
@@ -18,93 +20,131 @@
   .orderBox {
     align-items: center;
     display: flex;
+    height: 100%;
     justify-content: center;
     width: 100%;
-    // overflow-x: hidden;
-    height: 100%;
-    // border: 1px solid red;
   }
   .orderedProducts {
     overflow-x: hidden;
     height: auto;
     height: 40%;
+    // border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
     .orderedProductRow {
       width: 100%;
-      // margin: 1vh;
       padding: 1vh;
       border-bottom: 1px solid #ccc;
       height: auto;
-      img {
-        height: 5vh;
+      .orderColumn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        p {
+          text-align: center;
+        }
+        img {
+          height: 5vh;
+        }
       }
     }
   }
   .orderFormBox {
-    // overflow-x: hidden;
-    // height: auto;
     flex-direction: column;
-    overflow-x: hidden;
+    height: 50%;
     height: auto;
-    height: 60%;
+    overflow-x: hidden;
     .orderForm {
-      width: 80%;
       height: 100%;
+      width: 80%;
       .formRow {
         p {
           margin-bottom: 0;
+          text-align: justify;
+          text-justify: inter-word;
         }
         .formColumn {
+          align-items: center;
           display: flex;
           justify-content: center;
-          align-items: center;
           margin: 0;
           padding: 0;
         }
       }
+      input {
+        font-family: $font-text;
+        margin: 2vh 0 2vh 0;
+        width: 100%;
+        &::placeholder {
+          font-family: $font-title;
+          padding-left: 1em;
+        }
+        &:required:invalid:focus {
+          background-color: #fce4e4;
+          border: 1px solid #cc0033;
+        }
+        &:required:valid:focus {
+          background-color: #ddffdd;
+        }
+      }
+      .homeButton {
+        border-radius: 10px;
+        padding: 10px;
+        p {
+          margin-bottom: 0;
+        }
+      }
+      .buttonSend {
+        background-color: $cookie;
+        border-radius: 10px;
+        border: none;
+        box-shadow: $box-shadow-small;
+        color: $chocolate;
+        font-family: $font-title;
+        outline: none;
+        transition: $transition;
+        width: 20vw;
+      }
     }
   }
-  input {
+  .orderedPriceSummary {
+    align-items: flex-end;
+    justify-content: center;
+    height: 10%;
+  }
+}
+
+/* Media non-touch  */
+@media (hover: hover) and (pointer: fine) {
+  .root .orderFormBox .orderForm .buttonSend,
+  .homeButton a {
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+/*Media touchable*/
+
+@media (pointer: coarse) {
+  .root .orderFormBox .orderForm .buttonSend,
+  .homeButton a {
+    transition: 0.3s;
+    &:active {
+      color: white;
+      transition: 0s;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .orderedProductRow {
     width: 100%;
-    margin: 2vh 0 2vh 0;
-    // background-color: blue;
-    // max-width: 100%;
-    // margin: 1vh 0 1vh 0;
-    // max-width:;
-    // min-width: 100%;
-  }
-}
-
-/* ExtraExtraLarge Devices, UltraWide Desktops  */
-@media (min-width: 1921px) {
-  .root {
-  }
-}
-
-/* ExtraLarge Devices, Desktops  */
-@media (min-width: 1200px) and (max-width: 1920px) {
-  .root {
-  }
-}
-/* Large Devices, Laptops, Large Tablets iPad Pro */
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
-  .root {
-  }
-}
-
-/* Medium Devices, Tablets iPad */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .root {
-  }
-}
-
-/* Small Devices, Small tablets Large Phones */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  .root {
-  }
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 0px) and (max-width: 479px) {
-  .root {
+    padding: 1vh;
+    border-bottom: 1px solid #ccc;
+    height: auto;
+    :nth-child(2) {
+      visibility: hidden;
+      opacity: 0;
+    }
   }
 }

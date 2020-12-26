@@ -14,6 +14,8 @@ const ADD_PRODUCT = createActionName(`ADD_PRODUCT`);
 const ADD_QTY = createActionName(`ADD_QTY`);
 const SUBTRACT_QTY = createActionName(`SUBTRACT_QTY`);
 const REMOVE_PRODUCT = createActionName(`REMOVE_PRODUCT`);
+const CLEAN_CART = createActionName(`CLEAN_CART`);
+
 const UPDATE_PRICE = createActionName(`UPDATE_PRICE`);
 
 /* action creators */
@@ -21,6 +23,9 @@ export const addProductToCart = (payload) => ({ payload, type: ADD_PRODUCT });
 export const removeProductFromCart = (payload) => ({
   payload,
   type: REMOVE_PRODUCT,
+});
+export const cleanCart = () => ({
+  type: CLEAN_CART,
 });
 export const addProductQty = (payload) => ({ payload, type: ADD_QTY });
 export const subtractProductQty = (payload) => ({
@@ -61,6 +66,13 @@ export default function reducer(statePart = [], action = {}) {
       return {
         ...statePart,
         products: statePart.products.filter((i) => i.id !== action.payload.id),
+      };
+    }
+    case CLEAN_CART: {
+      console.log(`do`);
+      return {
+        ...statePart,
+        products: [],
       };
     }
     case ADD_QTY: {

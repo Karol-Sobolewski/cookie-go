@@ -18,18 +18,20 @@ router.get(`/orders`, async (req, res) => {
 router.post(`/orders`, async (req, res) => {
   try {
     const newOrder = new Order({
-      date: req.body.date,
+      added: req.body.added,
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       phone: req.body.phone,
       email: req.body.email,
       street: req.body.street,
-      street2: req.body.street2,
+      house: req.body.house,
+      appartment: req.body.appartment,
       city: req.body.city,
       state: req.body.state,
       zip: req.body.zip,
       country: req.body.country,
       products: req.body.products,
+      // price:
     });
     await newOrder.save();
     res.json(newOrder);

@@ -58,14 +58,15 @@
 }
 
 .hideModalButton {
-  position: absolute;
-  top: 2vh;
-  right: 2vh;
   font-family: $font-title;
   height: 5vh;
   margin: 0;
   padding: 0;
+  position: absolute;
+  right: 2vh;
+  top: 2vh;
   width: 5vh;
+  z-index: 10;
   p {
     margin-bottom: 0.1em;
   }
