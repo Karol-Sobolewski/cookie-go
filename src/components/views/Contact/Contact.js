@@ -12,22 +12,12 @@ import {
 } from 'react-google-maps';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTwitter,
-  faFacebook,
-  faInstagram,
-} from '@fortawesome/free-brands-svg-icons';
-import { faPhoneAlt } from '@fortawesome/free-solid-svg-icons';
+import { faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import styles from './Contact.module.scss';
 
 const Component = ({ className, children }) => {
   const MyMapComponent = compose(
     withProps({
-      /**
-       * Note: create and replace your own key in the Google console.
-       * https://console.developers.google.com/apis/dashboard
-       * The key "AIzaSyBkNaAGLEVq0YLQMi-PYEMabFeREadYe1Q" can be ONLY used in this sandbox (no forked).
-       */
       googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API}&map_ids=${process.env.ID}&v=3.exp`,
       loadingElement: <div style={{ height: `100%` }} />,
       containerElement: <div style={{ height: `400px` }} />,
@@ -56,7 +46,7 @@ const Component = ({ className, children }) => {
             <p>Polska</p>
             <a href="mailto:contact@cookiego.pl">
               <div className={styles.contactLink}>
-                <FontAwesomeIcon icon={faPhoneAlt} />
+                <FontAwesomeIcon icon={faEnvelope} />
                 <p>contact@cookie.go</p>
               </div>
             </a>
