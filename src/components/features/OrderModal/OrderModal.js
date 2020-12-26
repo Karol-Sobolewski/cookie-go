@@ -177,6 +177,8 @@ const Component = ({ className }) => {
                         activeLanguage === `Polish` ? `Imię*` : `Name*`
                       }
                       required
+                      min="2"
+                      max="100"
                     />
                   </Col>
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
@@ -186,6 +188,8 @@ const Component = ({ className }) => {
                         activeLanguage === `Polish` ? `Nazwisko*` : `Last Name*`
                       }
                       required
+                      min="2"
+                      max="100"
                     />
                   </Col>
                 </Row>
@@ -209,6 +213,8 @@ const Component = ({ className }) => {
                       ? `Numer telefonu`
                       : `Phone number`
                   }
+                  min="5"
+                  max="15"
                 />
               </Col>
             </Row>
@@ -222,6 +228,8 @@ const Component = ({ className }) => {
                   type="email"
                   placeholder="E-mail*"
                   required
+                  min="3"
+                  max="100"
                 />
               </Col>
             </Row>
@@ -245,6 +253,8 @@ const Component = ({ className }) => {
                       activeLanguage === `Polish` ? `Ulica*` : `Street address*`
                     }
                     required
+                    min="2"
+                    max="100"
                   />
                 </Row>
                 <Row className="d-flex justify-content-between align-items-center">
@@ -255,6 +265,8 @@ const Component = ({ className }) => {
                         activeLanguage === `Polish` ? `Nr domu*` : `House nr.*`
                       }
                       required
+                      min="1"
+                      max="100"
                     />
                   </Col>
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
@@ -265,6 +277,8 @@ const Component = ({ className }) => {
                           ? `Nr lokalu`
                           : `Appartment number`
                       }
+                      min="2"
+                      max="100"
                     />
                   </Col>
                 </Row>
@@ -277,6 +291,8 @@ const Component = ({ className }) => {
                         activeLanguage === `Polish` ? `Miasto*` : `City*`
                       }
                       required
+                      min="2"
+                      max="100"
                     />
                   </Col>
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
@@ -288,6 +304,8 @@ const Component = ({ className }) => {
                           ? `Województwo`
                           : `State / Province`
                       }
+                      min="2"
+                      max="100"
                     />
                   </Col>
                 </Row>
@@ -303,6 +321,8 @@ const Component = ({ className }) => {
                           : `Postal / Zip code*`
                       }
                       required
+                      min="5"
+                      max="200"
                     />
                   </Col>
                   <Col className={`col-12 col-md-5 ${styles.formColumn}`}>
@@ -313,6 +333,8 @@ const Component = ({ className }) => {
                         activeLanguage === `Polish` ? `Państwo*` : `Country*`
                       }
                       required
+                      min="2"
+                      max="100"
                     />
                   </Col>
                 </Row>
