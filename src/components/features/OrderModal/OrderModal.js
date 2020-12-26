@@ -140,15 +140,13 @@ const Component = ({ className }) => {
               </Row>
             ))
             : (
-              <div>
-                <Button className={styles.homeButton} onClick={() => goToHomePage()}>
+                <button className={styles.homeButton} onClick={() => goToHomePage()}>
                   <p href="/">
                     {activeLanguage === `Polish`
                       ? `Wróć do strony głównej`
                     : `Go back to homepage`}
                   </p>
-                </Button>
-              </div>
+                </button>
             )}
             {/* eslint-enable */}
         </Row>

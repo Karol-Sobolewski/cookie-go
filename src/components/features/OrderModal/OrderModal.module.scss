@@ -86,13 +86,7 @@
           background-color: #ddffdd;
         }
       }
-      .homeButton {
-        border-radius: 10px;
-        padding: 10px;
-        p {
-          margin-bottom: 0;
-        }
-      }
+
       .buttonSend {
         background-color: $cookie;
         border-radius: 10px;
@@ -111,12 +105,25 @@
     justify-content: center;
     height: 10%;
   }
+  .homeButton {
+    align-items: center;
+    background-color: $cookie;
+    border-radius: 10px !important;
+    color: $chocolate;
+    display: flex;
+    justify-self: center;
+    padding: 10px;
+    transition: $transition;
+    p {
+      margin-bottom: 0;
+    }
+  }
 }
 
 /* Media non-touch  */
 @media (hover: hover) and (pointer: fine) {
   .root .orderFormBox .orderForm .buttonSend,
-  .homeButton a {
+  .homeButton {
     &:hover {
       color: white;
     }
@@ -127,7 +134,7 @@
 
 @media (pointer: coarse) {
   .root .orderFormBox .orderForm .buttonSend,
-  .homeButton a {
+  .homeButton {
     transition: 0.3s;
     &:active {
       color: white;

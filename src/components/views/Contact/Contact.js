@@ -18,7 +18,7 @@ import styles from './Contact.module.scss';
 const Component = ({ className, children }) => {
   const MyMapComponent = compose(
     withProps({
-      googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${process.env.MAPS_API}&map_ids=${process.env.MAPS_ID}&v=3.exp`,
+      googleMapURL: `https://maps.googleapis.com/maps/api/js?key=AIzaSyBBKy9aMQ2GWr-z5GOIaBxp9R66JjGWzmE&map_ids=398c318013e2ad8c&v=3.exp`,
       loadingElement: <div style={{ height: `100%` }} />,
       containerElement: <div style={{ height: `400px` }} />,
       mapElement: <div style={{ height: `100%` }} />,
