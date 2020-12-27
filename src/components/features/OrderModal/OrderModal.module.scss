@@ -1,13 +1,12 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  height: 100%;
-  width: 100%;
-  // border: 2px solid blue;
-  font-family: $font-title;
-  color: $chocolate;
   align-self: center;
+  color: $orderModal-color;
+  font-family: $font-title;
+  height: 100%;
   justify-self: center;
+  width: 100%;
   .modalInner {
     align-items: center;
     display: flex;
@@ -25,20 +24,19 @@
     width: 100%;
   }
   .orderedProducts {
-    overflow-x: hidden;
-    height: auto;
     height: 40%;
-    // border-bottom: 2px solid #ccc;
+    height: auto;
     margin-bottom: 10px;
+    overflow-x: hidden;
     .orderedProductRow {
-      width: 100%;
-      padding: 1vh;
-      border-bottom: 1px solid #ccc;
+      border-bottom: $orderModal-orderedProductRow-border;
       height: auto;
+      padding: 1vh;
+      width: 100%;
       .orderColumn {
+        align-items: center;
         display: flex;
         justify-content: center;
-        align-items: center;
         p {
           text-align: center;
         }
@@ -80,20 +78,20 @@
           padding-left: 1em;
         }
         &:required:invalid:focus {
-          background-color: #fce4e4;
-          border: 1px solid #cc0033;
+          background-color: $orderModal-input-invalid-bg;
+          border: $orderModal-input-invalid-border;
         }
         &:required:valid:focus {
-          background-color: #ddffdd;
+          background-color: $orderModal-input-required-focus-bg;
         }
       }
 
       .buttonSend {
-        background-color: $cookie;
+        background-color: $orderModal-button-bg;
         border-radius: 10px;
         border: none;
         box-shadow: $box-shadow-small;
-        color: $chocolate;
+        color: $orderModal-button-color;
         font-family: $font-title;
         outline: none;
         transition: $transition;
@@ -108,9 +106,9 @@
   }
   .homeButton {
     align-items: center;
-    background-color: $cookie;
+    background-color: $orderModal-button-bg;
     border-radius: 10px !important;
-    color: $chocolate;
+    color: $orderModal-button-color;
     display: flex;
     justify-self: center;
     padding: 10px;
@@ -126,7 +124,7 @@
   .root .orderFormBox .orderForm .buttonSend,
   .homeButton {
     &:hover {
-      color: white;
+      color: $orderModal-button-bg-active;
     }
   }
 }
@@ -136,9 +134,9 @@
 @media (pointer: coarse) {
   .root .orderFormBox .orderForm .buttonSend,
   .homeButton {
-    transition: 0.3s;
+    transition: $transition;
     &:active {
-      color: white;
+      color: $orderModal-button-bg-active;
       transition: 0s;
     }
   }
@@ -146,13 +144,13 @@
 
 @media only screen and (max-width: 767px) {
   .orderedProductRow {
-    width: 100%;
-    padding: 1vh;
-    border-bottom: 1px solid #ccc;
+    border-bottom: $orderModal-orderedProductRow-border;
     height: auto;
+    padding: 1vh;
+    width: 100%;
     :nth-child(2) {
-      visibility: hidden;
       opacity: 0;
+      visibility: hidden;
     }
   }
 }

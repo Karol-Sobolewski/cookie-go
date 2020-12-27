@@ -12,15 +12,12 @@ export const fetchStarted = (payload) => ({ payload, type: FETCH_START });
 export const fetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
 
-// export const getMenuItems = ({ menus }) => menus.data;
-
 export const fetchMenu = () => (dispatch) => {
   dispatch(fetchStarted());
 
   Axios.get(`${API_URL}/menus`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
-      // console.log(`res`, res.data);
     })
     .catch((err) => {
       dispatch(fetchError(err.message || true));
@@ -39,7 +36,6 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case FETCH_SUCCESS: {
-      // console.log(`menu`, action.payload);
       return {
         ...statePart,
         loading: {

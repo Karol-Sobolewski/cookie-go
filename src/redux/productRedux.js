@@ -4,12 +4,6 @@ import { API_URL } from '../config';
 
 /* Selectors */
 
-// export const getProductById = ({ product }, productId) => {
-//   console.log(productId);
-//   console.log(product);
-//   return product.data;
-// };
-
 const reducerName = `products`;
 const createActionName = (name) => `app/${reducerName}/${name}`;
 
@@ -21,15 +15,12 @@ export const fetchStarted = (payload) => ({ payload, type: FETCH_START });
 export const fetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
 
-// export const getMenuItems = ({ menus }) => menus.data;
-
 export const fetchProducts = () => (dispatch) => {
   dispatch(fetchStarted());
 
   Axios.get(`${API_URL}/products`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
-      // console.log(`res`, res.data);
     })
     .catch((err) => {
       dispatch(fetchError(err.message || true));
@@ -62,7 +53,6 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case FETCH_SUCCESS: {
-      // console.log(`menu`, action.payload);
       return {
         ...statePart,
         loading: {

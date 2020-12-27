@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -7,7 +7,6 @@ import clsx from 'clsx';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './OrderModal.module.scss';
 import { Button } from '../../common/Button/Button';
-// import { connect } from 'react-redux';
 import { addOrderRequest } from '../../../redux/orderRedux';
 import { cleanCart } from '../../../redux/cartRedux';
 
@@ -31,8 +30,7 @@ const Component = ({ className }) => {
     totalPrice: cartTotalPrice,
   });
 
-  const cleanUp = (e) => {
-    console.log(e);
+  const cleanUp = () => {
     setOrder(null);
     document.getElementById(`orderForm`).reset();
     dispatch(cleanCart());
@@ -70,14 +68,12 @@ const Component = ({ className }) => {
     } else if (
       order.firstName.length < 2 ||
       order.lastName.length < 2 ||
-      order.email.length < 3 ||
+      order.email.length < 5 ||
       order.street.length < 2 ||
-      order.house.length < 1 ||
+      order.house.length < 2 ||
       order.city.length < 2 ||
-      order.phone.length < 5 ||
-      order.zip.length < 2 ||
-      order.country.length < 2 ||
-      order.comment.length < 2
+      order.zip.length < 3 ||
+      order.country.length < 2
     ) {
       alert(
         activeLanguage === `Polish`
@@ -94,8 +90,7 @@ const Component = ({ className }) => {
       order.city.length > 100 ||
       order.phone.length > 15 ||
       order.zip.length > 15 ||
-      order.country.length > 100 ||
-      order.comment.length > 1000
+      order.country.length > 100
     ) {
       alert(
         activeLanguage === `Polish`
@@ -110,6 +105,15 @@ const Component = ({ className }) => {
           : `Please fill email correctly`
       );
       e.preventDefault();
+    } else if (order.comment) {
+      if (order.comment.length < 2 || order.comment.length > 1000) {
+        alert(
+          activeLanguage === `Polish`
+            ? `Podaj poprawny email`
+            : `Please fill email correctly`
+        );
+        e.preventDefault();
+      }
     } else {
       alert(
         activeLanguage === `Polish`
@@ -118,7 +122,7 @@ const Component = ({ className }) => {
       );
       e.preventDefault();
       dispatch(addOrderRequest(order));
-      cleanUp(e);
+      cleanUp();
     }
   };
 
@@ -175,7 +179,6 @@ const Component = ({ className }) => {
             id="orderForm"
             className={styles.orderForm}
             action="#"
-            // method="post"
             onSubmit={(e) => handleSubmit(e)}
             onChange={(e) => handleChange(e)}
           >
@@ -414,8 +417,4 @@ Component.propTypes = {
   className: PropTypes.string,
 };
 
-export {
-  Component as OrderModal,
-  // Container as OrderModal,
-  Component as OrderModalComponent,
-};
+export { Component as OrderModal, Component as OrderModalComponent };

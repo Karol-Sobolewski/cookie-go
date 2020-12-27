@@ -1,15 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './NewProducts.module.scss';
-
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, children }) => {
   const activeLanguage = useSelector(
@@ -50,7 +46,9 @@ const Component = ({ className, children }) => {
                   alt={product.images[0].title}
                 />
                 <p className={styles.clickOnMe}>
-                  {activeLanguage === `Polish` ? `Kliknij` : `Click`}
+                  {activeLanguage === `Polish`
+                    ? `Opis produktu`
+                    : `Product description`}
                 </p>
               </Link>
               <div className={styles.productBoxText}>
@@ -84,8 +82,4 @@ Component.propTypes = {
   className: PropTypes.string,
 };
 
-export {
-  Component as NewProducts,
-  // Container as NewProducts,
-  Component as NewProductsComponent,
-};
+export { Component as NewProducts, Component as NewProductsComponent };

@@ -1,8 +1,8 @@
 @import "../../../styles/settings.scss";
 
 .root {
+  color: $contact-color;
   font-family: $font-title;
-  color: $chocolate;
   .contactBox {
     align-items: center;
     display: flex;
@@ -12,7 +12,7 @@
     min-height: 50vh;
     width: 100%;
     a {
-      color: $chocolate;
+      color: $contact-link-color;
       text-decoration: none;
     }
     .contactLink {
@@ -21,8 +21,8 @@
       justify-content: center;
       margin-bottom: 1em;
       p {
-        padding: 0 1vw 0 1vw;
         margin-bottom: 0;
+        padding: 0 1vw 0 1vw;
       }
     }
   }
@@ -35,7 +35,7 @@
 @media (hover: hover) and (pointer: fine) {
   .contactLink {
     &:hover {
-      color: $cookie;
+      color: $contact-link-color-active;
     }
   }
 }
@@ -44,9 +44,9 @@
 
 @media (pointer: coarse) {
   .contactLink {
-    transition: 0.3s;
+    transition: $transition;
     &:active {
-      color: $cookie;
+      color: $contact-link-color-active;
       transition: 0s;
     }
   }

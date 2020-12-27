@@ -7,7 +7,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { Button } from '../Button/Button';
-import { CartForm } from '../CartForm/CartForm';
+import { AddToCartForm } from '../AddToCartForm/AddToCartForm';
 import { NotFound } from '../../views/NotFound/NotFound';
 import { NutritionTable } from '../NutritionTable/NutritionTable';
 
@@ -44,7 +44,9 @@ const Component = ({ className, children }) => {
                   />
                 </button>
                 <p className={styles.clickOnMe}>
-                  {activeLanguage === `Polish` ? `Kliknij` : `Click`}
+                  {activeLanguage === `Polish`
+                    ? `Opis produktu`
+                    : `Product description`}
                 </p>
               </div>
               <NutritionTable
@@ -91,7 +93,7 @@ const Component = ({ className, children }) => {
                   </p>
                 </Row>
                 <Row>
-                  <CartForm
+                  <AddToCartForm
                     product={productById}
                     singlePrice={productById.price}
                     showQty
@@ -115,6 +117,5 @@ Component.propTypes = {
 
 export {
   Component as SingleProductPage,
-  // Container as SingleProductPage,
   Component as SingleProductPageComponent,
 };

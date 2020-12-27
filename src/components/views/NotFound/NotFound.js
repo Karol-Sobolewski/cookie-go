@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { Redirect } from 'react-router'; //eslint-disable-line
+import { Redirect } from 'react-router';
 import { useSelector } from 'react-redux';
 
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './NotFound.module.scss';
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, children }) => {
   const [redirect, setRedirect] = useState(false);
-  // console.log(language);
-  // TODO useHistory
-
   useEffect(() => {
     const timeOut = setTimeout(() => setRedirect(true), 5000);
     return () => clearTimeout(timeOut);
@@ -51,23 +46,9 @@ const Component = ({ className, children }) => {
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-export {
-  Component as NotFound,
-  // Container as NotFound,
-  Component as NotFoundComponent,
-};
+export { Component as NotFound, Component as NotFoundComponent };

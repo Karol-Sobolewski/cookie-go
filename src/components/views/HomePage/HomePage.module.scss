@@ -2,53 +2,12 @@
 
 .root {
   font-family: $font-title;
-  color: $chocolate;
+  color: $home-color;
   .shortDescription {
     align-items: center;
     display: flex;
+    flex-direction: column;
     height: 100vh;
     justify-content: space-around;
-    flex-direction: column;
-  }
-}
-
-/* ExtraExtraLarge Devices, UltraWide Desktops  */
-@media (min-width: 1921px) {
-  .root {
-  }
-}
-
-/* ExtraLarge Devices, Desktops  */
-@media (min-width: 1200px) and (max-width: 1920px) {
-  .root {
-  }
-}
-/* Large Devices, Laptops, Large Tablets iPad Pro */
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
-  .root {
-  }
-}
-
-/* Medium Devices, Tablets iPad */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .root {
-  }
-}
-
-/* Small Devices, Small tablets Large Phones */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  .root {
-    // .page {
-    //   height: 50vh;
-    // }
-  }
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 0px) and (max-width: 479px) {
-  .root {
-    // .page {
-    //   height: 50vh;
-    // }
   }
 }

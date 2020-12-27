@@ -3,7 +3,7 @@
 .root {
   border-radius: 20px;
   box-shadow: $box-shadow;
-  color: $chocolate;
+  color: $productForm-color;
   font-family: $font-title;
   position: relative;
   &:after {
@@ -55,7 +55,7 @@
   position: relative;
   text-align: center;
   transform-style: preserve-3d;
-  transition: transform 0.8s;
+  transition: $transition-long;
   width: 100%;
   &__rotate {
     @extend .productBoxInner;
@@ -81,15 +81,15 @@
       height: 100%;
     }
     .clickOnMe {
-      color: $white;
+      color: $productForm-clickOnMe-color;
       margin-bottom: 0;
       position: absolute;
-      stroke: 5px white;
-      text-shadow: 2px 2px $chocolate;
+      stroke: $productForm-clickOnMe-stroke;
+      text-shadow: $productForm-clickOnMe-shadow;
     }
   }
   .productDescriptionBox {
-    background: white;
+    background: $productForm-productDescriptionBox-bg;
     border-radius: 10px;
     box-shadow: $box-shadow;
     font-family: $font-title;
@@ -117,13 +117,13 @@
     .showNutritionButton {
       background: none;
       border-radius: 10px;
-      border: 1px solid $cookie;
-      color: $chocolate;
+      border: $productForm-showNutritionButton-border;
+      color: $productForm-showNutritionButton-color;
       padding: 1vh;
       box-shadow: $box-shadow-small;
       &:hover {
-        background-color: $cookie;
-        color: white;
+        background-color: $productForm-showNutritionButton-color-active-bg;
+        color: $productForm-showNutritionButton-color-active;
       }
     }
     .nutritionArrow {

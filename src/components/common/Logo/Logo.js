@@ -4,8 +4,6 @@ import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './Logo.module.scss';
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className }) => {
   const activeLanguage = useSelector(
@@ -26,22 +24,8 @@ const Component = ({ className }) => {
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
-
 Component.propTypes = {
   className: PropTypes.string,
 };
 
-export {
-  Component as Logo,
-  // Container as Logo,
-  Component as LogoComponent,
-};
+export { Component as Logo, Component as LogoComponent };

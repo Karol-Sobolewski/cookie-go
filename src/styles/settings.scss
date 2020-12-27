@@ -1,12 +1,3 @@
-$base-padding: 24px;
-$radius: 5px;
-$base-size: 1em;
-$transition: all 0.3s;
-
-$font-title: "CookiesPolish", sans-serif;
-$font-subtitle: "Dearest", sans-serif;
-$font-text: "Poppins", sans-serif;
-
 /* DO NOT USE THOSE VARIABLES IN THE OTHER SCSS FILES! */
 $black: #000000;
 $blue: #0000ff;
@@ -18,61 +9,131 @@ $gray: #434343;
 $green: #008000;
 $lightBlack: #2a2a2a;
 $lightGray: #b2b2b2;
-$lightGreen: #32cd32;
+$lightGreen: #ddffdd;
 $lightGreyBlue: #7aa3cc;
 $lightWhite: #f4f5f7;
 $lightWhiteBlue: #e0e3ed;
 $mint: #aaf0d1;
-$pink: #ffc0cb;
-$red: #ff0000;
+$pink: #fce4e4;
+$red: #cc0033;
 $transparent: transparent;
 $white: #ffffff;
 $yellow: #ffff00;
 
+$base-padding: 24px;
+$radius: 5px;
+$base-size: 1em;
+$transition: all 0.3s;
+$transition-long: all 0.8s;
+
+$font-title: "CookiesPolish", sans-serif;
+$font-subtitle: "Dearest", sans-serif;
+$font-text: "Poppins", sans-serif;
+
 $box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
 $box-shadow-small: 0px 0px 25px 10px rgba(0, 0, 0, 0.1);
-/*Background*/
 
-// $background-bg: linear-gradient(90deg, #fdfbfb 0%, #ebedee 100%);
+/* About */
+$about-text: $chocolate;
 
-/*Button*/
+/* AddToCartForm */
+$addToCartForm-color: $chocolate;
 
+/* Button */
 $button-color: $chocolate;
 $button-color-alt: $chocolate;
 $button-color-active: $white;
 $button-color-active-alt: $cookie;
+$button-bg: $cookie;
+$button-bg-alt: $white;
 
-// $button-main-bg-hover: $mint;
-// $button-main-bg: $lightBlack;
-// $button-main-text: $white;
-// $button-outline-bg-hover: $lightBlack;
-// $button-outline-bg: $white;
-// $button-outline-border: $lightBlack;
-// $button-outline-text-hover: $white;
-// $button-outline-text: $lightBlack;
+/* Cart */
+$cart-color: $chocolate;
+$cart-bg: $white;
+$cart-button-bg: $white;
+$cart-icon-color: $chocolate;
+$cart-icon-color-active: $cookie;
+$cartProductIndicator-bg: $cookie;
+$cartProductIndicator-color: $chocolate;
+$cartProductRow-border: 1px solid $lightGray;
+$cartProductTitle-bg: $white;
+$cartProductTitle-color: $chocolate;
 
-/*Header*/
+/* Contact */
+$contact-color: $chocolate;
+$contact-link-color: $chocolate;
+$contact-link-color-active: $cookie;
 
+/* Footer */
+$footer-bg: $cookie;
+$footer-icon-color: $chocolate;
+$footer-icon-color-active: $white;
+
+/* Header */
 $header-pattern-bg: linear-gradient(to right, $cookie 50%, $transparent 0);
 
-/*Navbar*/
+/* Home */
+$home-color: $chocolate;
 
+/* Navbar */
 $navbar-bg: $cookie;
 $navbar-link: $chocolate;
 $navbar-link-hover: $white;
 $navbar-link-active: $white;
-$navbar-cart-icon: $chocolate;
-$navbar-cart-icon-active: $cookie;
-// $header-bg: $lightGray;
-// $header-link: $lightBlack;
-// $header-link-active-hover: $lightGreyBlue;
-// $header-link-active: $lightGreyBlue;
-// $header-link: $lightBlack;
+$navbar-link-active-alt: $cookie;
+$navbar-changeLanguage-button-active: $white;
+$navbar-languagesBox-bg: $white;
+$navbar-languageBox-link-color-active: $cookie;
+$navbar-mainMenu-bg: $white;
+$navbar-mainMenu-border: 1px solid $cookie;
+$navbar-burgerButton-bg: $cookie;
+$navbar-burgerButton-color: $chocolate;
 
-/*About*/
+/* NewProducts */
+$NewProducts-color: $chocolate;
+$NewProducts-clickOnMe-color: $white;
+$NewProducts-clickOnMe-stroke: 5px $white;
+$NewProducts-clickOnMe-shadow: 2px 2px $chocolate;
+$NewProducts-productBoxText-color: $cookie;
 
-$about-text: $chocolate;
-
-/*Not Found*/
+/* Not Found */
 $notFound-link: $cookie;
 $notFound-color: $chocolate;
+
+/* Nutrition */
+$nutrition-color: $chocolate;
+$nutrition-bg: $white;
+$nutrition-border-color: 1px solid $lightGray;
+
+/* OrderModal */
+$orderModal-color: $chocolate;
+$orderModal-orderedProductRow-border: 1px solid $lightGray;
+$orderModal-input-invalid-bg: $pink;
+$orderModal-input-invalid-border: 1px solid $red;
+$orderModal-input-required-focus-bg: $lightGreen;
+$orderModal-button-bg: $cookie;
+$orderModal-button-bg-active: $white;
+$orderModal-button-color: $chocolate;
+
+/* ProductForm */
+$productForm-color: $chocolate;
+$productForm-clickOnMe-color: $white;
+$productForm-clickOnMe-stroke: 5px $white;
+$productForm-clickOnMe-shadow: 2px 2px $chocolate;
+$productForm-productDescriptionBox-bg: $white;
+$productForm-showNutritionButton-border: 1px solid $cookie;
+$productForm-showNutritionButton-color: $chocolate;
+$productForm-showNutritionButton-color-active: $white;
+$productForm-showNutritionButton-color-active-bg: $cookie;
+
+/* SinglePage */
+$SinglePage-border: 4px solid $lightGray;
+$SinglePage-clickOnMe-color: $white;
+$SinglePage-clickOnMe-stroke: 5px $white;
+$SinglePage-clickOnMe-shadow: 2px 2px $chocolate;
+
+/* Slider */
+$slider-loader-bar-color: $darkWhite;
+$slider-organic-arrow-color: $darkWhite;
+$slider-organic-arrow-color-active: $white;
+$slider-font-color: $white;

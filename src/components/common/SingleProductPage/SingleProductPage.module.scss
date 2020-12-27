@@ -4,7 +4,7 @@
   font-family: $font-title;
   color: $chocolate;
   .productRow > :first-child {
-    border-right: solid 4px #ccc;
+    border-right: $SinglePage-border;
   }
   .productBox {
     align-items: center;
@@ -22,7 +22,7 @@
       justify-content: center;
       opacity: 0;
       position: absolute;
-      transition: all 0.5s;
+      transition: $transition;
       visibility: hidden;
       width: 50%;
       z-index: 10;
@@ -37,17 +37,17 @@
         width: 100%;
       }
       .clickOnMe {
-        color: $white;
+        color: $SinglePage-clickOnMe-color;
         margin-bottom: 0;
         position: absolute;
-        stroke: 5px white;
-        text-shadow: 2px 2px $chocolate;
+        stroke: $SinglePage-clickOnMe-stroke;
+        text-shadow: $SinglePage-clickOnMe-shadow;
       }
     }
     .image__active {
       @extend .image;
       opacity: 1;
-      transition: all 0.5s;
+      transition: $transition;
       visibility: visible;
     }
     .backArrow {
@@ -69,7 +69,6 @@
       visibility: hidden;
     }
     .description {
-      // position: absolute;
       align-items: center;
       display: flex;
       flex-direction: column;

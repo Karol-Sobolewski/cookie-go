@@ -2,7 +2,7 @@
 
 .root {
   align-items: center;
-  background: $cookie;
+  background: $button-bg;
   border-radius: 50%;
   border: none;
   box-shadow: $box-shadow;
@@ -17,7 +17,7 @@
 @media (hover: hover) and (pointer: fine) {
   .root {
     &:hover {
-      color: white;
+      color: $button-color-active;
     }
   }
 }
@@ -26,9 +26,8 @@
 
 @media (pointer: coarse) {
   .root {
-    transition: 0.3s;
     &:active {
-      color: white;
+      color: $button-color-active;
       transition: 0s;
     }
   }

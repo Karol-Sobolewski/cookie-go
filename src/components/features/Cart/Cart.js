@@ -22,8 +22,6 @@ const Component = ({ children }) => {
   const dispatch = useDispatch();
 
   const [active, setActive] = useState(false);
-  const [price, setPrice] = useState(1);
-  // const [showModal, setModal] = useState(false);
 
   const cartItems = useSelector((state) => state.cart.products);
 
@@ -83,28 +81,30 @@ const Component = ({ children }) => {
   });
 
   const handleAddQty = (item) => {
-    // console.log(item.qty);
-    dispatch(addProductQty(item));
-    console.log(`add`, item);
-    const newPrice = item.qty * item.singlePrice;
-    setPrice(newPrice);
+    dispatch(
+      addProductQty({
+        ...item,
+        qty: item.qty + 1,
+        price: item.singlePrice * item.qty,
+      })
+    );
   };
   const handleSubtractQty = (item) => {
-    // console.log(item);
-    dispatch(subtractProductQty(item));
+    dispatch(subtractProductQty({ ...item, qty: item.qty - 1 }));
+  };
+
+  const handleProductRemove = (item) => {
+    dispatch(removeProductFromCart(item));
   };
 
   const handleSubmitOrder = () => {
-    console.log(`submit`);
     showModal(true);
     setActive(false);
     document.body.style.position = `fixed`;
     document.body.style.top = `-${window.scrollY}px`;
   };
 
-  useEffect(() => {
-    console.log(price);
-  });
+  useEffect(() => {});
 
   return (
     <Container ref={wrapperRef} className={styles.root}>
@@ -128,7 +128,7 @@ const Component = ({ children }) => {
           <Container className={styles.products}>
             {cartItems.map((item) => (
               <Row key={item.id} className={styles.cartProductRow}>
-                <Col className={`${styles.cartImage} col-3`}>
+                <Col className={`${styles.cartProductImage} col-3`}>
                   <img src={item.image[0].src} alt={item.image[0].title} />
                 </Col>
                 <Col className="col-3">
@@ -148,8 +148,7 @@ const Component = ({ children }) => {
                     <p>+</p>
                   </Button>
                 </Col>
-                {/* <Col>{item.singlePrice}</Col> */}
-                <div id="cartName" className={styles.cartName}>
+                <div id="cartName" className={styles.cartProductTitle}>
                   {item.name}
                 </div>
                 <Col className="col-3">
@@ -168,7 +167,7 @@ const Component = ({ children }) => {
                   <Button
                     type="button"
                     className={styles.removeButton}
-                    onClick={() => dispatch(removeProductFromCart(item))}
+                    onClick={() => handleProductRemove(item)}
                   >
                     <p>x</p>
                   </Button>
@@ -212,8 +211,4 @@ Component.propTypes = {
   children: PropTypes.node,
 };
 
-export {
-  Component as Cart,
-  // Container as Cart,
-  Component as CartComponent,
-};
+export { Component as Cart, Component as CartComponent };

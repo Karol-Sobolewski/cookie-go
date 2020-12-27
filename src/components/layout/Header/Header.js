@@ -8,9 +8,6 @@ import styles from './Header.module.scss';
 import { Logo } from '../../common/Logo/Logo';
 import { Navbar } from '../Navbar/Navbar';
 
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
-
 const Component = ({ className, children }) => (
   <div className={clsx(className, styles.root)}>
     <Container fluid>
@@ -26,23 +23,9 @@ const Component = ({ className, children }) => (
   </div>
 );
 
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-export {
-  Component as Header,
-  // Container as Header,
-  Component as HeaderComponent,
-};
+export { Component as Header, Component as HeaderComponent };

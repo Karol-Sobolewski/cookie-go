@@ -34,7 +34,6 @@ const Component = ({ className, children }) => {
       <Marker position={{ lat: 50.0625465503487, lng: 19.93636624388273 }} />
     </GoogleMap>
   ));
-  //  50.06254655034874, 19.93636624388273
   return (
     <div className={clsx(className, styles.root)}>
       <Container>
@@ -69,24 +68,9 @@ const Component = ({ className, children }) => {
     </div>
   );
 };
-
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-export {
-  Component as Contact,
-  // Container as OrderModal,
-  Component as ContactComponent,
-};
+export { Component as Contact, Component as ContactComponent };

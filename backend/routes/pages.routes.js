@@ -7,8 +7,6 @@ const Page = require(`../models/page.model`);
 router.get(`/pages`, async (req, res) => {
   try {
     const result = await Page.find();
-    // console.log(`pages`, result);
-
     if (!result) res.status(404).json({ page: `Not found` });
     else res.json(result);
   } catch (err) {

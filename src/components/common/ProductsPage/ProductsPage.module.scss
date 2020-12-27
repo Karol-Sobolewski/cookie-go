@@ -4,11 +4,11 @@
 
 .root {
   .productGrid {
+    align-items: center;
     display: inline-flex;
     flex-wrap: wrap;
     gap: 5vh;
-    width: 100%;
     justify-content: center;
-    align-items: center;
+    width: 100%;
   }
 }

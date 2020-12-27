@@ -1,6 +1,3 @@
-// import Axios from 'axios';
-// import { API_URL } from '../config';
-
 /* selectors */
 export const getAll = ({ cart }) => cart.products;
 export const getCount = ({ cart }) => cart.products.length;
@@ -10,34 +7,90 @@ const reducerName = `cart`;
 const createActionName = (name) => `app/${reducerName}/${name}`;
 
 /* action types */
+const FETCH_START = createActionName(`FETCH_START`);
+const FETCH_ERROR = createActionName(`FETCH_ERROR`);
+
 const ADD_PRODUCT = createActionName(`ADD_PRODUCT`);
 const ADD_QTY = createActionName(`ADD_QTY`);
 const SUBTRACT_QTY = createActionName(`SUBTRACT_QTY`);
 const REMOVE_PRODUCT = createActionName(`REMOVE_PRODUCT`);
 const CLEAN_CART = createActionName(`CLEAN_CART`);
-
-const UPDATE_PRICE = createActionName(`UPDATE_PRICE`);
+const UPDATE_CART_FROM_LOCAL_STORAGE = createActionName(
+  `UPDATE_CART_FROM_LOCALSTORAGE`
+);
 
 /* action creators */
-export const addProductToCart = (payload) => ({ payload, type: ADD_PRODUCT });
-export const removeProductFromCart = (payload) => ({
+export const fetchStarted = (payload) => ({ payload, type: FETCH_START });
+export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
+export const fetchCartDataFromLocalStorage = (payload) => ({
   payload,
-  type: REMOVE_PRODUCT,
+  type: UPDATE_CART_FROM_LOCAL_STORAGE,
 });
-export const cleanCart = () => ({
-  type: CLEAN_CART,
-});
+
+export const saveCartToLocalStorage = (state) => () => {
+  try {
+    const serialisedState = JSON.stringify(state);
+    localStorage.setItem(`cartData`, serialisedState);
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
+export const loadCartFromLocalStorage = () => (dispatch, getState) => {
+  try {
+    const serialisedState = JSON.parse(localStorage.getItem(`cartData`));
+    if (serialisedState !== null)
+      dispatch(fetchCartDataFromLocalStorage(serialisedState));
+  } catch (err) {
+    console.warn(err);
+  }
+};
+
+export const addProductToCart = (payload) => ({ payload, type: ADD_PRODUCT });
+
 export const addProductQty = (payload) => ({ payload, type: ADD_QTY });
+
 export const subtractProductQty = (payload) => ({
   payload,
   type: SUBTRACT_QTY,
 });
-export const updatePrice = (payload) => ({ ...payload, type: UPDATE_PRICE });
+
+export const removeProductFromCart = (payload) => ({
+  payload,
+  type: REMOVE_PRODUCT,
+});
+
+export const cleanCart = () => ({
+  type: CLEAN_CART,
+});
 
 /* reducer */
-
 export default function reducer(statePart = [], action = {}) {
   switch (action.type) {
+    case FETCH_START: {
+      return {
+        ...statePart,
+        loading: {
+          active: true,
+          error: false,
+        },
+      };
+    }
+    case FETCH_ERROR: {
+      return {
+        ...statePart,
+        loading: {
+          active: false,
+          error: action.payload,
+        },
+      };
+    }
+    case UPDATE_CART_FROM_LOCAL_STORAGE:
+      return {
+        ...statePart,
+        products: action.payload,
+      };
+
     case ADD_PRODUCT: {
       const existingCartItem = statePart.products.find(
         (item) => item.id === action.payload.id
@@ -53,7 +106,7 @@ export default function reducer(statePart = [], action = {}) {
                 price: product.price + action.payload.price,
               };
             }
-            return product;
+            return { ...product };
           }),
         };
       }
@@ -69,7 +122,6 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case CLEAN_CART: {
-      console.log(`do`);
       return {
         ...statePart,
         products: [],
@@ -80,12 +132,10 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         products: statePart.products.map((product) => {
           if (product.id === action.payload.id) {
-            // console.log(product);
-            // console.log(action.payload);
             return {
               ...product,
-              qty: product.qty + 1,
-              price: product.qty * product.singlePrice,
+              qty: action.payload.qty,
+              price: action.payload.qty * product.singlePrice,
             };
           }
           return product;
@@ -97,29 +147,10 @@ export default function reducer(statePart = [], action = {}) {
         ...statePart,
         products: statePart.products.map((product) => {
           if (product.id === action.payload.id && product.qty > 1) {
-            // console.log(product);
-            // console.log(action.payload);
             return {
               ...product,
-              qty: product.qty - 1,
-              price: product.qty * product.singlePrice,
-            };
-          }
-          return product;
-        }),
-      };
-    }
-    case UPDATE_PRICE: {
-      return {
-        ...statePart,
-        products: statePart.products.map((product) => {
-          if (product.id === action.payload.id && product.qty > 1) {
-            // console.log(product);
-            // console.log(action.payload);
-            return {
-              ...product,
-              price: action.payload,
-              // price: product.qty * product.singlePrice,
+              qty: action.payload.qty,
+              price: action.payload.qty * product.singlePrice,
             };
           }
           return product;

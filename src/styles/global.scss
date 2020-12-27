@@ -26,9 +26,10 @@ h6 {
   color: $chocolate;
   font-family: $font-title;
   padding-top: 0.5rem;
-  // line-height: 1rem;
 }
-
+p {
+  padding-bottom: 0;
+}
 .container {
   padding: 0;
 }

@@ -1,21 +1,21 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  width: 100vw;
-  height: 100vh;
   font-family: $font-title;
+  height: 100vh;
+  width: 100vw;
 
   .slider {
-    position: relative !important;
-    --organic-arrow-color: #ffffff;
-    --slider-height-percentage: 100%;
-    --slider-transition-duration: 700ms;
-    --organic-arrow-thickness: 4px;
-    --organic-arrow-border-radius: 0px;
-    --organic-arrow-height: 40px;
-    --organic-arrow-color: #e2ebf0;
     --loader-bar-color: #e2ebf0;
     --loader-bar-height: 6px;
+    --organic-arrow-border-radius: 0px;
+    --organic-arrow-color: #e2ebf0;
+    --organic-arrow-color: #ffffff;
+    --organic-arrow-height: 40px;
+    --organic-arrow-thickness: 4px;
+    --slider-height-percentage: 100%;
+    --slider-transition-duration: 700ms;
+    position: relative !important;
   }
   .caption {
     align-items: center;
@@ -28,45 +28,13 @@
     position: absolute;
     width: 100%;
     p {
-      color: #ffffff;
-      // margin-top: 3rem;
+      color: $slider-font-color;
       margin-bottom: 0;
     }
   }
 }
 
-/* ExtraExtraLarge Devices, UltraWide Desktops  */
-@media (min-width: 1921px) {
-  .root {
-  }
-}
-
-/* ExtraLarge Devices, Desktops  */
-@media (min-width: 1200px) and (max-width: 1920px) {
-  .root {
-  }
-}
-/* Large Devices, Laptops, Large Tablets iPad Pro */
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
-  .root {
-  }
-}
-
-/* Medium Devices, Tablets iPad */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .root {
-  }
-}
-
-/* Small Devices, Small tablets Large Phones */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  .root {
-    height: 50vh;
-  }
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 0px) and (max-width: 479px) {
+@media only screen and (min-width: 0) and (max-width: 767px) {
   .root {
     height: 50vh;
   }

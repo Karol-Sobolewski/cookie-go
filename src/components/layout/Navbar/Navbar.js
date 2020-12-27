@@ -28,7 +28,6 @@ const Component = ({ className, children }) => {
     } else if (activeLanguage === `English`) {
       dispatch(changeActiveLanguage(`Polish`));
     }
-    // setActiveRWD(false);
     setActive(!active);
   };
 
@@ -127,23 +126,9 @@ const Component = ({ className, children }) => {
   );
 };
 
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
-
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-export {
-  Component as Navbar,
-  // Container as Navbar,
-  Component as NavbarComponent,
-};
+export { Component as Navbar, Component as NavbarComponent };

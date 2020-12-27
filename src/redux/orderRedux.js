@@ -14,15 +14,12 @@ export const fetchSuccess = (payload) => ({ payload, type: FETCH_SUCCESS });
 export const fetchError = (payload) => ({ payload, type: FETCH_ERROR });
 export const addNewOrder = (payload) => ({ payload, type: ADD_ORDER });
 
-// export const getMenuItems = ({ menus }) => menus.data;
-
 export const fetchOrders = () => (dispatch) => {
   dispatch(fetchStarted());
 
   Axios.get(`${API_URL}/orders`)
     .then((res) => {
       dispatch(fetchSuccess(res.data));
-      // console.log(`res`, res.data);
     })
     .catch((err) => {
       dispatch(fetchError(err.message || true));
@@ -51,7 +48,6 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case FETCH_SUCCESS: {
-      // console.log(`menu`, action.payload);
       return {
         ...statePart,
         loading: {
@@ -71,8 +67,6 @@ export default function reducer(statePart = [], action = {}) {
       };
     }
     case ADD_ORDER: {
-      console.log(statePart);
-      console.log(action.payload);
       return {
         ...statePart,
         loading: {

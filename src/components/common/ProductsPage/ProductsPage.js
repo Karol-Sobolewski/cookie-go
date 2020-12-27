@@ -7,9 +7,6 @@ import styles from './ProductsPage.module.scss';
 import { ProductForm } from '../ProductForm/ProductForm';
 
 const Component = ({ className, children, productName }) => {
-  const activeLanguage = useSelector(
-    (state) => state.utils.data.activeLanguage
-  );
   const allProducts = useSelector((state) => state.products.data);
   const products = allProducts.filter(
     (product) => product.category === productName
@@ -34,8 +31,4 @@ Component.propTypes = {
   productName: PropTypes.string,
 };
 
-export {
-  Component as ProductsPage,
-  // Container as Cookies,
-  Component as ProductsPageComponent,
-};
+export { Component as ProductsPage, Component as ProductsPageComponent };

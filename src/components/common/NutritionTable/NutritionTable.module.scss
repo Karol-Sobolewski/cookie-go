@@ -1,17 +1,16 @@
 @import "../../../styles/settings.scss";
 
 .root {
-  width: 100%;
-  height: 100%;
+  color: $nutrition-color;
   font-family: $font-title;
-  color: $chocolate;
+  height: 100%;
+  width: 100%;
   z-index: 5;
   .productNutrition {
     align-items: stretch;
-    background: white;
+    background: $nutrition-bg;
     border-radius: 10px;
     display: flex;
-    // display: none;
     flex-direction: column;
     font-size: 0.7em;
     height: 100%;
@@ -22,13 +21,13 @@
     padding: 10%;
     position: absolute;
     top: 50%;
-    visibility: hidden;
     transform: translate(0, -50%);
-    transition: all 0.5s;
+    transition: $transition;
+    visibility: hidden;
     width: 100%;
     z-index: -1;
     .productNutritionRow {
-      border-bottom: 1px solid #ccc;
+      border-bottom: 1px solid $nutrition-border-color;
       :first-child {
         text-align: left;
       }
@@ -40,46 +39,10 @@
   }
   .productNutrition__show {
     @extend .productNutrition;
-    // display: flex;
-    visibility: visible;
     left: 0;
     opacity: 1;
-    transition: all 0.5s;
+    transition: $transition;
+    visibility: visible;
     z-index: 5;
-  }
-}
-
-/* ExtraExtraLarge Devices, UltraWide Desktops  */
-@media (min-width: 1921px) {
-  .root {
-  }
-}
-
-/* ExtraLarge Devices, Desktops  */
-@media (min-width: 1200px) and (max-width: 1920px) {
-  .root {
-  }
-}
-/* Large Devices, Laptops, Large Tablets iPad Pro */
-@media only screen and (min-width: 1024px) and (max-width: 1199px) {
-  .root {
-  }
-}
-
-/* Medium Devices, Tablets iPad */
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .root {
-  }
-}
-
-/* Small Devices, Small tablets Large Phones */
-@media only screen and (min-width: 480px) and (max-width: 767px) {
-  .root {
-  }
-}
-
-/* Extra Small Devices, Phones */
-@media only screen and (min-width: 0px) and (max-width: 479px) {
-  .root {
   }
 }

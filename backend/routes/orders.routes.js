@@ -7,7 +7,6 @@ const Order = require(`../models/order.model`);
 router.get(`/orders`, async (req, res) => {
   try {
     const result = await Order.find();
-    // console.log(result);
     if (!result) res.status(404).json({ menu: `Not found` });
     else res.json(result);
   } catch (err) {

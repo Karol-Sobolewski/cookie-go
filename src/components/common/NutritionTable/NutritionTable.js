@@ -1,13 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-// import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { Row, Col } from 'react-bootstrap';
 import styles from './NutritionTable.module.scss';
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
 const Component = ({ className, nutrition, show }) => {
   const activeLanguage = useSelector(
@@ -71,8 +68,4 @@ Component.propTypes = {
   show: PropTypes.bool,
 };
 
-export {
-  Component as NutritionTable,
-  // Container as NutritionTable,
-  Component as NutritionTableComponent,
-};
+export { Component as NutritionTable, Component as NutritionTableComponent };

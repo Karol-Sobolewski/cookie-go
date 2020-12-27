@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
 import styles from './App.module.scss';
@@ -14,7 +14,10 @@ import { NotFound } from './components/views/NotFound/NotFound';
 import { SingleProductPage } from './components/common/SingleProductPage/SingleProductPage';
 import { ProductsPage } from './components/common/ProductsPage/ProductsPage';
 import { fetchMenu } from './redux/menuRedux';
-
+import {
+  loadCartFromLocalStorage,
+  saveCartToLocalStorage,
+} from './redux/cartRedux';
 import {
   fetchUtils,
   changeActiveLanguage,
@@ -26,21 +29,41 @@ import { fetchProducts } from './redux/productRedux';
 import ScrollToTop from './utils/ScrollToTop';
 
 const App = () => {
+  const cartObject = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   const [loaded, setLoaded] = useState(false);
+
+  function useDidUpdate(callback, deps) {
+    const hasMount = useRef(false);
+
+    useEffect(() => {
+      if (hasMount.current) {
+        callback();
+      } else {
+        hasMount.current = true;
+      }
+    }, deps);
+  }
+
+  function SaveCart() {
+    useDidUpdate(() => {
+      dispatch(saveCartToLocalStorage(cartObject));
+    });
+  }
+  SaveCart();
+
   useEffect(() => {
     dispatch(fetchPages());
     dispatch(fetchMenu());
     dispatch(fetchProducts());
     dispatch(fetchUtils());
+    dispatch(loadCartFromLocalStorage());
 
     const loadData = () => {
       fetch(`https://geolocation-db.com/json/`)
         .then((res) => res.json())
         .then((response) => {
-          // console.log(`Country is : `, response.country_code);
           if (response.country_code !== `PL`) {
-            // dispatch(changeLanguage(`English`));
             dispatch(changeActiveLanguage(`English`));
             setLoaded(true);
           } else {
@@ -60,7 +83,6 @@ const App = () => {
             2
           );
           dispatch(changeExchangeRate(euro));
-          // console.log(euro);
         });
     };
     setTimeout(() => {

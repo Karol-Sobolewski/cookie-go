@@ -1,16 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import uuid from 'react-uuid';
 
-import { Container, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import styles from './ProductForm.module.scss';
 import { Button } from '../Button/Button';
 import { NutritionTable } from '../NutritionTable/NutritionTable';
-import { CartForm } from '../CartForm/CartForm';
+import { AddToCartForm } from '../AddToCartForm/AddToCartForm';
 
 const Component = ({ className, children, product }) => {
   const [rotate, setRotate] = useState(false);
@@ -55,7 +54,9 @@ const Component = ({ className, children, product }) => {
             >
               <img src={product.images[0].src} alt={product.images[0].title} />
               <p className={styles.clickOnMe}>
-                {activeLanguage === `Polish` ? `Kliknij` : `Click`}
+                {activeLanguage === `Polish`
+                  ? `Opis produktu`
+                  : `Product description`}
               </p>
             </button>
             <div className={styles.productDescriptionBox}>
@@ -114,7 +115,7 @@ const Component = ({ className, children, product }) => {
             : null}
           {/* eslint-enable */}
         </h4>
-        <CartForm
+        <AddToCartForm
           product={product}
           singlePrice={product.price}
           showQty={!showNutrition}
@@ -131,8 +132,4 @@ Component.propTypes = {
   product: PropTypes.object,
 };
 
-export {
-  Component as ProductForm,
-  // Container as ProductForm,
-  Component as ProductFormComponent,
-};
+export { Component as ProductForm, Component as ProductFormComponent };

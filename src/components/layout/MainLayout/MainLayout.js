@@ -5,37 +5,18 @@ import clsx from 'clsx';
 import { Header } from '../Header/Header';
 import { Footer } from '../Footer/Footer';
 import styles from './MainLayout.module.scss';
-// import { connect } from 'react-redux';
-// import { reduxSelector, reduxActionCreator } from '../../../redux/exampleRedux.js';
 
-const Component = ({ className, children }) => {
-  console.log(`main`);
-  return (
-    <div className={clsx(className, styles.root)}>
-      <Header />
-      <div className={styles.content}>{children}</div>
-      <Footer />
-    </div>
-  );
-};
-
-// const mapStateToProps = (state) => ({
-//   someProp: reduxSelector(state);
-// })
-
-// const mapDispatchToProps = (dispatch) => ({
-//   someAction: arg => dispatch(reduxActionCreator(arg)),
-
-//   const container = connect(mapStateToProps, mapStateToProps)(Component);
-// })
+const Component = ({ className, children }) => (
+  <div className={clsx(className, styles.root)}>
+    <Header />
+    <div className={styles.content}>{children}</div>
+    <Footer />
+  </div>
+);
 
 Component.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
 };
 
-export {
-  Component as MainLayout,
-  // Container as MainLayout,
-  Component as MainLayoutComponent,
-};
+export { Component as MainLayout, Component as MainLayoutComponent };

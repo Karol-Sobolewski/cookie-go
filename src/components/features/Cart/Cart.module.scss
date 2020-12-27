@@ -2,7 +2,7 @@
 .root {
   align-items: center;
   border: none;
-  color: $chocolate;
+  color: $cart-color;
   display: flex;
   font-family: $font-title;
   justify-content: center;
@@ -14,7 +14,7 @@
   z-index: 1000;
   .cartButton {
     align-items: center;
-    background-color: white;
+    background-color: $cart-button-bg;
     border-radius: 50%;
     border: none;
     box-shadow: $box-shadow;
@@ -24,31 +24,31 @@
     position: fixed;
   }
   .cartIcon {
-    color: $navbar-cart-icon;
+    color: $cart-icon-color;
     font-size: 3vh;
   }
 
   .cartIconActive {
     @extend .cartIcon;
-    color: $navbar-cart-icon-active;
+    color: $cart-icon-color-active;
   }
   .cartProductIndicator {
-    width: auto;
-    flex-grow: 1;
-    height: auto;
-    display: flex;
-    color: $chocolate;
-    font-weight: bold;
-    justify-content: center;
     align-items: center;
+    background-color: $cartProductIndicator-bg;
+    border-radius: 10px;
+    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
+    color: $cartProductIndicator-color;
+    display: flex;
+    flex-grow: 1;
+    font-weight: bold;
+    height: auto;
+    justify-content: center;
+    left: 20%;
     position: absolute;
     text-justify: inherit;
-    left: 20%;
     top: 90%;
-    border-radius: 10px;
     transform: translate(-50%, -50%);
-    box-shadow: 0px 0px 25px 10px rgba(0, 0, 0, 0.2);
-    background-color: $cookie;
+    width: auto;
     p {
       padding: 0 5px 0 5px;
       margin-bottom: 0;
@@ -72,11 +72,9 @@
   }
 }
 .cart {
-  // overflow-x: hidden;
-  background-color: white;
+  background-color: $cart-bg;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.5);
-  cursor: default;
+  box-shadow: $box-shadow;
   height: auto;
   opacity: 0;
   position: absolute;
@@ -89,7 +87,7 @@
 
   .cartProductRow {
     align-items: center;
-    border-bottom: 1px solid #ccc;
+    border-bottom: $cartProductRow-border;
     display: flex;
     justify-content: center;
     padding: 1vh 0 1vh 0;
@@ -111,26 +109,26 @@
   }
   .qtyButton {
     box-shadow: $box-shadow-small;
-    font-size: 1.5em;
+    font-size: $base-size * 1.5;
     height: 2.5vh;
-    width: 2.5vh;
     margin: 0 5px 0 5px;
+    width: 2.5vh;
     p {
       padding-top: 0.15em;
     }
   }
   .products {
-    overflow-x: hidden;
     height: auto;
     max-height: 20vh;
+    overflow-x: hidden;
   }
 }
 
 .orderSummary {
-  margin: 2.5vh 0 5vh 0;
-  display: flex;
   align-content: center;
+  display: flex;
   justify-content: center;
+  margin: 2.5vh 0 5vh 0;
 }
 
 .orderButton {
@@ -143,13 +141,13 @@
   z-index: 500;
 }
 
-.cartName {
-  background: white;
+.cartProductTitle {
+  background: $cartProductTitle-bg;
   border-radius: 10px;
   box-shadow: $box-shadow;
-  color: $chocolate;
+  color: $cartProductTitle-color;
   font-family: $font-title;
-  font-size: 0.7em;
+  font-size: $base-size * 0.7;
   height: 5vh;
   left: 25%;
   opacity: 0;
@@ -159,7 +157,7 @@
   z-index: 10;
 }
 
-.cartImage {
+.cartProductImage {
   z-index: 10;
   cursor: pointer;
   img {
@@ -168,7 +166,7 @@
   }
 }
 
-.cartImage:hover ~ .cartName {
+.cartProductImage:hover ~ .cartProductTitle {
   visibility: visible;
   opacity: 1;
 }
@@ -181,10 +179,10 @@
 }
 
 .cartSummary {
-  height: 5vh;
-  display: flex;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  height: 5vh;
+  justify-content: center;
 }
 
 /* Media non-touch  */
@@ -192,7 +190,7 @@
   .root {
     &:hover {
       .cartIcon {
-        color: $navbar-cart-icon-active;
+        color: $cart-icon-color-active;
       }
     }
   }
@@ -223,14 +221,14 @@
 /* ExtraLarge Devices, Desktops  */
 @media (min-width: 1200px) and (max-width: 1920px) {
   .cartIcon {
-    font-size: 1.5em;
+    font-size: $base-size * 1.5;
   }
   .cart {
     width: 30vw;
     max-height: 60vh;
   }
   .cartProductIndicator {
-    font-size: 1.5em;
+    font-size: $base-size * 1.5;
     bottom: -35%;
   }
 }
@@ -265,7 +263,7 @@
     max-height: 40vh;
   }
   .cartProductIndicator {
-    font-size: 1.5em;
+    font-size: $base-size * 1.5;
     bottom: -35%;
   }
   .orderButton {
@@ -282,7 +280,7 @@
     max-height: 40vh;
   }
   .cartProductIndicator {
-    font-size: 1.5em;
+    font-size: $base-size * 1.5;
     bottom: -50%;
   }
   .orderButton {
@@ -298,7 +296,7 @@
     max-height: 40vh;
   }
   .cartProductIndicator {
-    font-size: 1em;
+    font-size: $base-size;
     bottom: -50%;
   }
 }
@@ -312,7 +310,6 @@
   .cartProductIndicator {
     font-size: 1.2em;
     bottom: -60%;
-    // color: blue;
   }
 }
 
@@ -338,7 +335,7 @@
     height: 80vw;
   }
   .cartProductIndicator {
-    font-size: 1em;
+    font-size: $base-size;
     bottom: -100%;
   }
   .orderButton {
