@@ -1,3 +1,5 @@
+const expressStaticGzip = require(`express-static-gzip`);
+
 const express = require(`express`);
 const cors = require(`cors`);
 const path = require(`path`);
@@ -15,6 +17,16 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, `../build`)));
+app.use(
+  `../build`,
+  expressStaticGzip(`build/client`, {
+    enableBrotli: true,
+    orderPreference: [`br`, `gz`],
+    setHeaders(res, paths) {
+      res.setHeader(`Cache-Control`, `public, max-age=31536000`);
+    },
+  })
+);
 
 /* API ENDPOINTS */
 app.use(`/api`, menusRoutes);
