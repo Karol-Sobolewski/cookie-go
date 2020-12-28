@@ -16,10 +16,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, `../build`)));
+
 app.use(
   `../build`,
-  expressStaticGzip(`build/client`, {
+  expressStaticGzip(`../build`, {
     enableBrotli: true,
     orderPreference: [`br`, `gz`],
     setHeaders(res, paths) {
@@ -28,6 +28,7 @@ app.use(
   })
 );
 
+app.use(express.static(path.join(__dirname, `../build`)));
 /* API ENDPOINTS */
 app.use(`/api`, menusRoutes);
 app.use(`/api`, pagesRoutes);
