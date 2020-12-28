@@ -88,7 +88,6 @@ const Component = ({ className }) => {
       order.street.length > 100 ||
       order.house.length > 100 ||
       order.city.length > 100 ||
-      order.phone.length > 15 ||
       order.zip.length > 15 ||
       order.country.length > 100
     ) {
@@ -113,7 +112,15 @@ const Component = ({ className }) => {
             : `Please fill email correctly`
         );
         e.preventDefault();
-      }
+      }else if (order.phone) {
+        if (order.phone.length < 2 || order.phone.length > 1000) {
+          alert(
+            activeLanguage === `Polish`
+              ? `Podaj poprawny email`
+              : `Please fill email correctly`
+          );
+          e.preventDefault();
+        }
     } else {
       alert(
         activeLanguage === `Polish`
