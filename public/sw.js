@@ -22,8 +22,8 @@ const filesToCache = [
   `/images/photos/products/pastries/croissant.png`,
   `/images/photos/products/pastries/cupcake.png`,
   `/images/photos/products/sweets/lollypop.png`,
-  `/images/photos/products/sweets/pink.png`,
   `/images/photos/products/sweets/ribbon.png`,
+  `/images/photos/products/sweets/pink.png`,
   `/index.html`,
 ];
 window.self.addEventListener(`install`, function (e) {
