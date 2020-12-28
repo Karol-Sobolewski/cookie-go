@@ -8,7 +8,7 @@
 
 > Cookie Go is project for on-line bakery shop.
 
-### ✨ [Demo](https://www.cookiego.herokuapp.com/)
+### ✨ [Demo](https://cookiego.herokuapp.com/)
 
 ## Install
 
