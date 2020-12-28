@@ -22,6 +22,7 @@ const Component = ({ children }) => {
   const dispatch = useDispatch();
 
   const [active, setActive] = useState(false);
+  const [shakeCart, setShakeCart] = useState(false);
 
   const cartItems = useSelector((state) => state.cart.products);
 
@@ -49,6 +50,7 @@ const Component = ({ children }) => {
 
   const cartTotalPrice = cartItems.reduce((a, b) => a + (b.price || 0), 0);
   const cartTotalQty = cartItems.reduce((a, b) => a + (b.qty || 0), 0);
+
   const customStyles = {
     overlay: { zIndex: 1000, backgroundColor: `rgba(0, 0, 0, 0.2)` },
     content: {
@@ -104,14 +106,20 @@ const Component = ({ children }) => {
     document.body.style.top = `-${window.scrollY}px`;
   };
 
-  useEffect(() => {});
+  useEffect(() => {
+    if (cartTotalQty === 1 && active === false) {
+      setShakeCart(true);
+    } else {
+      setShakeCart(false);
+    }
+  });
 
   return (
     <Container ref={wrapperRef} className={styles.root}>
       <button
         type="button"
         onClick={() => toggleTrueFalse()}
-        className={styles.cartButton}
+        className={shakeCart ? styles.cartButton__shake : styles.cartButton}
       >
         <FontAwesomeIcon
           icon={faShoppingCart}

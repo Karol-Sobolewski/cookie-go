@@ -1,4 +1,6 @@
 @import "../../../styles/settings.scss";
+@import "../../../styles/animations.scss";
+
 .root {
   align-items: center;
   border: none;
@@ -8,8 +10,8 @@
   justify-content: center;
   opacity: 1;
   position: fixed;
-  right: 2px;
-  top: 2px;
+  right: 1vh;
+  top: 1vh;
   visibility: visible;
   z-index: 1000;
   .cartButton {
@@ -22,6 +24,10 @@
     justify-content: center;
     outline: none;
     position: fixed;
+  }
+  .cartButton__shake {
+    @extend .cartButton;
+    animation: shake 0.5s;
   }
   .cartIcon {
     color: $cart-icon-color;
