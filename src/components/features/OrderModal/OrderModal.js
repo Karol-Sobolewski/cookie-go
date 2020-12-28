@@ -45,6 +45,7 @@ const Component = ({ className }) => {
     const { value } = target;
     const { name } = target;
     setOrder({ ...order, [name]: value });
+    console.log(order);
   };
 
   const handleSubmit = (e) => {
@@ -64,6 +65,7 @@ const Component = ({ className }) => {
           ? `Wypełnij wszystkie pola`
           : `Fill all inputs correctly`
       );
+      console.log(`!!!`);
       e.preventDefault();
     } else if (
       order.firstName.length < 2 ||
@@ -80,6 +82,7 @@ const Component = ({ className }) => {
           ? `Wypełnij wszystkie pola`
           : `Fill all inputs correctly`
       );
+      console.log(`short`);
       e.preventDefault();
     } else if (
       order.firstName.length > 100 ||
@@ -96,6 +99,7 @@ const Component = ({ className }) => {
           ? `Wypełnij wszystkie pola`
           : `Fill all inputs correctly`
       );
+      console.log(`long`);
       e.preventDefault();
     } else if (!order.email.match(mailFormat)) {
       alert(
@@ -103,25 +107,42 @@ const Component = ({ className }) => {
           ? `Podaj poprawny email`
           : `Please fill email correctly`
       );
+      console.log(`email`);
       e.preventDefault();
     } else if (order.comment) {
       if (order.comment.length < 2 || order.comment.length > 1000) {
         alert(
           activeLanguage === `Polish`
-            ? `Podaj poprawny email`
-            : `Please fill email correctly`
+            ? `Podaj poprawny komentarz`
+            : `Please fill order comment correctly`
         );
         e.preventDefault();
       }
+      alert(
+        activeLanguage === `Polish`
+          ? `Zamówienie zostało złożone`
+          : `Your order was placed`
+      );
+      e.preventDefault();
+      dispatch(addOrderRequest(order));
+      cleanUp();
     } else if (order.phone) {
-      if (order.phone.length < 2 || order.phone.length > 1000) {
+      if (order.phone.length < 2 || order.phone.length > 20) {
         alert(
           activeLanguage === `Polish`
-            ? `Podaj poprawny email`
-            : `Please fill email correctly`
+            ? `Podaj poprawny numer`
+            : `Please fill your phone number correctly`
         );
         e.preventDefault();
       }
+      alert(
+        activeLanguage === `Polish`
+          ? `Zamówienie zostało złożone`
+          : `Your order was placed`
+      );
+      e.preventDefault();
+      dispatch(addOrderRequest(order));
+      cleanUp();
     } else {
       alert(
         activeLanguage === `Polish`
@@ -129,6 +150,7 @@ const Component = ({ className }) => {
           : `Your order was placed`
       );
       e.preventDefault();
+      console.log(`send`);
       dispatch(addOrderRequest(order));
       cleanUp();
     }
