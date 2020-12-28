@@ -113,7 +113,7 @@ const Component = ({ className }) => {
         );
         e.preventDefault();
       }
-    } else if (order.comment) {
+    } else if (order.phone) {
       if (order.phone.length < 2 || order.phone.length > 1000) {
         alert(
           activeLanguage === `Polish`
