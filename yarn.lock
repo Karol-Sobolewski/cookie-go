@@ -12111,10 +12111,10 @@ scriptjs@^2.5.8:
   resolved "https://registry.yarnpkg.com/scriptjs/-/scriptjs-2.5.9.tgz#343915cd2ec2ed9bfdde2b9875cd28f59394b35f"
   integrity sha512-qGVDoreyYiP1pkQnbnFAUIS5AjenNwwQBdl7zeos9etl+hYKWahjRTfzAZZYBv5xNHx7vNKCmaLDQZ6Fr2AEXg==
 
-scroll-snap@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/scroll-snap/-/scroll-snap-3.1.0.tgz#298900b6bd9df2758d56703248289d7d4847fd51"
-  integrity sha512-suYM4T2dr/LIE8VRgpGNzU9jK9FYUFXtX4z4i9WCq5ZzWKLwcHsSbCTEgES+89mLx7Nnn2//Tt0gtLODWmNQyg==
+scroll-snap@^3.2.4:
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/scroll-snap/-/scroll-snap-3.2.4.tgz#0247caf5f489326a4bee52362d348feeb3fc145f"
+  integrity sha512-k7JkZA3nmRel+1LHitBjTSQOBJlYxbQLwhGJabyA0VxYFrWyQo8C4xPAfbKtDHwhxVc3OD/uW9yFaOjk0Xhgsw==
 
 scss-tokenizer@^0.2.3:
   version "0.2.3"
